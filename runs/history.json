@@ -1,5 +1,16 @@
 [
   {
+    "id": "2026-11-25T13-04-02-584Z",
+    "startedAt": "2026-11-25T13:04:02.584Z",
+    "durationMs": 829156,
+    "label": "tests/Smoke/circuit-breaker.spec.ts",
+    "total": 85,
+    "passed": 85,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
     "id": "2026-11-25T12-07-35-713Z",
     "startedAt": "2026-11-25T12:07:35.713Z",
     "durationMs": 827016,
@@ -94,17 +105,6 @@
     "startedAt": "2026-11-19T17:49:14.612Z",
     "durationMs": 152415,
     "label": "tests/Smoke/pre-auth-order.spec.ts",
-    "total": 1,
-    "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-19T17-44-33-056Z",
-    "startedAt": "2026-11-19T17:44:33.056Z",
-    "durationMs": 5194,
-    "label": "ყველა ტესტი · grep: CHECK ორდერის შექმნა",
     "total": 1,
     "passed": 1,
     "failed": 0,

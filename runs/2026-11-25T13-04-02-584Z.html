@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report</title>
+  <style>
+    .history { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px; margin-bottom:24px; }
+    .history > summary { cursor:pointer; font-weight:600; font-size:14px; }
+    .hwrap { overflow-x:auto; margin-top:10px; }
+    .history table { border-collapse:collapse; width:100%; font-size:13px; }
+    .history th, .history td { text-align:left; padding:6px 10px; border-top:1px solid #30363d; vertical-align:top; white-space:nowrap; }
+    .history th { color:#7d8590; font-weight:600; border-top:none; }
+    .history td.lbl { white-space:normal; max-width:260px; color:#adbac7; }
+    .history a { color:#58a6ff; text-decoration:none; } .history a:hover { text-decoration:underline; }
+    .history tr.cur td { background:#1c2330; }
+    .history .p { color:#3fb950; } .history .f { color:#f85149; } .history .s { color:#7d8590; }
+    .now { background:#1f6feb; color:#fff; border-radius:10px; padding:1px 7px; font-size:11px; }
+    .barc { min-width:140px; } .bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0d1117; margin-top:5px; }
+    .hf summary { cursor:pointer; color:#f85149; } .hf ul { margin:6px 0 0; padding-left:18px; white-space:normal; color:#ffa198; max-width:520px; }
+    .back { color:#58a6ff; font-size:13px; text-decoration:none; display:inline-block; margin-bottom:12px; }
+    body { font-family: system-ui, sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:32px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .meta { color:#7d8590; font-size:13px; margin-bottom:20px; }
+    .summary { display:flex; gap:12px; margin-bottom:24px; }
+    .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 18px;
+            font-family:inherit; font-size:14px; font-weight:600; color:#e6edf3; cursor:pointer;
+            transition:border-color .15s, box-shadow .15s; }
+    .card:hover { border-color:#484f58; }
+    .card.active { border-color:#58a6ff; box-shadow:0 0 0 1px #58a6ff; }
+    .card.pass { color:#3fb950; } .card.fail { color:#f85149; } .card.skip { color:#7d8590; }
+    .file { color:#7d8590; font-size:13px; margin:18px 0 6px; font-weight:600; }
+    .suite-group { margin:10px 0 14px 12px; padding-left:12px; border-left:2px solid #30363d; }
+    .suite { cursor:pointer; color:#e6edf3; font-size:14px; font-weight:600; margin:6px 0 8px; list-style:none; }
+    .suite::-webkit-details-marker { display:none; }
+    .suite::before { content:'▶'; color:#7d8590; font-size:10px; margin-right:8px; display:inline-block; transition:transform .15s; }
+    details[open] > .suite::before { transform:rotate(90deg); }
+    .suite .cnt { color:#3fb950; font-size:12px; font-weight:500; margin-left:8px; }
+    .suite.bad .cnt { color:#f85149; }
+    .test-item { margin-bottom:6px; }
+    .test { display:flex; align-items:center; gap:16px; background:#161b22; border:1px solid #30363d;
+            border-radius:6px; padding:12px 16px; cursor:pointer; list-style:none; user-select:none; }
+    .test::-webkit-details-marker { display:none; }
+    .test:hover { border-color:#484f58; }
+    .chev { color:#7d8590; font-size:11px; width:12px; transition:transform .15s; }
+    details[open] > .test .chev { transform:rotate(90deg); }
+    .st { min-width:110px; font-weight:600; font-size:13px; }
+    .name { flex:1; }
+    .dur { color:#7d8590; font-size:13px; }
+    .err { background:#161b22; border:1px solid #f85149; border-left:3px solid #f85149; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#ffa198; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; }
+    .log { background:#0b0f14; border:1px solid #30363d; border-left:3px solid #3fb950; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#adbac7; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; line-height:1.5; }
+    .log a { color:#58a6ff; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← ისტორია / ბოლო გაშვება</a>
+  <h1>🎭 Playwright Test Report</h1>
+  <div class="meta">11/25/2026, 5:04:02 PM · tests/Smoke/circuit-breaker.spec.ts · 14 წთ</div>
+  <div class="summary">
+    <button type="button" class="card active" data-filter="all">Total: 85</button>
+    <button type="button" class="card pass" data-filter="pass">✅ Passed: 85</button>
+    <button type="button" class="card fail" data-filter="fail">❌ Failed: 0</button>
+    <button type="button" class="card skip" data-filter="skip">⏭️ Skipped: 0</button>
+  </div>
+  <div class="file-group"><div class="file">tests/Smoke/circuit-breaker.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Circuit breaker: hub → payment — 10 × connection refused → OPEN → reset → CLOSED</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">ℹ️ hub / paymentServiceRestTemplate: CLOSED, mode MONITOR
+✅ hub → payment: 10 × refused → OPEN · OPEN-ში {"401":3} (MONITOR)</pre></details><details class="suite-group" open><summary class="suite">Circuit breaker: common → payment <span class="cnt">✅ 13/13</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">829ms</span>
+          </summary><pre class="log">✅ common → payment · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">176ms</span>
+          </summary><pre class="log">✅ common → payment · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">168ms</span>
+          </summary><pre class="log">✅ common → payment · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">185ms</span>
+          </summary><pre class="log">✅ common → payment · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN</span>
+            <span class="dur">7.3s</span>
+          </summary><pre class="log">✅ common → payment · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">236ms</span>
+          </summary><pre class="log">✅ common → payment · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → REJECTED 3</span>
+            <span class="dur">311ms</span>
+          </summary><pre class="log">✅ common → payment · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"REJECTED":3} | failed 10, slow 0, rate 100, notPermitted 3 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 5 × SUCCESS → CLOSED</span>
+            <span class="dur">33.3s</span>
+          </summary><pre class="log">✅ common → payment · აღდგენა 5 × SUCCESS: HALF_OPEN → CLOSED | {"200":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ common → payment · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — მხოლოდ 5 საცდელი გადის</span>
+            <span class="dur">34.3s</span>
+          </summary><pre class="log">✅ common → payment · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":5,"REJECTED":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × ნელი (5500 ms) → OPEN</span>
+            <span class="dur">5.8s</span>
+          </summary><pre class="log">✅ common → payment · 10 × SUCCESS (5500 ms): CLOSED → OPEN | {"200":10} | failed 0, slow 10, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 3000 ms → CLOSED (ზღვარზე ნაკლები)</span>
+            <span class="dur">3.2s</span>
+          </summary><pre class="log">✅ common → payment · 10 × SUCCESS (3000 ms): CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">492ms</span>
+          </summary><pre class="log">✅ common → payment: 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: common → payment (service token) <span class="cnt">✅ 13/13</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">217ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">224ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">175ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">159ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN</span>
+            <span class="dur">7.3s</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">247ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → REJECTED 3</span>
+            <span class="dur">357ms</span>
+          </summary><pre class="log">✅ common → payment (service token) · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"REJECTED":3} | failed 10, slow 0, rate 100, notPermitted 3 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 5 × SUCCESS → CLOSED</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ common → payment (service token) · აღდგენა 5 × SUCCESS: HALF_OPEN → CLOSED | {"200":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ common → payment (service token) · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — მხოლოდ 5 საცდელი გადის</span>
+            <span class="dur">34.3s</span>
+          </summary><pre class="log">✅ common → payment (service token) · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":5,"REJECTED":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × ნელი (5500 ms) → OPEN</span>
+            <span class="dur">5.8s</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × SUCCESS (5500 ms): CLOSED → OPEN | {"200":10} | failed 0, slow 10, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 3000 ms → CLOSED (ზღვარზე ნაკლები)</span>
+            <span class="dur">3.2s</span>
+          </summary><pre class="log">✅ common → payment (service token) · 10 × SUCCESS (3000 ms): CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">496ms</span>
+          </summary><pre class="log">✅ common → payment (service token): 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: ecommerce → payment <span class="cnt">✅ 13/13</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">173ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">152ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">157ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">145ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN (~25 წმ)</span>
+            <span class="dur">25.3s</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">302ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → REJECTED 3</span>
+            <span class="dur">349ms</span>
+          </summary><pre class="log">✅ ecommerce → payment · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"REJECTED":3} | failed 10, slow 0, rate 100, notPermitted 3 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 5 × SUCCESS → CLOSED</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ ecommerce → payment · აღდგენა 5 × SUCCESS: HALF_OPEN → CLOSED | {"200":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ ecommerce → payment · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — მხოლოდ 5 საცდელი გადის</span>
+            <span class="dur">34.4s</span>
+          </summary><pre class="log">✅ ecommerce → payment · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":5,"REJECTED":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × ნელი (6000 ms) → OPEN</span>
+            <span class="dur">6.4s</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × SUCCESS (6000 ms): CLOSED → OPEN | {"200":10} | failed 0, slow 10, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 3000 ms → CLOSED (ზღვარზე ნაკლები)</span>
+            <span class="dur">3.3s</span>
+          </summary><pre class="log">✅ ecommerce → payment · 10 × SUCCESS (3000 ms): CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">492ms</span>
+          </summary><pre class="log">✅ ecommerce → payment: 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: payment → hub <span class="cnt">✅ 11/11</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">417ms</span>
+          </summary><pre class="log">✅ payment → hub · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">382ms</span>
+          </summary><pre class="log">✅ payment → hub · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">385ms</span>
+          </summary><pre class="log">✅ payment → hub · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">192ms</span>
+          </summary><pre class="log">✅ payment → hub · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN (~10 წმ)</span>
+            <span class="dur">10.4s</span>
+          </summary><pre class="log">✅ payment → hub · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 90.90909, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">340ms</span>
+          </summary><pre class="log">✅ payment → hub · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → REJECTED 3</span>
+            <span class="dur">404ms</span>
+          </summary><pre class="log">✅ payment → hub · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"REJECTED":3} | failed 10, slow 0, rate 100, notPermitted 4 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 4 × SUCCESS → CLOSED</span>
+            <span class="dur">63.6s</span>
+          </summary><pre class="log">✅ payment → hub · აღდგენა 4 × SUCCESS: HALF_OPEN → CLOSED | {"200":4} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">63.4s</span>
+          </summary><pre class="log">✅ payment → hub · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — მხოლოდ 4 საცდელი გადის</span>
+            <span class="dur">64.5s</span>
+          </summary><pre class="log">✅ payment → hub · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":4,"REJECTED":6} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">671ms</span>
+          </summary><pre class="log">✅ payment → hub: 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: payment → common <span class="cnt">✅ 13/13</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">190ms</span>
+          </summary><pre class="log">✅ payment → common · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">186ms</span>
+          </summary><pre class="log">✅ payment → common · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">199ms</span>
+          </summary><pre class="log">✅ payment → common · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">208ms</span>
+          </summary><pre class="log">✅ payment → common · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN</span>
+            <span class="dur">7.3s</span>
+          </summary><pre class="log">✅ payment → common · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">254ms</span>
+          </summary><pre class="log">✅ payment → common · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → REJECTED 3</span>
+            <span class="dur">335ms</span>
+          </summary><pre class="log">✅ payment → common · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"REJECTED":3} | failed 10, slow 0, rate 100, notPermitted 3 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 5 × SUCCESS → CLOSED</span>
+            <span class="dur">33.5s</span>
+          </summary><pre class="log">✅ payment → common · აღდგენა 5 × SUCCESS: HALF_OPEN → CLOSED | {"200":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">33.4s</span>
+          </summary><pre class="log">✅ payment → common · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — მხოლოდ 5 საცდელი გადის</span>
+            <span class="dur">34.4s</span>
+          </summary><pre class="log">✅ payment → common · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":5,"REJECTED":5} | failed 0, slow 0, rate -1, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × ნელი (5500 ms) → OPEN</span>
+            <span class="dur">6.0s</span>
+          </summary><pre class="log">✅ payment → common · 10 × SUCCESS (5500 ms): CLOSED → OPEN | {"200":10} | failed 0, slow 10, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 3000 ms → CLOSED (ზღვარზე ნაკლები)</span>
+            <span class="dur">3.2s</span>
+          </summary><pre class="log">✅ payment → common · 10 × SUCCESS (3000 ms): CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (ENFORCE)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">✅ payment → common: 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: hub → payment (MONITOR) <span class="cnt">✅ 13/13</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × SUCCESS → CLOSED</span>
+            <span class="dur">766ms</span>
+          </summary><pre class="log">✅ hub → payment · 10 × SUCCESS: CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 500 → CLOSED (არ ითვლება)</span>
+            <span class="dur">463ms</span>
+          </summary><pre class="log">✅ hub → payment · 10 × SERVER_ERROR: CLOSED → CLOSED | {"500":10} | failed 0, slow 0, rate 0, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 400 → CLOSED (არ ითვლება)</span>
+            <span class="dur">454ms</span>
+          </summary><pre class="log">✅ hub → payment · 10 × CLIENT_ERROR: CLOSED → CLOSED | {"400":10} | failed 0, slow 0, rate 0, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">9 × REFUSED → CLOSED (10-ზე ნაკლები)</span>
+            <span class="dur">391ms</span>
+          </summary><pre class="log">✅ hub → payment · 9 × CONNECTION_REFUSED: CLOSED → CLOSED | {"HttpHostConnectException":9} | failed 9, slow 0, rate -1, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT → OPEN</span>
+            <span class="dur">7.5s</span>
+          </summary><pre class="log">✅ hub → payment · 10 × TIMEOUT: CLOSED → OPEN | {"SocketTimeoutException":10} | failed 10, slow 10, rate 100, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × REFUSED → OPEN</span>
+            <span class="dur">959ms</span>
+          </summary><pre class="log">✅ hub → payment · 10 × CONNECTION_REFUSED: CLOSED → OPEN | {"HttpHostConnectException":10} | failed 10, slow 0, rate 100, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">OPEN-ში 3 × SUCCESS → გადის (MONITOR), notPermitted +3</span>
+            <span class="dur">695ms</span>
+          </summary><pre class="log">✅ hub → payment · OPEN-ში 3 × SUCCESS: OPEN → OPEN | {"200":3} | failed 10, slow 0, rate 100, notPermitted 3 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">აღდგენა: HALF_OPEN → 5 × SUCCESS → CLOSED</span>
+            <span class="dur">33.7s</span>
+          </summary><pre class="log">✅ hub → payment · აღდგენა 5 × SUCCESS: HALF_OPEN → CLOSED | {"200":5} | failed 0, slow 0, rate -1, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN-ში ჩავარდნა → ისევ OPEN</span>
+            <span class="dur">33.7s</span>
+          </summary><pre class="log">✅ hub → payment · HALF_OPEN-ში 5 × REFUSED: HALF_OPEN → OPEN | {"HttpHostConnectException":5} | failed 5, slow 0, rate 100, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">HALF_OPEN — 10-ვე გადის (MONITOR)</span>
+            <span class="dur">34.6s</span>
+          </summary><pre class="log">✅ hub → payment · HALF_OPEN 10 ერთდროულად: HALF_OPEN → CLOSED | {"200":10} | failed 0, slow 0, rate -1, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × ნელი (5500 ms) → OPEN</span>
+            <span class="dur">6.0s</span>
+          </summary><pre class="log">✅ hub → payment · 10 × SUCCESS (5500 ms): CLOSED → OPEN | {"200":10} | failed 0, slow 10, rate 0, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × 3000 ms → CLOSED (ზღვარზე ნაკლები)</span>
+            <span class="dur">3.4s</span>
+          </summary><pre class="log">✅ hub → payment · 10 × SUCCESS (3000 ms): CLOSED → CLOSED | {"200":10} | failed 0, slow 0, rate 0, notPermitted 0 (MONITOR)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">40% → CLOSED · 50% → OPEN</span>
+            <span class="dur">664ms</span>
+          </summary><pre class="log">✅ hub → payment: 40% → CLOSED · 60% → OPEN</pre></details></details><details class="suite-group" open><summary class="suite">Circuit breaker: უსაფრთხოება <span class="cnt">✅ 8/8</span></summary><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ტოკენის გარეშე → 401</span>
+            <span class="dur">80ms</span>
+          </summary><pre class="log">✅ <a href="https://gateway.dev.keepz.me/common-service/api/v1/internal/resilience/simulation" target="_blank" rel="noopener">https://gateway.dev.keepz.me/common-service/api/v1/internal/resilience/simulation</a> → HTTP 401</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბანკის კლიენტი (tbcAcquiringRestTemplate) → 404</span>
+            <span class="dur">174ms</span>
+          </summary><pre class="log">✅ client=tbcAcquiringRestTemplate&amp;outcome=SUCCESS&amp;calls=1 → HTTP 404</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">client = URL → 404</span>
+            <span class="dur">143ms</span>
+          </summary><pre class="log">✅ client=<a href="http://example.com&amp;outcome=SUCCESS&amp;calls=1" target="_blank" rel="noopener">http://example.com&amp;outcome=SUCCESS&amp;calls=1</a> → HTTP 404</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">calls = 101 (ლიმიტი 0–100) → 400</span>
+            <span class="dur">144ms</span>
+          </summary><pre class="log">✅ client=paymentServiceRestTemplate&amp;outcome=SUCCESS&amp;calls=101 → HTTP 400</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">delayMs = 30001 (ლიმიტი 0–30000) → 400</span>
+            <span class="dur">144ms</span>
+          </summary><pre class="log">✅ client=paymentServiceRestTemplate&amp;outcome=SUCCESS&amp;calls=1&amp;delayMs=30001 → HTTP 400</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">concurrency = 11 (ლიმიტი 1–10) → 400</span>
+            <span class="dur">146ms</span>
+          </summary><pre class="log">✅ client=paymentServiceRestTemplate&amp;outcome=SUCCESS&amp;calls=1&amp;concurrency=11 → HTTP 400</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">10 × TIMEOUT, concurrency 1 (&gt; 60 წმ) → 400</span>
+            <span class="dur">132ms</span>
+          </summary><pre class="log">✅ client=paymentServiceRestTemplate&amp;outcome=TIMEOUT&amp;calls=10&amp;concurrency=1 → HTTP 400</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">PROD-ზე endpoint არ არსებობს → 401 / 404</span>
+            <span class="dur">385ms</span>
+          </summary><pre class="log">✅ <a href="https://gateway.keepz.me/common-service/api/v1/internal/resilience/simulation" target="_blank" rel="noopener">https://gateway.keepz.me/common-service/api/v1/internal/resilience/simulation</a> → HTTP 401</pre></details></details></div>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.card');
+      const items = document.querySelectorAll('.test-item');
+      const groups = document.querySelectorAll('.file-group, .suite-group');
+      function applyFilter(f) {
+        items.forEach((it) => {
+          it.style.display = (f === 'all' || it.dataset.status === f) ? '' : 'none';
+        });
+        // ცარიელი file-group-ის header დამალვა
+        groups.forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll('.test-item').forEach((it) => {
+            if (it.style.display !== 'none') anyVisible = true;
+          });
+          g.style.display = anyVisible ? '' : 'none';
+        });
+        cards.forEach((c) => c.classList.toggle('active', c.dataset.filter === f));
+      }
+      cards.forEach((c) => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+    })();
+  </script>
+</body>
+</html>
