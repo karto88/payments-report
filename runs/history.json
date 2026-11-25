@@ -1,5 +1,27 @@
 [
   {
+    "id": "2026-11-25T16-14-20-903Z",
+    "startedAt": "2026-11-25T16:14:20.903Z",
+    "durationMs": 52648,
+    "label": "tests/Smoke/saved-card-order.spec.ts",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-25T13-41-03-137Z",
+    "startedAt": "2026-11-25T13:41:03.137Z",
+    "durationMs": 203304,
+    "label": "tests/Smoke/circuit-breaker.spec.ts · grep: უსაფრთხოება|ზღვრები",
+    "total": 35,
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
     "id": "2026-11-25T13-18-04-955Z",
     "startedAt": "2026-11-25T13:18:04.955Z",
     "durationMs": 827871,
@@ -86,29 +108,5 @@
     "failed": 0,
     "skipped": 0,
     "failedTitles": []
-  },
-  {
-    "id": "2026-11-20T11-35-16-790Z",
-    "startedAt": "2026-11-20T11:35:16.790Z",
-    "durationMs": 2580,
-    "label": "tests/Smoke/hub-transaction.spec.ts · grep: მერჩანტის wallet-ზე",
-    "total": 1,
-    "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-20T11-34-54-902Z",
-    "startedAt": "2026-11-20T11:34:54.902Z",
-    "durationMs": 2587,
-    "label": "tests/Smoke/hub-transaction.spec.ts · grep: ჰაბის ბალანსზე",
-    "total": 1,
-    "passed": 0,
-    "failed": 1,
-    "skipped": 0,
-    "failedTitles": [
-      "Hub — მერჩანტის ბალანსიდან ჰაბის ბალანსზე გადარიცხვა"
-    ]
   }
 ]
