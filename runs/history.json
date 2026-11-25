@@ -1,0 +1,114 @@
+[
+  {
+    "id": "2026-11-25T12-07-35-713Z",
+    "startedAt": "2026-11-25T12:07:35.713Z",
+    "durationMs": 827016,
+    "label": "tests/Smoke/circuit-breaker.spec.ts",
+    "total": 85,
+    "passed": 85,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-25T08-56-23-994Z",
+    "startedAt": "2026-11-25T08:56:23.994Z",
+    "durationMs": 1273,
+    "label": "tests/Smoke/circuit-breaker.spec.ts",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-24T07-22-36-860Z",
+    "startedAt": "2026-11-24T07:22:36.860Z",
+    "durationMs": 51013,
+    "label": "tests/Smoke/gepa-order-status.spec.ts · grep: Mastercard",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-20T18-07-35-960Z",
+    "startedAt": "2026-11-20T18:07:35.960Z",
+    "durationMs": 70287,
+    "label": "tests/Smoke/gepa-order-status.spec.ts · grep: Mastercard",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-20T17-53-46-840Z",
+    "startedAt": "2026-11-20T17:53:46.840Z",
+    "durationMs": 48873,
+    "label": "tests/Smoke/gepa-order-status.spec.ts · grep: Mastercard",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-20T14-38-22-743Z",
+    "startedAt": "2026-11-20T14:38:22.743Z",
+    "durationMs": 4305,
+    "label": "tests/Smoke/hub-transaction.spec.ts · grep: wallet-ზე|ჰაბის ბალანსზე",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-20T11-35-16-790Z",
+    "startedAt": "2026-11-20T11:35:16.790Z",
+    "durationMs": 2580,
+    "label": "tests/Smoke/hub-transaction.spec.ts · grep: მერჩანტის wallet-ზე",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-20T11-34-54-902Z",
+    "startedAt": "2026-11-20T11:34:54.902Z",
+    "durationMs": 2587,
+    "label": "tests/Smoke/hub-transaction.spec.ts · grep: ჰაბის ბალანსზე",
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "failedTitles": [
+      "Hub — მერჩანტის ბალანსიდან ჰაბის ბალანსზე გადარიცხვა"
+    ]
+  },
+  {
+    "id": "2026-11-19T17-49-14-612Z",
+    "startedAt": "2026-11-19T17:49:14.612Z",
+    "durationMs": 152415,
+    "label": "tests/Smoke/pre-auth-order.spec.ts",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
+    "id": "2026-11-19T17-44-33-056Z",
+    "startedAt": "2026-11-19T17:44:33.056Z",
+    "durationMs": 5194,
+    "label": "ყველა ტესტი · grep: CHECK ორდერის შექმნა",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  }
+]
