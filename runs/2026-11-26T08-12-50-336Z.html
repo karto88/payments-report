@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report</title>
+  <style>
+    .history { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px; margin-bottom:24px; }
+    .history > summary { cursor:pointer; font-weight:600; font-size:14px; }
+    .hwrap { overflow-x:auto; margin-top:10px; }
+    .history table { border-collapse:collapse; width:100%; font-size:13px; }
+    .history th, .history td { text-align:left; padding:6px 10px; border-top:1px solid #30363d; vertical-align:top; white-space:nowrap; }
+    .history th { color:#7d8590; font-weight:600; border-top:none; }
+    .history td.lbl { white-space:normal; max-width:260px; color:#adbac7; }
+    .history a { color:#58a6ff; text-decoration:none; } .history a:hover { text-decoration:underline; }
+    .history tr.cur td { background:#1c2330; }
+    .history .p { color:#3fb950; } .history .f { color:#f85149; } .history .s { color:#7d8590; }
+    .now { background:#1f6feb; color:#fff; border-radius:10px; padding:1px 7px; font-size:11px; }
+    .barc { min-width:140px; } .bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0d1117; margin-top:5px; }
+    .hf summary { cursor:pointer; color:#f85149; } .hf ul { margin:6px 0 0; padding-left:18px; white-space:normal; color:#ffa198; max-width:520px; }
+    .back { color:#58a6ff; font-size:13px; text-decoration:none; display:inline-block; margin-bottom:12px; }
+    body { font-family: system-ui, sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:32px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .meta { color:#7d8590; font-size:13px; margin-bottom:20px; }
+    .summary { display:flex; gap:12px; margin-bottom:24px; }
+    .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 18px;
+            font-family:inherit; font-size:14px; font-weight:600; color:#e6edf3; cursor:pointer;
+            transition:border-color .15s, box-shadow .15s; }
+    .card:hover { border-color:#484f58; }
+    .card.active { border-color:#58a6ff; box-shadow:0 0 0 1px #58a6ff; }
+    .card.pass { color:#3fb950; } .card.fail { color:#f85149; } .card.skip { color:#7d8590; }
+    .file { color:#7d8590; font-size:13px; margin:18px 0 6px; font-weight:600; }
+    .suite-group.lvl1 { margin:18px 0 10px; }
+    .suite-group.lvl1 > .suite { font-size:16px; color:#e6edf3; padding-bottom:6px; border-bottom:1px solid #30363d; margin-bottom:10px; }
+    .suite-group.lvl2 { margin:8px 0 14px 14px; padding-left:12px; border-left:2px solid #30363d; }
+    .suite-group.lvl2 > .suite { font-size:14px; color:#adbac7; margin:4px 0 8px; }
+    .suite { font-weight:600; }
+    .suite .cnt { color:#3fb950; font-size:12px; font-weight:500; margin-left:8px; }
+    .suite.bad .cnt { color:#f85149; }
+    .test-item { margin-bottom:6px; }
+    .test { display:flex; align-items:center; gap:16px; background:#161b22; border:1px solid #30363d;
+            border-radius:6px; padding:12px 16px; cursor:pointer; list-style:none; user-select:none; }
+    .test::-webkit-details-marker { display:none; }
+    .test:hover { border-color:#484f58; }
+    .chev { color:#7d8590; font-size:11px; width:12px; transition:transform .15s; }
+    details[open] > .test .chev { transform:rotate(90deg); }
+    .st { min-width:110px; font-weight:600; font-size:13px; }
+    .name { flex:1; }
+    .dur { color:#7d8590; font-size:13px; }
+    .err { background:#161b22; border:1px solid #f85149; border-left:3px solid #f85149; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#ffa198; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; }
+    .log { background:#0b0f14; border:1px solid #30363d; border-left:3px solid #3fb950; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#adbac7; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; line-height:1.5; }
+    .log a { color:#58a6ff; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← ისტორია / ბოლო გაშვება</a>
+  <h1>🎭 Playwright Test Report</h1>
+  <div class="meta">11/26/2026, 12:12:50 PM · რეგრესია: Positive + Negative (USD/EUR ბარათის გარეშე) · 168 წთ</div>
+  <div class="summary">
+    <button type="button" class="card active" data-filter="all">Total: 107</button>
+    <button type="button" class="card pass" data-filter="pass">✅ Passed: 94</button>
+    <button type="button" class="card fail" data-filter="fail">❌ Failed: 13</button>
+    <button type="button" class="card skip" data-filter="skip">⏭️ Skipped: 0</button>
+  </div>
+  <div class="file-group"><div class="file">tests/Negative/add-money-negative.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — ბარათის max ლიმიტზე მეტი თანხა</span>
+            <span class="dur">14.3s</span>
+          </summary><pre class="log">✅ Payment URL: <a href="https://tiny.dev.keepz.me/3zk7yvp8" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3zk7yvp8</a>
+✅ Payment page opened
+✅ Clicked: Bank card (standard)
+
+📊 Add money — ბარათის max ლიმიტზე მეტი თანხა · 3001 GEL
+   მოსალოდნელი შედეგი: გამოჩნდეს ერორის მოდალი „Amount should be in range" და გადახდა დაიბლოკოს
+   ერორის მოდალი: „Amount should be in range" ✅
+   გადახდა: დაიბლოკა — ბარათის მონაცემების შესაყვან გვერდზე არ გადავიდა ✅
+✅ Modal closed (OK)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — არასწორი CVV</span>
+            <span class="dur">51.9s</span>
+          </summary><pre class="log">✅ Balance before: 11.44 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/vy5m3pmj" target="_blank" rel="noopener">https://tiny.dev.keepz.me/vy5m3pmj</a>
+✅ Payment page opened
+✅ Submitted — wrong CVV (444)
+
+📊 Add money — არასწორი CVV (444) · 0.13 GEL
+   მოსალოდნელი შედეგი: გადახდა ჩავარდეს — ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 11.44 → გახდა 11.44 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ დაირიცხა, ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — acquiring fail - არასაკმარისი ბალანსი</span>
+            <span class="dur">86.0s</span>
+          </summary><pre class="log">✅ Balance before: 11.44 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4vkb9s6j" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4vkb9s6j</a>
+✅ Payment page opened
+✅ OTP: 60680
+
+📊 Add money — BOG ბარათი — არასაკმარისი თანხა · 70 GEL
+   მოსალოდნელი შედეგი: გადახდა ჩავარდეს — ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 11.44 → გახდა 11.44 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ დაირიცხა, ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — payment link-ით გადახდა</span>
+            <span class="dur">86.5s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 11.44 GEL
+✅ Payment page opened
+✅ OTP: 781869
+
+📊 Add money — payment link-ით გადახდა · 0.1 GEL (STANDARD flow)
+   მოსალოდნელი შედეგი: ჩვეულებრივი გადახდაა და არა add money — ტრანზაქცია TOP_UP არ არის, ბალანსი არ უნდა გაიზარდოს
+   ტრანზაქცია: tx 115587 · operationType=STANDARD · status=PENDING ✅
+   ბალანსი: იყო 11.44 → გახდა 11.44 GEL (ცვლილება 0) ✅
+   ✅ ბალანსი არ შეცვლილა, ტრანზაქცია TOP_UP არ არის</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — გადახდის დაინიცირება</span>
+            <span class="dur">40.5s</span>
+          </summary><pre class="log">✅ Balance before: 11.44 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/54umtnya" target="_blank" rel="noopener">https://tiny.dev.keepz.me/54umtnya</a>
+✅ Payment page opened — გადახდის გარეშე ვხურავთ
+
+📊 Add money — გადახდის დაინიცირება (ლინკი გაიხსნა, გადახდა არ მომხდარა) · 0.13 GEL
+   მოსალოდნელი შედეგი: ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 11.44 → გახდა 11.44 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ შეცვლილა, Pending top-up ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money endpoint - თანხა დღიურ ლიმიტზე მეტი</span>
+            <span class="dur">1.3s</span>
+          </summary><pre class="log">📊 add-money 5001 GEL — დღიურ ლიმიტზე (5000) მეტი
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   მოსალოდნელი: ერორი, payment link არ უნდა დაბრუნდეს · მოვიდა: HTTP 200, payment link ❌</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount -5</span>
+            <span class="dur">866ms</span>
+          </summary><pre class="log">📊 add-money -5 GEL — უარყოფითი თანხა
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი შეიცავდეს „must be greater than 0" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2270 · მოვიდა 2270 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount 9999995</span>
+            <span class="dur">901ms</span>
+          </summary><pre class="log">📊 add-money 9999995 GEL — endpoint-ის დიაპაზონზე მეტი
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 409 · მოვიდა 409 ✅
+   message:        მოსალოდნელი შეიცავდეს „Amount should be in range: 0.01-" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2030 · მოვიდა 2030 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount 0</span>
+            <span class="dur">823ms</span>
+          </summary><pre class="log">📊 add-money 0 GEL — ნულოვანი თანხა
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი შეიცავდეს „must be greater than 0" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2270 · მოვიდა 2270 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - currencyCode is empty</span>
+            <span class="dur">828ms</span>
+          </summary><pre class="log">📊 add-money 0.13 (ცარიელი) — ცარიელი currencyCode
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Invalid request format" · მოვიდა „Invalid request format" ✅
+   statusCode:     მოსალოდნელი 1003 · მოვიდა 1003 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - currencyCode is lowercase gel</span>
+            <span class="dur">807ms</span>
+          </summary><pre class="log">📊 add-money 0.13 gel — currencyCode პატარა ასოებით (gel)
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Invalid request format" · მოვიდა „Invalid request format" ✅
+   statusCode:     მოსალოდნელი 1003 · მოვიდა 1003 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">add money - ვალუტა რომელიც ჩართული არ არის (RUB)</span>
+            <span class="dur">892ms</span>
+          </summary><pre class="log">📊 add-money 0.13 RUB — ვალუტა ჩართული არ არის (RUB)
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Initial currency not allowed!" · მოვიდა „Initial currency not allowed!" ✅
+   statusCode:     მოსალოდნელი 2426 · მოვიდა 2426 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details></div><div class="file-group"><div class="file">tests/Negative/order-creation-negative.spec.ts</div><div class="suite-group lvl1"><div class="suite">ორდერის შექმნა — ნეგატიური ქეისები <span class="cnt">✅ 6/6</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — მინიმუმზე ნაკლები თანხით (0.005) უნდა უარყოს</span>
+            <span class="dur">650ms</span>
+          </summary><pre class="log">❌ Error 6021: Number format is not valid!
+
+✅ ორდერი უარყო: Order failed: Number format is not valid!</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — ნულოვანი თანხით (0) უნდა უარყოს</span>
+            <span class="dur">683ms</span>
+          </summary><pre class="log">❌ Error 6026: amount must be in range: 0.01-50000.0
+
+✅ ორდერი უარყო: Order failed: amount must be in range: 0.01-50000.0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — უარყოფითი თანხით (-1) უნდა უარყოს</span>
+            <span class="dur">591ms</span>
+          </summary><pre class="log">❌ Error 6021: Number format is not valid!
+
+✅ ორდერი უარყო: Order failed: Number format is not valid!</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — მაქსიმუმზე მეტი თანხით (999999) უნდა უარყოს</span>
+            <span class="dur">596ms</span>
+          </summary><pre class="log">❌ Error 6026: amount must be in range: 0.01-50000.0
+
+✅ ორდერი უარყო: Order failed: amount must be in range: 0.01-50000.0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — არასწორი receiverId-ით უნდა უარყოს</span>
+            <span class="dur">618ms</span>
+          </summary><pre class="log">❌ Error 2158: Branch Account not found for given id.
+
+✅ ორდერი უარყო: Order failed: Branch Account not found for given id.</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — არასწორი integratorId-ით უნდა უარყოს</span>
+            <span class="dur">600ms</span>
+          </summary><pre class="log">❌ Error 6004: Active Integrator not found with given id
+
+✅ ორდერი უარყო: Order failed: Active Integrator not found with given id</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/add-money.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow STANDARD - GEL</span>
+            <span class="dur">56.5s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 11.44 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/5n8u6d6w" target="_blank" rel="noopener">https://tiny.dev.keepz.me/5n8u6d6w</a>
+✅ Payment page opened
+✅ OTP: 156679
+
+📊 Add money — ბარათი TBC · distributionFlow STANDARD · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 11.44 → გახდა 11.56 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow MANUAL - ვალუტა არის GEL</span>
+            <span class="dur">57.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=MANUAL
+✅ Balance before: 11.56 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4mupuwe2" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4mupuwe2</a>
+✅ Payment page opened
+✅ OTP: 596503
+
+📊 Add money — ბარათი TBC · distributionFlow MANUAL · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 11.56 → გახდა 11.68 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow TESTING - GEL</span>
+            <span class="dur">57.5s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TESTING
+✅ Balance before: 11.68 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3chtuy5b" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3chtuy5b</a>
+✅ Payment page opened
+✅ OTP: 910101
+
+📊 Add money — ბარათი TBC · distributionFlow TESTING · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 11.68 → გახდა 11.8 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow TREASURY - GEL</span>
+            <span class="dur">58.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TREASURY
+✅ Balance before: 11.8 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/bdzjmjuw" target="_blank" rel="noopener">https://tiny.dev.keepz.me/bdzjmjuw</a>
+✅ Payment page opened
+✅ OTP: 429065
+
+📊 Add money — ბარათი TBC · distributionFlow TREASURY · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 11.8 → გახდა 11.92 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow DIRECT - GEL</span>
+            <span class="dur">60.5s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DIRECT
+✅ Balance before: 11.92 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/24e3km97" target="_blank" rel="noopener">https://tiny.dev.keepz.me/24e3km97</a>
+✅ Payment page opened
+✅ OTP: 309148
+
+📊 Add money — ბარათი TBC · distributionFlow DIRECT · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 11.92 → გახდა 12.04 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow UCC - GEL</span>
+            <span class="dur">62.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=UCC
+✅ Balance before: 12.04 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/mrx9vwy3" target="_blank" rel="noopener">https://tiny.dev.keepz.me/mrx9vwy3</a>
+✅ Payment page opened
+✅ OTP: 128796
+
+📊 Add money — ბარათი TBC · distributionFlow UCC · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.04 → გახდა 12.16 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow DELAY - GEL</span>
+            <span class="dur">59.9s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DELAY
+✅ Balance before: 12.16 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/mry7jkrk" target="_blank" rel="noopener">https://tiny.dev.keepz.me/mry7jkrk</a>
+✅ Payment page opened
+✅ OTP: 910807
+
+📊 Add money — ბარათი TBC · distributionFlow DELAY · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.16 → გახდა 12.28 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow BALANCE - GEL</span>
+            <span class="dur">57.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=BALANCE
+✅ Balance before: 12.28 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/h6552n7x" target="_blank" rel="noopener">https://tiny.dev.keepz.me/h6552n7x</a>
+✅ Payment page opened
+✅ OTP: 929061
+
+📊 Add money — ბარათი TBC · distributionFlow BALANCE · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.28 → გახდა 12.4 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow HUB_TOP_UP - GEL</span>
+            <span class="dur">61.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=HUB_TOP_UP
+✅ Balance before: 12.4 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/dxtffytc" target="_blank" rel="noopener">https://tiny.dev.keepz.me/dxtffytc</a>
+✅ Payment page opened
+✅ OTP: 555028
+
+📊 Add money — ბარათი TBC · distributionFlow HUB_TOP_UP · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.4 → გახდა 12.52 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow STANDARD - GEL</span>
+            <span class="dur">62.3s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 12.52 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3zhmkp9k" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3zhmkp9k</a>
+✅ Payment page opened
+✅ OTP: 5141
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow STANDARD · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.52 → გახდა 12.65 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow MANUAL - GEL</span>
+            <span class="dur">61.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=MANUAL
+✅ Balance before: 12.65 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/2k82acwy" target="_blank" rel="noopener">https://tiny.dev.keepz.me/2k82acwy</a>
+✅ Payment page opened
+✅ OTP: 8207
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow MANUAL · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.65 → გახდა 12.78 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow TESTING - GEL</span>
+            <span class="dur">61.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TESTING
+✅ Balance before: 12.78 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/475yhjee" target="_blank" rel="noopener">https://tiny.dev.keepz.me/475yhjee</a>
+✅ Payment page opened
+✅ OTP: 8707
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow TESTING · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.78 → გახდა 12.91 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow TREASURY - GEL</span>
+            <span class="dur">61.3s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TREASURY
+✅ Balance before: 12.91 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3nm7357y" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3nm7357y</a>
+✅ Payment page opened
+✅ OTP: 6524
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow TREASURY · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 12.91 → გახდა 13.04 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow DIRECT - GEL</span>
+            <span class="dur">32.4s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DIRECT
+✅ Balance before: 13.04 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3upu875b" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3upu875b</a>
+✅ Payment page opened
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">TimeoutError: page.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('bd-text-field#username')[22m
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow UCC - GEL</span>
+            <span class="dur">60.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=UCC
+✅ Balance before: 13.04 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/muu3fr3t" target="_blank" rel="noopener">https://tiny.dev.keepz.me/muu3fr3t</a>
+✅ Payment page opened
+✅ OTP: 9105
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow UCC · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 13.04 → გახდა 13.17 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow DELAY - GEL</span>
+            <span class="dur">59.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DELAY
+✅ Balance before: 13.17 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4emt5n5u" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4emt5n5u</a>
+✅ Payment page opened
+✅ OTP: 1601
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow DELAY · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 13.17 → გახდა 13.3 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow BALANCE - GEL</span>
+            <span class="dur">73.9s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=BALANCE
+✅ Balance before: 13.3 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3zjj7f72" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3zjj7f72</a>
+✅ Payment page opened
+✅ OTP: 8054
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow BALANCE · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 13.3 → გახდა 13.43 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — Open Banking BOG, distributionFlow HUB_TOP_UP - GEL</span>
+            <span class="dur">69.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=HUB_TOP_UP
+✅ Balance before: 13.43 GEL
+✅ ჯგუფი: OB GEL receiver 0% → მოსალოდნელი საკომისიო 0 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/n8uffp66" target="_blank" rel="noopener">https://tiny.dev.keepz.me/n8uffp66</a>
+✅ Payment page opened
+✅ OTP: 0555
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow HUB_TOP_UP · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 13.43 → გახდა 13.56 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა
+✅ Restored: merchant distributionFlow=STANDARD</pre></details></div><div class="file-group"><div class="file">tests/Positive/all-methods.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Card Payment TBC</span>
+            <span class="dur">67.4s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 228840
+ℹ️ Transaction status: PENDING</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Card Payment BOG</span>
+            <span class="dur">58.3s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 28955
+ℹ️ Transaction status: PENDING</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">TIP Payment</span>
+            <span class="dur">53.5s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 163545
+✅ TIP OTP: 830860
+✅ TIP Payment completed</pre></details></div><div class="file-group"><div class="file">tests/Positive/auto-refund.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Auto refund — დაქენსელებულ ორდერზე გადახდა - GEL</span>
+            <span class="dur">50.6s</span>
+          </summary><pre class="log">✅ Balance before: 10.61 GEL
+✅ Order Created
+✅ Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=3196dbb0-c7b6-4d68-ad59-1232d5fd87b6&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=0a4d2a3d-7dcf-4324-b3ff-fb0d6e1347a6&amp;amount=0.17&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=3196dbb0-c7b6-4d68-ad59-1232d5fd87b6&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=0a4d2a3d-7dcf-4324-b3ff-fb0d6e1347a6&amp;amount=0.17&amp;currency=GEL</a>
+✅ Payment page opened
+✅ Order canceled → CANCELLED
+✅ OTP: 879501
+
+📊 Auto refund — დაქენსელებულ ორდერზე გადახდა · 0.17 GEL
+   ტრანზაქცია: status=REFUNDED · refundedAmount=0.17 (უნდა იყოს REFUNDED · 0.17)
+   ბალანსი: იყო 10.61 → დარჩა 10.61 GEL (ცვლილება 0, უნდა იყოს 0)
+   ✅ auto refund შესრულდა, ბალანსი უცვლელია</pre></details></div><div class="file-group"><div class="file">tests/Positive/balance-check-pre-auth.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Pre-Auth balance — Partial complete</span>
+            <span class="dur">150.1s</span>
+          </summary><pre class="log">✅ Balance before: 10.61 ₾
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 687940
+✅ Stage 1: pre-auth → TO_BE_CONFIRMED (tx: 115610)
+
+📊 Pre-Auth hold — ბალანსი: იყო 10.61 ₾ → 10.61 ₾ (ცვლილება 0 ₾)
+   ✅ ბალანსი არ დარიცხულა pre-auth hold-ის დროს (თანხა მხოლოდ დაჭერილია)
+✅ Order Completed (amount: 0.11) → {"integratorOrderId":"2cac7866-4aed-4c81-9e37-95fe530a557e","status":"PROCESSING"}
+✅ After complete → COLLECTED
+✅ Stage 2: complete(0.11) → COLLECTED
+
+📊 მოსალოდნელი შედეგი — Pre-Auth capture (SENDER commission)
+   ავტორიზებული: 0.19 ₾ | დავაქომფლითეთ: 0.11 ₾
+   merchant-ს უნდა დაერიცხოს: სრული 0.11 ₾ (საკომისიოს გადამხდელი ფარავs)
+   ბალანსი: იყო 10.61 ₾ → გახდა 10.72 ₾ (დაემატა 0.11 ₾)
+   ✅ capture-ის შემდეგ ბალანსი სწორად დაირიცხა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Pre-Auth balance — Full complete</span>
+            <span class="dur">151.1s</span>
+          </summary><pre class="log">✅ Balance before: 10.72 ₾
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 859390
+✅ Stage 1: pre-auth → TO_BE_CONFIRMED (tx: 115611)
+
+📊 Pre-Auth hold — ბალანსი: იყო 10.72 ₾ → 10.72 ₾ (ცვლილება 0 ₾)
+   ✅ ბალანსი არ დარიცხულა pre-auth hold-ის დროს (თანხა მხოლოდ დაჭერილია)
+✅ Order Completed (amount: 0.14) → {"integratorOrderId":"fee746c0-704f-4ca4-9702-626eb2cbd480","status":"PROCESSING"}
+✅ After complete → COLLECTED
+✅ Stage 2: complete(0.14) → COLLECTED
+
+📊 მოსალოდნელი შედეგი — Pre-Auth capture (SENDER commission)
+   ავტორიზებული: 0.14 ₾ | დავაქომფლითეთ: 0.14 ₾
+   merchant-ს უნდა დაერიცხოს: სრული 0.14 ₾ (საკომისიოს გადამხდელი ფარავs)
+   ბალანსი: იყო 10.72 ₾ → გახდა 10.86 ₾ (დაემატა 0.14 ₾)
+   ✅ capture-ის შემდეგ ბალანსი სწორად დაირიცხა</pre></details></div><div class="file-group"><div class="file">tests/Positive/balance-check.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Receiver და საკომისიო PERCENTAGE</span>
+            <span class="dur">58.0s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=PERCENTAGE
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=RECEIVER
+✅ Balance before: 4.67 GEL
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 911750
+
+📊 მოსალოდნელი შედეგი — RECEIVER commission · GEL · distributionFlow: BALANCE
+   იუზერმა გადაიხადა: 0.1 GEL (საკომისიო 0.01 GEL)
+   merchant-ს დაერიცხა: amount − საკომისიო = 0.1 − 0.01 = 0.09 GEL
+   ბალანსი: იყო 4.67 GEL → გახდა 4.76 GEL (დაემატა 0.09 GEL)
+   ✅ ბალანსი წარმატებულად შეივსო (GEL)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Sender და საკომისიო PERCENTAGE</span>
+            <span class="dur">54.8s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=PERCENTAGE
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=SENDER
+✅ Balance before: 4.76 GEL
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 904581
+
+📊 მოსალოდნელი შედეგი — SENDER commission · GEL · distributionFlow: BALANCE
+   იუზერმა გადაიხადა: 0.1 + 0.01 (საკომისიო) = 0.11 GEL
+   merchant-ს დაერიცხა: სრული amount = 0.1 GEL
+   ბალანსი: იყო 4.76 GEL → გახდა 4.86 GEL (დაემატა 0.1 GEL)
+   ✅ ბალანსი წარმატებულად შეივსო (GEL)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Receiver და საკომისიო FIXED</span>
+            <span class="dur">54.5s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=FIXED
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=RECEIVER
+✅ Balance before: 4.86 GEL
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 592247
+
+📊 მოსალოდნელი შედეგი — RECEIVER commission · GEL · distributionFlow: BALANCE
+   იუზერმა გადაიხადა: 0.1 GEL (ფიქსირებული საკომისიო 0.03 GEL)
+   merchant-ს დაერიცხა: amount − ფიქსირებული საკომისიო = 0.1 − 0.03 = 0.07 GEL
+   ბალანსი: იყო 4.86 GEL → გახდა 4.93 GEL (დაემატა 0.07 GEL)
+   ✅ ბალანსი წარმატებულად შეივსო (GEL)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Sender და საკომისიო FIXED</span>
+            <span class="dur">55.5s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=FIXED
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=SENDER
+✅ Balance before: 4.93 GEL
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 556676
+
+📊 მოსალოდნელი შედეგი — SENDER commission · GEL · distributionFlow: BALANCE
+   იუზერმა გადაიხადა: 0.1 + 0.1 (ფიქსირებული საკომისიო) = 0.2 GEL
+   merchant-ს დაერიცხა: სრული amount = 0.1 GEL
+   ბალანსი: იყო 4.93 GEL → გახდა 5.03 GEL (დაემატა 0.1 GEL)
+   ✅ ბალანსი წარმატებულად შეივსო (GEL)
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre></details></div><div class="file-group"><div class="file">tests/Positive/callback-test.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Callback Test <span class="cnt">❌ 0/1</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">should send callback after successful payment</span>
+            <span class="dur">49.1s</span>
+          </summary><pre class="log">🌐 Webhook inbox (ბრაუზერში გახსენი): <a href="https://webhook.site/#!/view/6df0afbe-cbb8-4772-a03c-c2d480f83eb8" target="_blank" rel="noopener">https://webhook.site/#!/view/6df0afbe-cbb8-4772-a03c-c2d480f83eb8</a>
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 948914
+✅ Payment completed
+⏳ Waiting for callback...
+✅ Found 1 callback(s)
+
+📋 ===== CALLBACK RECEIVED (ENCRYPTED) =====
+🕐 Received At: 2026-11-26 08:49:00
+==================================
+
+🔓 Decrypting callback...
+
+📋 ===== DECRYPTED CALLBACK =====
+📦 Payload: {
+  "amount": 0.1,
+  "receiverId": "a1b9a5c5-9f01-42ee-a6e3-8853297caf49",
+  "receiverType": "BRANCH",
+  "integratorId": "76880b28-9033-4d48-b21f-37a9a36ec5dd",
+  "integratorOrderId": "8e87aece-6be6-41f7-bf8c-817cf1e4b879",
+  "status": "SUCCESS",
+  "initialCurrency": "GEL",
+  "acquiringCurrency": "GEL",
+  "acquiringAmount": 0.11,
+  "toIban": "GE62BG0000000610917722",
+  "transactionId": 115619
+}
+================================
+
+✅ Test PASSED: Callback decrypted and validated
+📄 Report saved: /Users/keepz/Desktop/test/payments/DEV/docs/callback-result.html
+💡 Share it: npm run share-report</pre><pre class="err">Error: Command failed: start chrome "/Users/keepz/Desktop/test/payments/DEV/docs/callback-result.html"
+/bin/sh: start: command not found
+</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/Card token-payment.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">დამახსოვრებული ბარათით გადახდა როცა — amount არის 0</span>
+            <span class="dur">62.4s</span>
+          </summary><pre class="log">✅ Order Created (saveCard + CREDO)
+✅ Payment page opened
+✅ OTP: 050063
+
+❌ Error 6026: amount must be in range: 0.01-50000.0</pre><pre class="err">Error: Order failed: amount must be in range: 0.01-50000.0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">დამახსოვრებული ბარათით გადახდა როცა — amount არის 0.1</span>
+            <span class="dur">59.3s</span>
+          </summary><pre class="log">✅ Order Created (saveCard + CREDO)
+✅ Payment page opened
+✅ OTP: 829195
+✅ Test PASSED: token payment შესრულდა (amount 0.1)</pre></details></div><div class="file-group"><div class="file">tests/Positive/create-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ timedOut</span>
+            <span class="name">Create Order Only</span>
+            <span class="dur">120.0s</span>
+          </summary><pre class="log">✅ Order Created
+
+🔗 Payment URL:
+<a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=9413183f-dfeb-4b2a-981b-d694a2c377a2&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=9413183f-dfeb-4b2a-981b-d694a2c377a2&amp;amount=0.1&amp;currency=GEL</a>
+
+✅ Browser opened</pre><pre class="err">[31mTest timeout of 120000ms exceeded.[39m</pre></details></div><div class="file-group"><div class="file">tests/Positive/directLinkProvider.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">BOG directLinkProvider - Distributor BOG - MCard</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">❌ Permission Error:
+   This integrator does not have permission for directLinkProvider
+   Use basic order (without directLinkProvider) or request permission from Keepz</pre><pre class="err">Error: Permission denied: directLinkProvider not allowed</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">TBC directLinkProvider - Distributor TBC Visa</span>
+            <span class="dur">53.4s</span>
+          </summary><pre class="log">✅ Order Created - TBC
+✅ Page loaded
+✅ Card filled
+✅ Submit clicked
+✅ OTP: 262307
+✅ TBC directLinkProvider payment is success</pre></details></div><div class="file-group"><div class="file">tests/Positive/gepa-order-list.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEPA order list</span>
+            <span class="dur">48.5s</span>
+          </summary><pre class="log">✅ Order Created — f2503f2d-756c-4907-8de4-5482503a1546 · branchId 1b6966e4-1e5c-43cb-8bc5-908b9a40af3f
+📋 Order list — 2026-11-26 12:54:31 → 2026-11-26 23:59:59 · branch 1b6966e4-1e5c-43cb-8bc5-908b9a40af3f
+   ორდერები: 1 · sumAmount 0.1 · refundedAmount 0
+   SUCCESS 1 · refunded 0 · partially refunded 0</pre></details></div><div class="file-group"><div class="file">tests/Positive/gpc.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GPS Status</span>
+            <span class="dur">54.7s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 692697
+🔍 Fetching order status...
+
+📋 ===== ORDER STATUS =====
+{
+  "integratorOrderId": "026e21fa-e399-4f3a-9675-4cfab8c72cff",
+  "status": "SUCCESS",
+  "report": "stromae T \n B - მრენჩი - სტანდარტი - OB - ვაჟა ფშაველას 90 \n QR 21172 \n ორდერის ID: 026e21fa-e399-4f3a-9675-4cfab8c72cff \n თანხა: 0.1 GEL \n მეთოდი: Card \n დრო: 26.11.2026 12:55:27 \n სტატუსი: წარმატებული",
+  "initialCurrency": "GEL",
+  "acquiringCurrency": "GEL",
+  "acquiringAmount": 0.11,
+  "transactionId": 115624
+}
+==========================
+
+✅ Test PASSED: ყველა status key შემოწმდა</pre></details></div><div class="file-group"><div class="file">tests/Positive/invoice.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Invoice Check</span>
+            <span class="dur">44.0s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 623293
+✅ QR modal ჩაიხურა</pre><pre class="err">TimeoutError: browserContext.waitForEvent: Timeout 15000ms exceeded while waiting for event "page"</pre></details></div><div class="file-group"><div class="file">tests/Positive/open-banking.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">BOG Open Banking</span>
+            <span class="dur">35.8s</span>
+          </summary><pre class="log">✅ Order Created - BOG Open Banking
+✅ OTP: 7989</pre><pre class="err">TimeoutError: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('bd-button#kc-login')[22m
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">TBC Open Banking</span>
+            <span class="dur">54.7s</span>
+          </summary><pre class="log">✅ Order Created - TBC Open Banking
+✅ OTP: 0848
+✅ TBC Login completed
+✅ Payment confirmed</pre></details></div><div class="file-group"><div class="file">tests/Positive/pre-auth.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Pre Authorization გადახდა როცა ხდება — Partial complete</span>
+            <span class="dur">86.8s</span>
+          </summary><pre class="log">✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 245299
+✅ Stage 1: pre-auth → STATUS IS - TO_BE_CONFIRMED (order: 0e0560bb-54ef-4cb9-8faa-437f2c01ac0e, tx: 115628)
+✅ Order Completed (amount: 0.1) → {"integratorOrderId":"0e0560bb-54ef-4cb9-8faa-437f2c01ac0e","status":"PROCESSING"}
+✅ After complete → WAITING_FOR_SIGNATURE
+✅ Stage 2: complete(0.1) → after: WAITING_FOR_SIGNATURE → final: WAITING_FOR_SIGNATURE (tx: 115628)
+
+📊 მოსალოდნელი შედეგი — Pre-Auth (PARTIAL)
+   ავტორიზებული: 0.17 | დავაქომფლითეთ: 0.1
+   distribution (ტრანზაქციაში): 0.1
+   ✅ პრე-ავტორიზაციით გადახდა წარმატებულია — distribution ემთხვევა დაქომფლითებულს (0.1)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Pre Authorization გადახდა როცა ხდება — Full complete</span>
+            <span class="dur">86.2s</span>
+          </summary><pre class="log">✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 196628
+✅ Stage 1: pre-auth → STATUS IS - TO_BE_CONFIRMED (order: 74708a27-ea9b-4955-a269-54ad113378e0, tx: 115629)
+✅ Order Completed (amount: 0.1) → {"integratorOrderId":"74708a27-ea9b-4955-a269-54ad113378e0","status":"PROCESSING"}
+✅ After complete → WAITING_FOR_SIGNATURE
+✅ Stage 2: complete(0.1) → after: WAITING_FOR_SIGNATURE → final: WAITING_FOR_SIGNATURE (tx: 115629)
+
+📊 მოსალოდნელი შედეგი — Pre-Auth (FULL)
+   ავტორიზებული: 0.1 | დავაქომფლითეთ: 0.1
+   distribution (ტრანზაქციაში): 0.1
+   ✅ პრე-ავტორიზაციით გადახდა წარმატებულია — distribution ემთხვევა დაქომფლითებულს (0.1)</pre></details></div><div class="file-group"><div class="file">tests/Positive/redirect - Success_Fail.spec.ts</div><div class="suite-group lvl1"><div class="suite">Success Redirect URL <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ორდერს მიყვება success redirect</span>
+            <span class="dur">51.9s</span>
+          </summary><pre class="log">✅ Order Created — link returned
+✅ Payment page opened
+✅ OTP SUCCESS: 239576
+✅ successRedirectUri is successful</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ორდერს მიყვება fail redirect URL</span>
+            <span class="dur">50.2s</span>
+          </summary><pre class="log">✅ Order Created — link returned
+✅ Payment page opened
+✅ OTP SUCCESS: 940945
+✅ failRedirectUri is successful</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-integrator.spec.ts</div><div class="suite-group lvl1"><div class="suite">Refund — INTEGRATOR (Sender 591030202) <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ინტეგრატორი Partially Refunded აკეთებს — და Merchant საკომისიო არის Sender</span>
+            <span class="dur">63.8s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP: 242529
+✅ 3. Payment Status Confirmed
+
+🔄 5. Refunding (PARTIAL 0.05)
+✅ 6. Refund requested → REFUND_REQUESTED
+
+📊 INTEGRATOR refund დადასტურდა (PARTIAL):
+   tx 115632: status PARTIALLY_REFUNDED | refundInfo PARTIALLY_REFUNDED | initialRefundAmount 0.05 ₾
+   ✅ ტრანზაქცია რეალურად PARTIALLY_REFUNDED
+
+📊 ბალანსი: იყო 4.93 ₾ → დარჩა 4.88 ₾ (მოაკლდა 0.05 ₾) | დარეფანდა 0.05 ₾
+   ✅ ბალანსი სწორად შემცირდა — მოაკლდა 0.05 ₾ = დარეფანდილი</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ინტეგრატორი Full Refunded აკეთებს —  და Merchant საკომისიო არის Sender</span>
+            <span class="dur">61.7s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP: 411224
+✅ 3. Payment Status Confirmed
+
+🔄 5. Refunding (FULL)
+✅ 6. Refund requested → REFUND_REQUESTED
+
+📊 INTEGRATOR refund დადასტურდა (FULL):
+   tx 115633: status REFUNDED | refundInfo REFUNDED | initialRefundAmount 0.11 ₾
+   ✅ ტრანზაქცია რეალურად REFUNDED
+
+📊 ბალანსი: იყო 4.88 ₾ → დარჩა 4.77 ₾ (მოაკლდა 0.11 ₾) | დარეფანდა 0.11 ₾
+   ✅ ბალანსი სწორად შემცირდა — მოაკლდა 0.11 ₾ = დარეფანდილი</pre></details></div><div class="suite-group lvl1"><div class="suite">Refund — INTEGRATOR (Receiver 591030201) <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ინტეგრატორი Partially Refunded აკეთებს — და Merchant საკომისიო არის Receiver</span>
+            <span class="dur">79.3s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP: 420940
+✅ 3. Payment Status Confirmed
+
+🔄 5. Refunding (PARTIAL 0.05)
+✅ 6. Refund requested → REFUND_REQUESTED
+
+📊 INTEGRATOR refund დადასტურდა (PARTIAL):
+   tx 115634: status PARTIALLY_REFUNDED | refundInfo PARTIALLY_REFUNDED | initialRefundAmount 0.05 ₾
+   ✅ ტრანზაქცია რეალურად PARTIALLY_REFUNDED
+
+📊 ბალანსი: იყო 5.03 ₾ → დარჩა 4.98 ₾ (მოაკლდა 0.05 ₾) | დარეფანდა 0.05 ₾
+   ✅ ბალანსი სწორად შემცირდა — მოაკლდა 0.05 ₾ = დარეფანდილი</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ინტეგრატორი Full Refunded აკეთებს — და Merchant საკომისიო არის Receiver</span>
+            <span class="dur">61.7s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP: 858001
+✅ 3. Payment Status Confirmed
+
+🔄 5. Refunding (FULL)
+✅ 6. Refund requested → REFUND_REQUESTED
+
+📊 INTEGRATOR refund დადასტურდა (FULL):
+   tx 115635: status REFUNDED | refundInfo REFUNDED | initialRefundAmount 0.1 ₾
+   ✅ ტრანზაქცია რეალურად REFUNDED
+
+📊 ბალანსი: იყო 4.98 ₾ → დარჩა 4.88 ₾ (მოაკლდა 0.1 ₾) | დარეფანდა 0.1 ₾
+   ✅ ბალანსი სწორად შემცირდა — მოაკლდა 0.1 ₾ = დარეფანდილი</pre></details></div><div class="suite-group lvl1"><div class="suite">Refund — INTEGRATOR (Partial → Full — ბალანსი უცვლელი) <span class="cnt">✅ 1/1</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ინტეგრატორი - Partial refund-ის შემდეგ Full refund - ბარათით გადახდა</span>
+            <span class="dur">88.4s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP: 856040
+✅ 3. Payment Status Confirmed
+✅ 4. Balance before partial (stable): 4.77 ₾
+
+🔄 Partial refund (0.05)
+
+📊 INTEGRATOR refund დადასტურდა (PARTIAL):
+   tx 115636: status PARTIALLY_REFUNDED | refundInfo PARTIALLY_REFUNDED | initialRefundAmount 0.05 ₾
+   ✅ ტრანზაქცია რეალურად PARTIALLY_REFUNDED
+✅ Partial refunded → ბალანსი: 4.77 → 4.72 ₾
+
+🔄 Full refund (partial-ის მერე)
+   full refund response → status: REFUND_REQUESTED, error: null
+
+📊 ბალანსი full(failed) refund-ის მერე (დასტაბილურებული): 4.72 → 4.72 ₾
+✅ ბალანსი ისევ 4.72 ₾ — failed refund-ს ბალანსი არ შეუცვლია</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — INTEGRATOR (591078180) <span class="cnt">❌ 0/1</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">refund ბალანსზე მეტი თანხით over balance - ბალანსი უცვლელი</span>
+            <span class="dur">74.6s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ 1. Order Created
+✅ 2. OTP: 709790
+✅ 3. Payment Status Confirmed
+✅ 4. Balance before refund: 13.56 ₾ (refund 0.5 ₾ — ⚠️ ბალანსზე მეტი არ არის)
+
+🔄 5. Refunding FULL 0.5 ₾ (ბალანსზე 13.56 ₾)
+✅ 6. Refund requested → REFUND_REQUESTED
+
+📊 INTEGRATOR refund დადასტურდა (FULL):
+   tx 115637: status REFUNDED | refundInfo REFUNDED | initialRefundAmount 0.51 ₾
+   ✅ ტრანზაქცია რეალურად REFUNDED
+
+📊 Over balance refund — გადახდილი 0.5 ₾, ბალანსზე იყო 13.56 ₾
+   refund: REFUNDED · 0.51 ₾ (უნდა იყოს REFUNDED · 0.5)
+   ბალანსი: იყო 13.56 → დარჩა 13.05 ₾ (ცვლილება -0.51, უნდა იყოს 0)</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Integrator refund — verification
+⚠️  პრობლემა:    ბალანსზე მეტი refund-ის შემდეგ ბალანსი შეიცვალა (-0.51 ₾)
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 13.56,
+  "balanceAfter": 13.05,
+  "changed": -0.51
+}
+✅ მოსალოდნელი შედეგი: ბალანსი უცვლელი — ბალანსზე მეტი refund over balance-ად უნდა ჩაიწეროს
+───────────────────────────────────────────
+</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-order.spec.ts</div><div class="suite-group lvl1"><div class="suite">Refund — DEVICE <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Partially Refund  - და საკომისიო არის Sender</span>
+            <span class="dur">61.2s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 348696
+✅ 3. Payment Successful
+✅ 4. Transaction ID: 115638 (senderFee: 0.01, receiverFee: 0)
+
+🔄 5. Refunding: 0.05 GEL
+   Refund response status: 200
+✅ Refund API call successful (no response body)
+
+🔍 Verifying Transaction ID: 115638
+✅ 6. Refund Verified (PARTIALLY_REFUNDED)
+
+📊 მოსალოდნელი შედეგი — Device refund (PARTIAL) · SENDER commission
+   დაბრუნდა: 0.05 ₾
+   ბალანსს უნდა მოაკლდეს: 0.05 ₾ (partial → refundAmount = 0.05 (fee გარეშე))
+   ბალანსი: იყო 4.72 ₾ → გახდა 4.67 ₾ (მოაკლდა 0.05 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Full Refund - Sender</span>
+            <span class="dur">68.8s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 040768
+✅ 3. Payment Successful
+✅ 4. Transaction ID: 115639 (senderFee: 0.01, receiverFee: 0)
+
+🔄 5. Refunding: 0.1 GEL
+   Refund response status: 200
+✅ Refund API call successful (no response body)
+
+🔍 Verifying Transaction ID: 115639
+✅ 6. Refund Verified (REFUNDED)
+
+📊 მოსალოდნელი შედეგი — Device refund (FULL) · SENDER commission
+   დაბრუნდა: 0.1 ₾
+   ბალანსს უნდა მოაკლდეს: 0.11 ₾ (full → amount + fee = 0.1 + 0.01)
+   ბალანსი: იყო 4.67 ₾ → გახდა 4.56 ₾ (მოაკლდა 0.11 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details></div><div class="suite-group lvl1"><div class="suite">Refund — DEVICE Receiver 591030201 <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Partially Refund — და საკომისიო არის Receiver</span>
+            <span class="dur">60.0s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 674046
+✅ 3. Payment Successful
+✅ 4. Transaction ID: 115640 (senderFee: 0, receiverFee: 0.01)
+
+🔄 5. Refunding: 0.05 GEL
+   Refund response status: 200
+✅ Refund API call successful (no response body)
+
+🔍 Verifying Transaction ID: 115640
+✅ 6. Refund Verified (PARTIALLY_REFUNDED)
+
+📊 მოსალოდნელი შედეგი — Device refund (PARTIAL) · RECEIVER commission
+   დაბრუნდა: 0.05 ₾
+   ბალანსს უნდა მოაკლდეს: 0.05 ₾ (partial → refundAmount = 0.05)
+   ბალანსი: იყო 4.88 ₾ → გახდა 4.83 ₾ (მოაკლდა 0.05 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Full Refund  — და საკომისიო არის Receiver</span>
+            <span class="dur">68.4s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 809212
+✅ 3. Payment Successful
+✅ 4. Transaction ID: 115641 (senderFee: 0, receiverFee: 0.01)
+
+🔄 5. Refunding: 0.1 GEL
+   Refund response status: 200
+✅ Refund API call successful (no response body)
+
+🔍 Verifying Transaction ID: 115641
+✅ 6. Refund Verified (REFUNDED)
+
+📊 მოსალოდნელი შედეგი — Device refund (FULL) · RECEIVER commission
+   დაბრუნდა: 0.1 ₾
+   ბალანსს უნდა მოაკლდეს: 0.1 ₾ (full → amount = 0.1)
+   ბალანსი: იყო 4.83 ₾ → გახდა 4.73 ₾ (მოაკლდა 0.1 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details></div><div class="suite-group lvl1"><div class="suite">Refund — ADMIN <span class="cnt">✅ 4/4</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ადმინი აკეთებს Partially Refunded — და საკომისიო არის Sender</span>
+            <span class="dur">65.4s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 997456
+✅ 3. Payment Successful
+✅ 4. Payment Status Confirmed
+
+🔄 5. Refunding: 0.05 GEL
+
+📊 შედეგი — PARTIALLY_REFUNDED
+   tx 115642: initialAmount 0.1 ₾ | acquiringAmount 0.11 ₾
+   receiverCommission 0% | senderCommission 0.1%
+   დარეფანდა: 0.05 ₾  |  მოსალოდნელი: 0.05 ₾  ✅
+
+📊 მოსალოდნელი შედეგი — Admin refund (PARTIAL)
+   დაბრუნდა: 0.05 ₾
+   ბალანსს უნდა მოაკლდეს: 0.05 ₾
+   ბალანსი: იყო 4.56 ₾ → გახდა 4.51 ₾ (მოაკლდა 0.05 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ადმინი აკეთებს Full Refunded — და საკომისიო არის Sender</span>
+            <span class="dur">64.9s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 017580
+✅ 3. Payment Successful
+✅ 4. Payment Status Confirmed
+
+🔄 5. Refunding: 0.1 GEL
+
+📊 შედეგი — REFUNDED
+   tx 115643: initialAmount 0.1 ₾ | acquiringAmount 0.11 ₾
+   receiverCommission 0% | senderCommission 0.1%
+   დარეფანდა: 0.11 ₾  |  მოსალოდნელი: 0.11 ₾  ✅
+
+📊 მოსალოდნელი შედეგი — Admin refund (FULL)
+   დაბრუნდა: 0.1 ₾
+   ბალანსს უნდა მოაკლდეს: 0.11 ₾
+   ბალანსი: იყო 4.51 ₾ → გახდა 4.4 ₾ (მოაკლდა 0.11 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ადმინი აკეთებს Partially Refunded — და საკომისიო არის Receiver</span>
+            <span class="dur">65.1s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 742937
+✅ 3. Payment Successful
+✅ 4. Payment Status Confirmed
+
+🔄 5. Refunding: 0.05 GEL
+
+📊 შედეგი — PARTIALLY_REFUNDED
+   tx 115644: initialAmount 0.1 ₾ | acquiringAmount 0.1 ₾
+   receiverCommission 0.03% | senderCommission 0%
+   დარეფანდა: 0.05 ₾  |  მოსალოდნელი: 0.05 ₾  ✅
+
+📊 მოსალოდნელი შედეგი — Admin refund (PARTIAL)
+   დაბრუნდა: 0.05 ₾
+   ბალანსს უნდა მოაკლდეს: 0.05 ₾
+   ბალანსი: იყო 4.73 ₾ → გახდა 4.68 ₾ (მოაკლდა 0.05 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">როცა ადმინი აკეთებს Full Refunded — და საკომისიო არის Receiver</span>
+            <span class="dur">65.9s</span>
+          </summary><pre class="log">✅ 1. Order Created
+✅ 2. OTP Sent: 926296
+✅ 3. Payment Successful
+✅ 4. Payment Status Confirmed
+
+🔄 5. Refunding: 0.1 GEL
+
+📊 შედეგი — REFUNDED
+   tx 115645: initialAmount 0.1 ₾ | acquiringAmount 0.1 ₾
+   receiverCommission 0.03% | senderCommission 0%
+   დარეფანდა: 0.1 ₾  |  მოსალოდნელი: 0.1 ₾  ✅
+
+📊 მოსალოდნელი შედეგი — Admin refund (FULL)
+   დაბრუნდა: 0.1 ₾
+   ბალანსს უნდა მოაკლდეს: 0.1 ₾
+   ბალანსი: იყო 4.68 ₾ → გახდა 4.58 ₾ (მოაკლდა 0.1 ₾)
+   ✅ ბალანსი სწორად შემცირდა</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-preauth.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Pre-Auth Refund — SENDER commission <span class="cnt">❌ 4/6</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი INTEGRATOR — საკომისიო SENDER</span>
+            <span class="dur">253.5s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 482234
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115646)
+✅ Order Completed (amount: 0.2) → {"integratorOrderId":"610c578e-31a5-4786-9b80-fea89d99a1a7","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.2) → SUCCESS
+✅ 3. Order refundable → WAITING_FOR_CONFIRM
+✅ 3. Balance before refund: 13.05 ₾
+
+🔄 4. Refunding via INTEGRATOR (FULL)
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Pre-Auth refund — verification
+⚠️  პრობლემა:    integrator refund ვერ მოთხოვნდა (status: WAITING_FOR_CONFIRM, error: You can't refund order with status: WAITING_FOR_CONFIRM)
+📥 მიმდინარე შედეგი:
+{
+  "integratorOrderId": "610c578e-31a5-4786-9b80-fea89d99a1a7",
+  "status": "WAITING_FOR_CONFIRM",
+  "errorMessage": "You can't refund order with status: WAITING_FOR_CONFIRM"
+}
+✅ მოსალოდნელი შედეგი: status === REFUND_REQUESTED
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო SENDER</span>
+            <span class="dur">231.4s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 850908
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115647)
+✅ Order Completed (amount: 0.21) → {"integratorOrderId":"10eb1b82-7e67-4e6e-8df1-d84a09fac266","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.21) → SUCCESS
+✅ 3. Order refundable → WAITING_FOR_CONFIRM
+✅ 3. Balance before refund: 13.05 ₾
+
+🔄 4. Refunding via INTEGRATOR (PARTIAL 0.1)
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Pre-Auth refund — verification
+⚠️  პრობლემა:    integrator refund ვერ მოთხოვნდა (status: WAITING_FOR_CONFIRM, error: You can't refund order with status: WAITING_FOR_CONFIRM)
+📥 მიმდინარე შედეგი:
+{
+  "integratorOrderId": "10eb1b82-7e67-4e6e-8df1-d84a09fac266",
+  "status": "WAITING_FOR_CONFIRM",
+  "errorMessage": "You can't refund order with status: WAITING_FOR_CONFIRM"
+}
+✅ მოსალოდნელი შედეგი: status === REFUND_REQUESTED
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი - მერჩანტი — საკომისიო SENDER</span>
+            <span class="dur">108.1s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 050088
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115648)
+✅ Order Completed (amount: 0.12) → {"integratorOrderId":"4ab18d4a-add0-4b85-b373-c89b35de38cb","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.12) → SUCCESS
+✅ 3. Balance before refund: 13.05 ₾
+
+🔄 4. Refunding via DEVICE (FULL)
+   ✅ Device refund call successful (status 200)
+
+📊 refund დადასტურდა (FULL): tx 115648 | refundInfo REFUNDED
+   captured 0.12 + senderFee 0.01 = 0.13 ₾ | initialRefundAmount 0.13 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 13.05 ₾ → დარჩა 12.92 ₾ (მოაკლდა 0.13 ₾) | უნდა მოკლებოდა 0.13 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.13 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი მერჩანტი — საკომისიო SENDER</span>
+            <span class="dur">103.5s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 613630
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115649)
+✅ Order Completed (amount: 0.13) → {"integratorOrderId":"ddf5e6f7-135d-40f8-8167-a3075892e2ed","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.13) → SUCCESS
+✅ 3. Balance before refund: 12.92 ₾
+
+🔄 4. Refunding via DEVICE (PARTIAL 0.06)
+   ✅ Device refund call successful (status 200)
+
+📊 refund დადასტურდა (PARTIAL): tx 115649 | refundInfo PARTIALLY_REFUNDED
+   partial refundAmount = 0.06 ₾ | initialRefundAmount 0.06 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.92 ₾ → დარჩა 12.86 ₾ (მოაკლდა 0.06 ₾) | უნდა მოკლებოდა 0.06 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.06 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი - ADMIN — საკომისიო SENDER</span>
+            <span class="dur">104.7s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 696634
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115650)
+✅ Order Completed (amount: 0.14) → {"integratorOrderId":"ebab7052-c141-4f59-94e7-2a9d6d4f825a","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.14) → SUCCESS
+✅ 3. Balance before refund: 12.86 ₾
+
+🔄 4. Refunding via ADMIN (FULL)
+   ✅ Admin refund call successful (status 204)
+
+📊 refund დადასტურდა (FULL): tx 115650 | refundInfo REFUNDED
+   captured 0.14 + senderFee 0.01 = 0.15 ₾ | initialRefundAmount 0.15 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.86 ₾ → დარჩა 12.71 ₾ (მოაკლდა 0.15 ₾) | უნდა მოკლებოდა 0.15 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.15 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი ADMIN — საკომისიო SENDER</span>
+            <span class="dur">116.4s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 425435
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115651)
+✅ Order Completed (amount: 0.15) → {"integratorOrderId":"65103a8f-ecdc-4235-98db-dde209b33a50","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.15) → SUCCESS
+✅ 3. Balance before refund: 12.71 ₾
+
+🔄 4. Refunding via ADMIN (PARTIAL 0.07)
+   ✅ Admin refund call successful (status 204)
+
+📊 refund დადასტურდა (PARTIAL): tx 115651 | refundInfo PARTIALLY_REFUNDED
+   partial refundAmount = 0.07 ₾ | initialRefundAmount 0.07 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.71 ₾ → დარჩა 12.64 ₾ (მოაკლდა 0.07 ₾) | უნდა მოკლებოდა 0.07 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.07 ₾</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Pre-Auth Refund — RECEIVER commission <span class="cnt">❌ 4/6</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე full რეფანდი INTEGRATOR — საკომისიო RECEIVER</span>
+            <span class="dur">226.4s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 951502
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115652)
+✅ Order Completed (amount: 0.26) → {"integratorOrderId":"92851f54-686b-4e01-b706-61a71464f868","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.26) → SUCCESS
+✅ 3. Order refundable → WAITING_FOR_CONFIRM
+✅ 3. Balance before refund: 12.64 ₾
+
+🔄 4. Refunding via INTEGRATOR (FULL)
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Pre-Auth refund — verification
+⚠️  პრობლემა:    integrator refund ვერ მოთხოვნდა (status: WAITING_FOR_CONFIRM, error: You can't refund order with status: WAITING_FOR_CONFIRM)
+📥 მიმდინარე შედეგი:
+{
+  "integratorOrderId": "92851f54-686b-4e01-b706-61a71464f868",
+  "status": "WAITING_FOR_CONFIRM",
+  "errorMessage": "You can't refund order with status: WAITING_FOR_CONFIRM"
+}
+✅ მოსალოდნელი შედეგი: status === REFUND_REQUESTED
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო RECEIVER</span>
+            <span class="dur">228.1s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 936220
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115653)
+✅ Order Completed (amount: 0.27) → {"integratorOrderId":"f50589a5-9e04-4588-b2c1-c1594afe87a9","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.27) → SUCCESS
+✅ 3. Order refundable → WAITING_FOR_CONFIRM
+✅ 3. Balance before refund: 12.64 ₾
+
+🔄 4. Refunding via INTEGRATOR (PARTIAL 0.13)
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Pre-Auth refund — verification
+⚠️  პრობლემა:    integrator refund ვერ მოთხოვნდა (status: WAITING_FOR_CONFIRM, error: You can't refund order with status: WAITING_FOR_CONFIRM)
+📥 მიმდინარე შედეგი:
+{
+  "integratorOrderId": "f50589a5-9e04-4588-b2c1-c1594afe87a9",
+  "status": "WAITING_FOR_CONFIRM",
+  "errorMessage": "You can't refund order with status: WAITING_FOR_CONFIRM"
+}
+✅ მოსალოდნელი შედეგი: status === REFUND_REQUESTED
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Full რეფანდი - მერჩანტი — საკომისიო RECEIVER</span>
+            <span class="dur">101.8s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 858427
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115654)
+✅ Order Completed (amount: 0.14) → {"integratorOrderId":"9eea04f2-8f75-4c66-8ef4-42538d1fb64b","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.14) → SUCCESS
+✅ 3. Balance before refund: 12.64 ₾
+
+🔄 4. Refunding via DEVICE (FULL)
+   ✅ Device refund call successful (status 200)
+
+📊 refund დადასტურდა (FULL): tx 115654 | refundInfo REFUNDED
+   captured 0.14 + senderFee 0 = 0.14 ₾ | initialRefundAmount 0.14 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.64 ₾ → დარჩა 12.5 ₾ (მოაკლდა 0.14 ₾) | უნდა მოკლებოდა 0.14 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.14 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი - მერჩანტი — საკომისიო RECEIVER</span>
+            <span class="dur">110.5s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 695941
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115655)
+✅ Order Completed (amount: 0.15) → {"integratorOrderId":"8b94d3cc-7764-4e9d-bba3-1bb416db095f","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.15) → SUCCESS
+✅ 3. Balance before refund: 12.5 ₾
+
+🔄 4. Refunding via DEVICE (PARTIAL 0.07)
+   ✅ Device refund call successful (status 200)
+
+📊 refund დადასტურდა (PARTIAL): tx 115655 | refundInfo PARTIALLY_REFUNDED
+   partial refundAmount = 0.07 ₾ | initialRefundAmount 0.07 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.5 ₾ → დარჩა 12.43 ₾ (მოაკლდა 0.07 ₾) | უნდა მოკლებოდა 0.07 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.07 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Full რეფანდი - ADMIN — საკომისიო RECEIVER</span>
+            <span class="dur">101.5s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 564839
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115656)
+✅ Order Completed (amount: 0.16) → {"integratorOrderId":"b3790b80-1af2-47d9-ba15-14c030d29040","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.16) → SUCCESS
+✅ 3. Balance before refund: 12.43 ₾
+
+🔄 4. Refunding via ADMIN (FULL)
+   ✅ Admin refund call successful (status 204)
+
+📊 refund დადასტურდა (FULL): tx 115656 | refundInfo REFUNDED
+   captured 0.16 + senderFee 0 = 0.16 ₾ | initialRefundAmount 0.16 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.43 ₾ → დარჩა 12.27 ₾ (მოაკლდა 0.16 ₾) | უნდა მოკლებოდა 0.16 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.16 ₾</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი - ADMIN — საკომისიო RECEIVER</span>
+            <span class="dur">103.0s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 443765
+✅ 1. Pre-auth → TO_BE_CONFIRMED (tx: 115657)
+✅ Order Completed (amount: 0.17) → {"integratorOrderId":"4d7bd88f-65ef-47c3-af96-d7832c45fa3e","status":"PROCESSING"}
+✅ After complete → SUCCESS
+✅ 2. Captured(0.17) → SUCCESS
+✅ 3. Balance before refund: 12.27 ₾
+
+🔄 4. Refunding via ADMIN (PARTIAL 0.08)
+   ✅ Admin refund call successful (status 204)
+
+📊 refund დადასტურდა (PARTIAL): tx 115657 | refundInfo PARTIALLY_REFUNDED
+   partial refundAmount = 0.08 ₾ | initialRefundAmount 0.08 ₾
+   ✅ refund თანხა სწორია
+
+📊 ბალანსი: იყო 12.27 ₾ → დარჩა 12.19 ₾ (მოაკლდა 0.08 ₾) | უნდა მოკლებოდა 0.08 ₾
+   ✅ ბალანსი სწორად ჩამოიჭრა — მოაკლდა 0.08 ₾
+✅ Restored: merchant commissionType=SENDER</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-reports.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Refund Reports Module <span class="cnt">❌ 12/13</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - Over Balance - full და partial</span>
+            <span class="dur">435.1s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via INTEGRATOR — 0.11 GEL (tx 115659, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 GEL (tx 115660, PARTIALLY_REFUNDED)
+✅ Full refund via INTEGRATOR — 0.11 USD (tx 115661, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 USD (tx 115662, PARTIALLY_REFUNDED)
+✅ Full refund via INTEGRATOR — 0.11 EUR (tx 115663, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 EUR (tx 115664, PARTIALLY_REFUNDED)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 14 → გახდა 20 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 2.87 → გახდა 4.22 — დაემატა 1.35 (უნდა 1.35) ✅
+   Currency Breakdown: GEL იყო 0.71 → გახდა 0.92 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 0.4 → გახდა 0.61 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: USD იყო 0.4 → გახდა 0.61 — დაემატა 0.21 (უნდა 0.21) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115659 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115660 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115661 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115662 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115663 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115664 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 12 → გახდა 12 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 2 → გახდა 8 — დაემატა 6 (უნდა 6) ✅
+━━━ ✅ ინტეგრატორი refund - Over Balance - full და partial — გავიდა (7.2 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">525.5s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Partial refund via INTEGRATOR — 0.1 GEL (tx 115668, PARTIALLY_REFUNDED)
+✅ Full refund via INTEGRATOR — 0.11 GEL (tx 115669, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 USD (tx 115670, PARTIALLY_REFUNDED)
+✅ Full refund via INTEGRATOR — 0.11 USD (tx 115671, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 EUR (tx 115672, PARTIALLY_REFUNDED)
+✅ Full refund via INTEGRATOR — 0.11 EUR (tx 115673, REFUNDED_BY_INTEGRATOR)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 20 → გახდა 26 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 4.22 → გახდა 5.57 — დაემატა 1.35 (უნდა 1.35) ✅
+   Currency Breakdown: GEL იყო 0.92 → გახდა 1.13 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 0.61 → გახდა 0.82 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: USD იყო 0.61 → გახდა 0.82 — დაემატა 0.21 (უნდა 0.21) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115668 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115669 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115670 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115671 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115672 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115673 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 12 → გახდა 18 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 8 → გახდა 8 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ ინტეგრატორი refund - In Balance - partial და full რეფანდი — გავიდა (8.6 წთ)</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - მერჩანტი refund - Over Balance - full და partial</span>
+            <span class="dur">62.5s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მერჩანტი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ 1/6 · გადახდა + refund · GEL full 0.1 — ჩავარდა
+━━━ ❌ მერჩანტი refund - Over Balance - full და partial — ჩავარდა (1.0 წთ)</pre><pre class="err">ApiAssertionError: ❌ ჩავარდა: 1/6 · გადახდა + refund · GEL full 0.1
+
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Refund report — payment + refund
+⚠️  პრობლემა:    merchant refund ვერ შესრულდა (HTTP 409)
+📥 მიმდინარე შედეგი:
+"{\"message\":\"Refund is not allowed when cash out mode is INSTANT.\",\"statusCode\":2513,\"exceptionGroup\":2}"
+✅ მოსალოდნელი შედეგი: HTTP 200
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - მერჩანტი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">858.9s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მერჩანტი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Partial refund via MERCHANT — 0.1 GEL (tx 115681, PARTIALLY_REFUNDED)
+✅ Full refund via MERCHANT — 0.11 GEL (tx 115682, REFUNDED_BY_KEEPZ)
+✅ Partial refund via MERCHANT — 0.1 USD (tx 115683, PARTIALLY_REFUNDED)
+✅ Full refund via MERCHANT — 0.11 USD (tx 115684, REFUNDED_BY_KEEPZ)
+✅ Partial refund via MERCHANT — 0.1 EUR (tx 115685, PARTIALLY_REFUNDED)
+✅ Full refund via MERCHANT — 0.11 EUR (tx 115686, REFUNDED_BY_KEEPZ)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 26 → გახდა 32 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 5.57 → გახდა 6.92 — დაემატა 1.35 (უნდა 1.35) ✅
+   Currency Breakdown: GEL იყო 1.13 → გახდა 1.34 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 0.82 → გახდა 1.03 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: USD იყო 0.82 → გახდა 1.03 — დაემატა 0.21 (უნდა 0.21) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115681 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115682 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115683 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115684 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115685 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115686 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 18 → გახდა 24 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 8 → გახდა 8 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ მერჩანტი refund - In Balance - partial და full რეფანდი — გავიდა (14.2 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ადმინი refund - Over Balance - full და partial</span>
+            <span class="dur">345.7s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ადმინი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via ADMIN — 0.11 GEL (tx 115690, REFUNDED_BY_KEEPZ)
+✅ Partial refund via ADMIN — 0.1 GEL (tx 115691, PARTIALLY_REFUNDED)
+✅ Full refund via ADMIN — 0.11 USD (tx 115692, REFUNDED_BY_KEEPZ)
+✅ Partial refund via ADMIN — 0.1 USD (tx 115693, PARTIALLY_REFUNDED)
+✅ Full refund via ADMIN — 0.11 EUR (tx 115694, REFUNDED_BY_KEEPZ)
+✅ Partial refund via ADMIN — 0.1 EUR (tx 115695, PARTIALLY_REFUNDED)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 32 → გახდა 38 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 6.92 → გახდა 8.27 — დაემატა 1.35 (უნდა 1.35) ✅
+   Currency Breakdown: GEL იყო 1.34 → გახდა 1.55 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 1.03 → გახდა 1.24 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: USD იყო 1.03 → გახდა 1.24 — დაემატა 0.21 (უნდა 0.21) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115690 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115691 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115692 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115693 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115694 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115695 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 24 → გახდა 24 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 8 → გახდა 14 — დაემატა 6 (უნდა 6) ✅
+━━━ ✅ ადმინი refund - Over Balance - full და partial — გავიდა (5.7 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ადმინი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">484.5s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ადმინი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Partial refund via ADMIN — 0.1 GEL (tx 115700, PARTIALLY_REFUNDED)
+✅ Full refund via ADMIN — 0.11 GEL (tx 115704, REFUNDED_BY_KEEPZ)
+✅ Partial refund via ADMIN — 0.1 USD (tx 115705, PARTIALLY_REFUNDED)
+✅ Full refund via ADMIN — 0.11 USD (tx 115706, REFUNDED_BY_KEEPZ)
+✅ Partial refund via ADMIN — 0.1 EUR (tx 115707, PARTIALLY_REFUNDED)
+✅ Full refund via ADMIN — 0.11 EUR (tx 115708, REFUNDED_BY_KEEPZ)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 38 → გახდა 44 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 8.27 → გახდა 9.62 — დაემატა 1.35 (უნდა 1.35) ✅
+   Currency Breakdown: GEL იყო 1.55 → გახდა 1.76 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 1.24 → გახდა 1.45 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: USD იყო 1.24 → გახდა 1.45 — დაემატა 0.21 (უნდა 0.21) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115700 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115704 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115705 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115706 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115707 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115708 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 24 → გახდა 30 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 14 → გახდა 14 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ ადმინი refund - In Balance - partial და full რეფანდი — გავიდა (7.9 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ერთი თვის ჩანაწერი</span>
+            <span class="dur">60.6s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ერთი თვის ჩანაწერი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via INTEGRATOR — 0.11 GEL (tx 115712, REFUNDED_BY_INTEGRATOR)
+
+📊 Refund Reports — 2026-11-01 → 2026-11-26
+   Refund Count:       იყო 61 → გახდა 62 — გაკეთდა 1 refund (უნდა 1) ✅
+   Total Amount (GEL): იყო 13.56 → გახდა 13.67 — დაემატა 0.11 (უნდა 0.11) ✅
+   Currency Breakdown: GEL იყო 5.7 → გახდა 5.81 — დაემატა 0.11 (უნდა 0.11) ✅
+   Currency Breakdown: EUR იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Currency Breakdown: USD იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+
+📊 Refund Report Details — 2026-11-01 → 2026-11-26
+   tx 115712 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 41 → გახდა 41 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 20 → გახდა 21 — დაემატა 1 (უნდა 1) ✅
+
+📊 Excel (preview) — 2026-11-01 → 2026-11-26
+   tx 115712: 0.11 GEL · Over Balance · SUCCESS (უნდა 0.11 GEL · Over Balance · SUCCESS) ✅
+   Over Balance refunds count:      იყო 20 → გახდა 21 — დაემატა 1 (უნდა 1) ✅
+   Over Balance refunds in EUR:     იყო 0.42 → გახდა 0.42 — დაემატა 0 (უნდა 0) ✅
+   Over Balance refunds in USD:     იყო 0.42 → გახდა 0.42 — დაემატა 0 (უნდა 0) ✅
+   Over Balance refunds in GEL:     იყო 2.56 → გახდა 2.67 — დაემატა 0.11 (უნდა 0.11) ✅
+   In Balance refunds count:        იყო 41 → გახდა 41 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in EUR:       იყო 1.03 → გახდა 1.03 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in USD:       იყო 1.03 → გახდა 1.03 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in GEL:       იყო 3.14 → გახდა 3.14 — დაემატა 0 (უნდა 0) ✅
+   Total refunds:                   იყო 61 → გახდა 62 — დაემატა 1 (უნდა 1) ✅
+   Total in EUR:                    იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Total in USD:                    იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Total in GEL:                    იყო 5.7 → გახდა 5.81 — დაემატა 0.11 (უნდა 0.11) ✅
+   Grand total (GEL equivalent):    იყო 13.56 → გახდა 13.67 — დაემატა 0.11 (უნდა 0.11) ✅
+   Excel = summary: Total refunds 62 = 62 ✅ · Grand total 13.67 = 13.67 ✅ · ვალუტები ✅
+━━━ ✅ ერთი თვის ჩანაწერი — გავიდა (1.0 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ერთი დღის ჩანაწერი</span>
+            <span class="dur">115.3s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ერთი დღის ჩანაწერი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via INTEGRATOR — 0.11 GEL (tx 115713, REFUNDED_BY_INTEGRATOR)
+✅ Partial refund via INTEGRATOR — 0.1 GEL (tx 115714, PARTIALLY_REFUNDED)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 45 → გახდა 47 — გაკეთდა 2 refund (უნდა 2) ✅
+   Total Amount (GEL): იყო 9.73 → გახდა 9.94 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: GEL იყო 1.87 → გახდა 2.08 — დაემატა 0.21 (უნდა 0.21) ✅
+   Currency Breakdown: EUR იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Currency Breakdown: USD იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115713 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115714 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 30 → გახდა 30 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 15 → გახდა 17 — დაემატა 2 (უნდა 2) ✅
+
+📊 Excel (preview) — 2026-11-26
+   tx 115713: 0.11 GEL · Over Balance · SUCCESS (უნდა 0.11 GEL · Over Balance · SUCCESS) ✅
+   tx 115714: 0.1 GEL · Over Balance · SUCCESS (უნდა 0.1 GEL · Over Balance · SUCCESS) ✅
+   Over Balance refunds count:      იყო 15 → გახდა 17 — დაემატა 2 (უნდა 2) ✅
+   Over Balance refunds in GEL:     იყო 0.84 → გახდა 1.05 — დაემატა 0.21 (უნდა 0.21) ✅
+   Over Balance refunds in EUR:     იყო 0.42 → გახდა 0.42 — დაემატა 0 (უნდა 0) ✅
+   Over Balance refunds in USD:     იყო 0.42 → გახდა 0.42 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds count:        იყო 30 → გახდა 30 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in EUR:       იყო 1.03 → გახდა 1.03 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in USD:       იყო 1.03 → გახდა 1.03 — დაემატა 0 (უნდა 0) ✅
+   In Balance refunds in GEL:       იყო 1.03 → გახდა 1.03 — დაემატა 0 (უნდა 0) ✅
+   Total refunds:                   იყო 45 → გახდა 47 — დაემატა 2 (უნდა 2) ✅
+   Total in GEL:                    იყო 1.87 → გახდა 2.08 — დაემატა 0.21 (უნდა 0.21) ✅
+   Total in EUR:                    იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Total in USD:                    იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Grand total (GEL equivalent):    იყო 9.73 → გახდა 9.94 — დაემატა 0.21 (უნდა 0.21) ✅
+   Excel = summary: Total refunds 47 = 47 ✅ · Grand total 9.94 = 9.94 ✅ · ვალუტები ✅
+━━━ ✅ ერთი დღის ჩანაწერი — გავიდა (1.9 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - მეილზე მოსული Excel</span>
+            <span class="dur">8.7s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მეილზე მოსული Excel
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Report sent (id 40) → keepz07011@mailinator.com,nika@keepz.me,d.kartozia@keepz.me
+✅ Email received: "Refund Report — stromae refund report" from noreply@keepz.me · refund-report_stromae_refund_report_2026-11.xlsx
+
+📊 Send report — 2026-11-01 → 2026-11-26 · მიმდინარე (მეილი) vs მოსალოდნელი (ადმინკა)
+   სტრიქონები: მიმდინარე 64 · მოსალოდნელი 64 ✅
+   ყველა 64 სტრიქონი ველ-ველ ემთხვევა ✅
+   Over Balance refunds count:      მიმდინარე 23 · მოსალოდნელი 23 ✅
+   Over Balance refunds in GEL:     მიმდინარე 2.88 · მოსალოდნელი 2.88 ✅
+   Over Balance refunds in EUR:     მიმდინარე 0.42 · მოსალოდნელი 0.42 ✅
+   Over Balance refunds in USD:     მიმდინარე 0.42 · მოსალოდნელი 0.42 ✅
+   In Balance refunds count:        მიმდინარე 41 · მოსალოდნელი 41 ✅
+   In Balance refunds in EUR:       მიმდინარე 1.03 · მოსალოდნელი 1.03 ✅
+   In Balance refunds in USD:       მიმდინარე 1.03 · მოსალოდნელი 1.03 ✅
+   In Balance refunds in GEL:       მიმდინარე 3.14 · მოსალოდნელი 3.14 ✅
+   Total refunds:                   მიმდინარე 64 · მოსალოდნელი 64 ✅
+   Total in GEL:                    მიმდინარე 6.02 · მოსალოდნელი 6.02 ✅
+   Total in EUR:                    მიმდინარე 1.45 · მოსალოდნელი 1.45 ✅
+   Total in USD:                    მიმდინარე 1.45 · მოსალოდნელი 1.45 ✅
+   Grand total (GEL equivalent):    მიმდინარე 13.88 · მოსალოდნელი 13.88 ✅
+   Refund Count:  მიმდინარე 64 (send response 64) · მოსალოდნელი 64 (summary) ✅
+   Total (GEL):   მიმდინარე 13.88 · მოსალოდნელი 13.88 (summary) ✅
+   ✅ მეილზე მოსული Excel = ადმინკის მონაცემები
+━━━ ✅ მეილზე მოსული Excel — გავიდა (0.1 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - payment link - ადმინი refund - Over Balance (full + partial)</span>
+            <span class="dur">131.4s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ payment link - ადმინი refund - Over Balance (full + partial)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via ADMIN — payment link 0.2 GEL (tx 115715)
+✅ Partial refund via ADMIN — payment link 0.1 GEL (tx 115717)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 47 → გახდა 49 — გაკეთდა 2 refund (უნდა 2) ✅
+   Total Amount (GEL): იყო 9.94 → გახდა 10.25 — დაემატა 0.31 (უნდა 0.31) ✅
+   Currency Breakdown: GEL იყო 2.08 → გახდა 2.39 — დაემატა 0.31 (უნდა 0.31) ✅
+   Currency Breakdown: EUR იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Currency Breakdown: USD იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115715 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115717 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 30 → გახდა 30 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 17 → გახდა 19 — დაემატა 2 (უნდა 2) ✅
+━━━ ✅ payment link - ადმინი refund - Over Balance (full + partial) — გავიდა (2.2 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - TBC Open Banking - Over Balance</span>
+            <span class="dur">78.4s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - TBC Open Banking - Over Balance
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⏳ OB refund Initiated — ველოდებით Success-ს (~4 წთ-მდე)
+✅ Full refund via INTEGRATOR — 0.11 GEL (tx 115718, REFUNDED_BY_INTEGRATOR)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 49 → გახდა 50 — გაკეთდა 1 refund (უნდა 1) ✅
+   Total Amount (GEL): იყო 10.25 → გახდა 10.36 — დაემატა 0.11 (უნდა 0.11) ✅
+   Currency Breakdown: GEL იყო 2.39 → გახდა 2.5 — დაემატა 0.11 (უნდა 0.11) ✅
+   Currency Breakdown: EUR იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+   Currency Breakdown: USD იყო 1.45 → გახდა 1.45 — დაემატა 0 (უნდა 0) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115718 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 30 → გახდა 30 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 19 → გახდა 20 — დაემატა 1 (უნდა 1) ✅
+━━━ ✅ ინტეგრატორი refund - TBC Open Banking - Over Balance — გავიდა (1.3 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - add money - მერჩანტი refund - partial და full</span>
+            <span class="dur">366.0s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ add money - მერჩანტი refund - partial და full
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via MERCHANT — add money 0.1 GEL (tx 115721)
+✅ Partial refund via MERCHANT — add money 0.2 GEL (tx 115723)
+✅ Full refund via MERCHANT — add money 0.1 USD (tx 115725)
+✅ Partial refund via MERCHANT — add money 0.2 USD (tx 115726)
+✅ Full refund via MERCHANT — add money 0.1 EUR (tx 115727)
+✅ Partial refund via MERCHANT — add money 0.2 EUR (tx 115728)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 50 → გახდა 56 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 10.36 → გახდა 11.64 — დაემატა 1.28 (უნდა 1.28) ✅
+   Currency Breakdown: GEL იყო 2.5 → გახდა 2.7 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: EUR იყო 1.45 → გახდა 1.65 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: USD იყო 1.45 → გახდა 1.65 — დაემატა 0.2 (უნდა 0.2) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115721 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115723 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115725 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115726 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115727 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115728 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 30 → გახდა 36 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 20 → გახდა 20 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ add money - მერჩანტი refund - partial და full — გავიდა (6.0 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - add money - ადმინი refund - partial და full</span>
+            <span class="dur">371.5s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ add money - ადმინი refund - partial და full
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via ADMIN — add money 0.1 GEL (tx 115732)
+✅ Partial refund via ADMIN — add money 0.2 GEL (tx 115733)
+✅ Full refund via ADMIN — add money 0.1 USD (tx 115734)
+✅ Partial refund via ADMIN — add money 0.2 USD (tx 115735)
+✅ Full refund via ADMIN — add money 0.1 EUR (tx 115736)
+✅ Partial refund via ADMIN — add money 0.2 EUR (tx 115738)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 56 → გახდა 62 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 11.64 → გახდა 12.92 — დაემატა 1.28 (უნდა 1.28) ✅
+   Currency Breakdown: GEL იყო 2.7 → გახდა 2.9 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: EUR იყო 1.65 → გახდა 1.85 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: USD იყო 1.65 → გახდა 1.85 — დაემატა 0.2 (უნდა 0.2) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115732 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115733 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115734 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115735 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115736 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115738 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 36 → გახდა 42 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 20 → გახდა 20 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ add money - ადმინი refund - partial და full — გავიდა (6.0 წთ)</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/saved-card.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Saved Card - იუზერი როცა ბარათს ამახსოვრებს</span>
+            <span class="dur">48.9s</span>
+          </summary><pre class="log">✅ Order Created (saveCard + CREDO)
+✅ Payment page opened
+✅ OTP: 079814
+✅ Test PASSED: card token/data დაბრუნდა</pre></details></div><div class="file-group"><div class="file">tests/Positive/split-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split Order IBAN BRANCH</span>
+            <span class="dur">58.6s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 830605
+
+✅ Split ორდერი გადახდილია:
+   parent 115747 = SUCCESS
+   children 115749 = SUCCESS (0.1 ლარი),  115748 = SUCCESS (0.1 ლარი)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split Order BRANCH and BRANCH</span>
+            <span class="dur">83.7s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 797325
+
+✅ Split ორდერი გადახდილია:
+   parent 115750 = SUCCESS
+   children 115753 = SUCCESS (0.1 ლარი),  115752 = SUCCESS (0.1 ლარი)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split Order chaild amount 0</span>
+            <span class="dur">70.8s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 982674
+
+✅ Split ორდერი გადახდილია:
+   parent 115754 = SUCCESS
+   children 115756 = SUCCESS (0 ლარი),  115755 = SUCCESS (0.2 ლარი)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split Order Main receiver amount 0</span>
+            <span class="dur">59.4s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 531899
+
+✅ Split ორდერი გადახდილია:
+   parent 115757 = SUCCESS
+   children 115759 = SUCCESS (0.2 ლარი),  115758 = SUCCESS (0 ლარი)</pre></details></div><div class="file-group"><div class="file">tests/Positive/treasury-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Treasury Order</span>
+            <span class="dur">49.6s</span>
+          </summary><pre class="log">✅ Treasury Order Created
+✅ Payment page opened
+✅ TBC OTP: 202988</pre></details></div><div class="file-group"><div class="file">tests/Positive/validuntil-retry-payment.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">validUntil Order</span>
+            <span class="dur">72.8s</span>
+          </summary><pre class="log">✅ Order Created (with validUntil)
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=816f4709-e309-4aff-92bd-cac6a343b5bd&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=816f4709-e309-4aff-92bd-cac6a343b5bd&amp;amount=0.1&amp;currency=GEL</a>
+
+🔴 First Attempt - CREDO card (insufficient funds) - Payment will FAIL
+✅ CREDO OTP: 385816
+❌ First Payment FAILED (CREDO - insufficient funds)
+
+✅ Second Attempt - Retrying on SAME page with TBC
+
+✅ TBC OTP: 733792
+✅ Second Payment SUCCESS
+
+ℹ️ Transaction status: WAITING_FOR_SIGNATURE</pre></details></div>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.card');
+      const items = document.querySelectorAll('.test-item');
+      const groups = document.querySelectorAll('.file-group, .suite-group');
+      function applyFilter(f) {
+        items.forEach((it) => {
+          it.style.display = (f === 'all' || it.dataset.status === f) ? '' : 'none';
+        });
+        // ცარიელი file-group-ის header დამალვა
+        groups.forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll('.test-item').forEach((it) => {
+            if (it.style.display !== 'none') anyVisible = true;
+          });
+          g.style.display = anyVisible ? '' : 'none';
+        });
+        cards.forEach((c) => c.classList.toggle('active', c.dataset.filter === f));
+      }
+      cards.forEach((c) => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+    })();
+  </script>
+</body>
+</html>

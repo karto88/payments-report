@@ -1,5 +1,43 @@
 [
   {
+    "id": "2026-11-26T08-12-50-336Z",
+    "startedAt": "2026-11-26T08:12:50.336Z",
+    "durationMs": 10085285,
+    "label": "რეგრესია: Positive + Negative (USD/EUR ბარათის გარეშე)",
+    "total": 107,
+    "passed": 94,
+    "failed": 13,
+    "skipped": 0,
+    "failedTitles": [
+      "Add money — Open Banking BOG distributionFlow DIRECT - GEL",
+      "should send callback after successful payment",
+      "დამახსოვრებული ბარათით გადახდა როცა — amount არის 0",
+      "Create Order Only",
+      "BOG directLinkProvider - Distributor BOG - MCard",
+      "Invoice Check",
+      "BOG Open Banking",
+      "refund ბალანსზე მეტი თანხით over balance - ბალანსი უცვლელი",
+      "პრე-ავტორიციის ორდერზე FULL რეფანდი INTEGRATOR — საკომისიო SENDER",
+      "პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო SENDER",
+      "პრე-ავტორიციის ორდერზე full რეფანდი INTEGRATOR — საკომისიო RECEIVER",
+      "პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო RECEIVER",
+      "Refund Reports Module - მერჩანტი refund - Over Balance - full და partial"
+    ]
+  },
+  {
+    "id": "2026-11-26T07-39-25-418Z",
+    "startedAt": "2026-11-26T07:39:25.418Z",
+    "durationMs": 75105,
+    "label": "tests/Positive/add-money.spec.ts:13",
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "failedTitles": [
+      "Add money — standard გადახდა distributionFlow STANDARD - GEL"
+    ]
+  },
+  {
     "id": "2026-11-26T07-07-51-801Z",
     "startedAt": "2026-11-26T07:07:51.801Z",
     "durationMs": 110674,
@@ -180,28 +218,6 @@
     "label": "tests/Smoke/circuit-breaker.spec.ts · grep: უსაფრთხოება|ზღვრები",
     "total": 35,
     "passed": 35,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-25T13-18-04-955Z",
-    "startedAt": "2026-11-25T13:18:04.955Z",
-    "durationMs": 827871,
-    "label": "tests/Smoke/circuit-breaker.spec.ts",
-    "total": 85,
-    "passed": 85,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-25T13-04-02-584Z",
-    "startedAt": "2026-11-25T13:04:02.584Z",
-    "durationMs": 829156,
-    "label": "tests/Smoke/circuit-breaker.spec.ts",
-    "total": 85,
-    "passed": 85,
     "failed": 0,
     "skipped": 0,
     "failedTitles": []
