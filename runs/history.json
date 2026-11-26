@@ -1,5 +1,18 @@
 [
   {
+    "id": "2026-11-26T12-22-08-998Z",
+    "startedAt": "2026-11-26T12:22:08.998Z",
+    "durationMs": 134904,
+    "label": "tests/Smoke/gepa-order-branchId.spec.ts tests/Smoke/saved-card-order.spec.ts",
+    "total": 3,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 1,
+    "failedTitles": [
+      "GEPA — order list - branchId"
+    ]
+  },
+  {
     "id": "2026-11-26T12-20-32-850Z",
     "startedAt": "2026-11-26T12:20:32.850Z",
     "durationMs": 85791,
@@ -125,19 +138,5 @@
     "failed": 0,
     "skipped": 0,
     "failedTitles": []
-  },
-  {
-    "id": "2026-11-26T06-43-31-917Z",
-    "startedAt": "2026-11-26T06:43:31.917Z",
-    "durationMs": 132824,
-    "label": "tests/Positive/add-money.spec.ts · grep: distributionFlow STANDARD - GEL",
-    "total": 2,
-    "passed": 0,
-    "failed": 2,
-    "skipped": 0,
-    "failedTitles": [
-      "Add money — standard გადახდა distributionFlow STANDARD - GEL",
-      "Add money — Open Banking BOG distributionFlow STANDARD - GEL"
-    ]
   }
 ]
