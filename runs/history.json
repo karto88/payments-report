@@ -1,5 +1,16 @@
 [
   {
+    "id": "2026-11-26T12-38-11-521Z",
+    "startedAt": "2026-11-26T12:38:11.521Z",
+    "durationMs": 51541,
+    "label": "tests/Smoke/gepa-order-branchId.spec.ts",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
     "id": "2026-11-26T12-22-08-998Z",
     "startedAt": "2026-11-26T12:22:08.998Z",
     "durationMs": 134904,
@@ -127,16 +138,5 @@
     "failedTitles": [
       "Add money — standard გადახდა - USD"
     ]
-  },
-  {
-    "id": "2026-11-26T06-56-46-729Z",
-    "startedAt": "2026-11-26T06:56:46.729Z",
-    "durationMs": 121502,
-    "label": "tests/Positive/add-money.spec.ts · grep: distributionFlow STANDARD - GEL",
-    "total": 2,
-    "passed": 2,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
   }
 ]
