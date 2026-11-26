@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report</title>
+  <style>
+    .history { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px; margin-bottom:24px; }
+    .history > summary { cursor:pointer; font-weight:600; font-size:14px; }
+    .hwrap { overflow-x:auto; margin-top:10px; }
+    .history table { border-collapse:collapse; width:100%; font-size:13px; }
+    .history th, .history td { text-align:left; padding:6px 10px; border-top:1px solid #30363d; vertical-align:top; white-space:nowrap; }
+    .history th { color:#7d8590; font-weight:600; border-top:none; }
+    .history td.lbl { white-space:normal; max-width:260px; color:#adbac7; }
+    .history a { color:#58a6ff; text-decoration:none; } .history a:hover { text-decoration:underline; }
+    .history tr.cur td { background:#1c2330; }
+    .history .p { color:#3fb950; } .history .f { color:#f85149; } .history .s { color:#7d8590; }
+    .now { background:#1f6feb; color:#fff; border-radius:10px; padding:1px 7px; font-size:11px; }
+    .barc { min-width:140px; } .bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0d1117; margin-top:5px; }
+    .hf summary { cursor:pointer; color:#f85149; } .hf ul { margin:6px 0 0; padding-left:18px; white-space:normal; color:#ffa198; max-width:520px; }
+    .back { color:#58a6ff; font-size:13px; text-decoration:none; display:inline-block; margin-bottom:12px; }
+    body { font-family: system-ui, sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:32px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .meta { color:#7d8590; font-size:13px; margin-bottom:20px; }
+    .summary { display:flex; gap:12px; margin-bottom:24px; }
+    .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 18px;
+            font-family:inherit; font-size:14px; font-weight:600; color:#e6edf3; cursor:pointer;
+            transition:border-color .15s, box-shadow .15s; }
+    .card:hover { border-color:#484f58; }
+    .card.active { border-color:#58a6ff; box-shadow:0 0 0 1px #58a6ff; }
+    .card.pass { color:#3fb950; } .card.fail { color:#f85149; } .card.skip { color:#7d8590; }
+    .file { color:#7d8590; font-size:13px; margin:18px 0 6px; font-weight:600; }
+    .suite-group.lvl1 { margin:18px 0 10px; }
+    .suite-group.lvl1 > .suite { font-size:16px; color:#e6edf3; padding-bottom:6px; border-bottom:1px solid #30363d; margin-bottom:10px; }
+    .suite-group.lvl2 { margin:8px 0 14px 14px; padding-left:12px; border-left:2px solid #30363d; }
+    .suite-group.lvl2 > .suite { font-size:14px; color:#adbac7; margin:4px 0 8px; }
+    .suite { font-weight:600; }
+    .suite .cnt { color:#3fb950; font-size:12px; font-weight:500; margin-left:8px; }
+    .suite.bad .cnt { color:#f85149; }
+    .test-item { margin-bottom:6px; }
+    .test { display:flex; align-items:center; gap:16px; background:#161b22; border:1px solid #30363d;
+            border-radius:6px; padding:12px 16px; cursor:pointer; list-style:none; user-select:none; }
+    .test::-webkit-details-marker { display:none; }
+    .test:hover { border-color:#484f58; }
+    .chev { color:#7d8590; font-size:11px; width:12px; transition:transform .15s; }
+    details[open] > .test .chev { transform:rotate(90deg); }
+    .st { min-width:110px; font-weight:600; font-size:13px; }
+    .name { flex:1; }
+    .dur { color:#7d8590; font-size:13px; }
+    .err { background:#161b22; border:1px solid #f85149; border-left:3px solid #f85149; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#ffa198; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; }
+    .log { background:#0b0f14; border:1px solid #30363d; border-left:3px solid #3fb950; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#adbac7; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; line-height:1.5; }
+    .log a { color:#58a6ff; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <details class="history" open><summary>📚 ისტორია — ბოლო 2 გაშვება (მაქს. 10)</summary>
+  <div class="hwrap"><table><thead><tr><th>თარიღი</th><th>რა გაეშვა</th><th>Total</th><th>✅</th><th>❌</th><th>⏭️</th><th>Pass %</th><th>დრო</th><th></th><th>ჩავარდნილი</th></tr></thead>
+  <tbody><tr class="cur"><td><a href="runs/2026-11-26T15-17-29-062Z.html">26/11, 19:17</a> <span class="now">ახლა</span></td>
+        <td class="lbl">PROD სმოუკი</td><td>40</td><td class="p">39</td><td class="f">1</td><td class="s">0</td>
+        <td>98%</td><td>6 წთ</td><td class="barc"><div class="bar"><span style="width:97.5%;background:#3fb950"></span><span style="width:2.5%;background:#f85149"></span><span style="width:0%;background:#7d8590"></span></div></td><td><details class="hf"><summary>1 ჩავარდნილი</summary><ul><li>Pre-auth — amount 0.1 - complete 0.1 ₾</li></ul></details></td></tr><tr><td><a href="runs/2026-11-26T15-13-43-081Z.html">26/11, 19:13</a></td>
+        <td class="lbl">tests/Smoke/default-order.spec.ts · grep: GEL</td><td>1</td><td class="p">1</td><td class="f">0</td><td class="s">0</td>
+        <td>100%</td><td>1 წმ</td><td class="barc"><div class="bar"><span style="width:2.5%;background:#3fb950"></span><span style="width:0%;background:#f85149"></span><span style="width:0%;background:#7d8590"></span></div></td><td>—</td></tr></tbody></table></div></details>
+  <h1>🎭 Playwright Test Report</h1>
+  <div class="meta">11/26/2026, 7:17:29 PM · PROD სმოუკი · 6 წთ</div>
+  <div class="summary">
+    <button type="button" class="card active" data-filter="all">Total: 40</button>
+    <button type="button" class="card pass" data-filter="pass">✅ Passed: 39</button>
+    <button type="button" class="card fail" data-filter="fail">❌ Failed: 1</button>
+    <button type="button" class="card skip" data-filter="skip">⏭️ Skipped: 0</button>
+  </div>
+  <div class="file-group"><div class="file">tests/Smoke/add-money.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — STANDARD, TBC ბარათით (0.13 ₾)</span>
+            <span class="dur">48.1s</span>
+          </summary><pre class="log">✅ Balance before: 14.98 GEL
+✅ Payment URL: [link]
+✅ Payment page opened
+✅ OTP: ••••
+
+📊 Add money — ბარათი TBC · distributionFlow - · RECEIVER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 14.98 → გახდა 15.1 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13 − 0.01 = 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details></div><div class="file-group"><div class="file">tests/Smoke/callback-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Callback — გადახდა → callback მოვიდა (SUCCESS)</span>
+            <span class="dur">48.2s</span>
+          </summary><pre class="log">🌐 Webhook inbox (ბრაუზერში გახსენი): [link]
+✅ Order Created
+✅ Payment page opened
+✅ OTP: ••••
+✅ Found 1 callback(s)
+✅ Callback received — a58658f4-3ce7-402f-94d6-e2291883a72c · status SUCCESS</pre></details></div><div class="file-group"><div class="file">tests/Smoke/check-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">CHECK ორდერის შექმნა</span>
+            <span class="dur">3.8s</span>
+          </summary><pre class="log">✅ Check Order Created — 0.1 GEL · 79a440c5-c775-4d39-9743-5758b32b7208
+Payment URL: [link]
+✅ CHECK page opened — 0.1 ₾</pre></details></div><div class="file-group"><div class="file">tests/Smoke/crypto-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Crypto ორდერის შექმნა — CITYPAY</span>
+            <span class="dur">1.6s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · bd4e1715-11bf-4dfb-8e8b-903cdfa6f06b
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/default-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — GEL</span>
+            <span class="dur">708ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status INITIAL · 8b961193-d713-43b3-9a8c-6158669aadc4
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — USD</span>
+            <span class="dur">705ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 USD · status INITIAL · 7c262262-ce5e-4991-9787-062c56e9bd14
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — EUR</span>
+            <span class="dur">687ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 EUR · status INITIAL · 1a90fcb6-4524-4498-a50d-fa6d5eecd6d8
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/direct-link-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">directLinkProvider ორდერის შექმნა — CREDO</span>
+            <span class="dur">1.2s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · fb27c07e-3d83-4815-8330-42706c4c32d5
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">directLinkProvider ორდერის შექმნა — DEFAULT</span>
+            <span class="dur">1.2s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 152f9bec-067b-485d-a47d-4fa0b98e1202
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/gepa-order-branchId.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEPA ორდერის შექმნა — branchId</span>
+            <span class="dur">752ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status INITIAL · abb1d9a3-9601-4768-8abc-0054880fc975
+Payment URL: [link]</pre></details><div class="suite-group lvl1"><div class="suite">GEPA — გადახდა → Integrator refund <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEPA — გადახდა + order list - branchId</span>
+            <span class="dur">49.6s</span>
+          </summary><pre class="log">✅ Order Created — b50f4780-17f1-49bf-b41b-14e0ef5d25e4 · branchId be8307c3-855a-4a65-bd4a-d4f873cd4135
+📋 Order list — 2026-11-26 19:19:18 → 2026-11-26 23:59:59 · branch be8307c3-855a-4a65-bd4a-d4f873cd4135
+   ორდერები: 1 · sumAmount 0.1 · refundedAmount 0
+   SUCCESS 1 · refunded 0 · partially refunded 0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Integrator refund — FULL - GEPA ორდერი</span>
+            <span class="dur">843ms</span>
+          </summary><pre class="log">✅ Integrator refund (FULL) → REFUND_REQUESTED · b50f4780-17f1-49bf-b41b-14e0ef5d25e4</pre></details></div></div><div class="file-group"><div class="file">tests/Smoke/gepa-order-status.spec.ts</div><div class="suite-group lvl1"><div class="suite">gepa — გადახდა → Integrator refund <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">gepa — Mastercard (BOG ბარათი) გადახდა + order status</span>
+            <span class="dur">48.7s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: ••••
+🔍 Fetching order status...
+
+📋 ===== ORDER STATUS =====
+{
+  "integratorOrderId": "8f4251e3-ff6b-4857-8041-41b738b58d08",
+  "status": "SUCCESS",
+  "report": "stromae check \n stromae check - null \n QR 145405 \n ორდერის ID: 8f4251e3-ff6b-4857-8041-41b738b58d08 \n თანხა: 0.1 GEL \n მეთოდი: Card \n დრო: 26.11.2026 19:20:11 \n სტატუსი: წარმატებული",
+  "initialCurrency": "GEL",
+  "acquiringCurrency": "GEL",
+  "acquiringAmount": 0.11,
+  "transactionId": 22269593
+}
+==========================</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Integrator refund — PARTIAL 0.05 gepa ორდერი</span>
+            <span class="dur">616ms</span>
+          </summary><pre class="log">✅ Integrator refund (PARTIAL 0.05) → REFUND_REQUESTED · 8f4251e3-ff6b-4857-8041-41b738b58d08</pre></details></div></div><div class="file-group"><div class="file">tests/Smoke/hub-transaction.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — TBC</span>
+            <span class="dur">638ms</span>
+          </summary><pre class="log">✅ Hub transfer TBC 0.1 GEL → GE••••••••0003 · uniqueId 42dc6a3a-9cf9-42fa-b26b-b120058bc155</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — BOG</span>
+            <span class="dur">420ms</span>
+          </summary><pre class="log">✅ Hub transfer BOG 0.1 GEL → GE••••••••7722 · uniqueId 180417eb-d00a-4196-9eab-e5313baf8e22</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — Liberty</span>
+            <span class="dur">414ms</span>
+          </summary><pre class="log">✅ Hub transfer Liberty 0.1 GEL → GE••••••••1001 · uniqueId f1636b4c-e937-4fbf-b3a2-b55889888389</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — TBC - USD</span>
+            <span class="dur">432ms</span>
+          </summary><pre class="log">✅ Hub transfer TBC 0.1 USD → GE••••••••0003 · uniqueId 0e086fd5-b4c8-4919-8b11-59154b344716</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — TBC - EUR</span>
+            <span class="dur">407ms</span>
+          </summary><pre class="log">✅ Hub transfer TBC 0.1 EUR → GE••••••••0003 · uniqueId 60a8b546-e444-45f9-ae25-fb29bfc1499e</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — BOG - USD</span>
+            <span class="dur">438ms</span>
+          </summary><pre class="log">✅ Hub transfer BOG 0.1 USD → GE••••••••7722 · uniqueId 5146509c-fd87-4e39-a573-951d7896a915</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — BOG - EUR</span>
+            <span class="dur">419ms</span>
+          </summary><pre class="log">✅ Hub transfer BOG 0.1 EUR → GE••••••••7722 · uniqueId ecad41c6-a4bf-438e-9d7a-c0b34b857164</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — Liberty - USD</span>
+            <span class="dur">435ms</span>
+          </summary><pre class="log">✅ Hub transfer Liberty 0.1 USD → GE••••••••1001 · uniqueId 6e10dc7e-d057-495e-b90f-9c6ca34e9287</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — Liberty - EUR</span>
+            <span class="dur">479ms</span>
+          </summary><pre class="log">✅ Hub transfer Liberty 0.1 EUR → GE••••••••1001 · uniqueId 28ec9f4e-82e9-4fa7-b1ce-d1d87bc6eb4c</pre></details></div><div class="file-group"><div class="file">tests/Smoke/open-banking-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — BOG</span>
+            <span class="dur">2.1s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 41671cfd-3028-45e7-b1e2-c4c86afe3184
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — TBC</span>
+            <span class="dur">1.4s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · f1d001a8-5334-4d7c-9009-40e3fb08b31c
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — CREDO</span>
+            <span class="dur">1.9s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 7e0b915a-3a40-4792-87d7-1df01951efc6
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — LB</span>
+            <span class="dur">1.8s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 5c57cdea-5b3d-483a-8eb9-1d7036b5a9ff
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/pre-auth-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre-auth — amount 0.1 - complete 0.1 ₾</span>
+            <span class="dur">57.9s</span>
+          </summary><pre class="log">✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: ••••</pre><pre class="err">Error: Admin login failed: User auth entity not found by mobile and login type. (statusCode: 1012). შეამოწმე ADMIN_PASSWORD .env-ში.</pre></details></div><div class="file-group"><div class="file">tests/Smoke/redirect-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — successRedirectUri + failRedirectUri</span>
+            <span class="dur">948ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status INITIAL · 70ec4d1c-98af-4516-b3ae-8c8159fa317c
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/saved-card-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ბარათის შენახვა → შენახული ბარათით გადახდა (0.1 ₾)</span>
+            <span class="dur">50.8s</span>
+          </summary><pre class="log">✅ Order Created (saveCard + CREDO)
+✅ Payment page opened
+✅ OTP: ••••
+✅ Card saved (0 ₾) — token e914905d-fb49-4704-887c-3f652fc10805
+✅ Paid with saved card — 0.1 ₾ · a350a434-9fc9-4e88-a266-1d0b8846a2b3</pre></details></div><div class="file-group"><div class="file">tests/Smoke/split-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.1 + IBAN 0.1</span>
+            <span class="dur">971ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 896e9ca7-fdd9-4d00-8595-d86bab95d730
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.1 + BRANCH 0.1</span>
+            <span class="dur">896ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 247c3358-1db0-4a83-a59e-20e9c70d3b0b
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.2 + IBAN 0 (შვილის თანხა 0)</span>
+            <span class="dur">864ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · f634bd30-6b07-428c-a43e-a2d98bee3085
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0 + IBAN 0.2 (მთავარი მიმღების თანხა 0)</span>
+            <span class="dur">712ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 0f6b82b7-d99a-44ca-9de4-c383ac23cdca
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/subscription-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Subscription ორდერის შექმნა — IMMEDIATE HOURLY</span>
+            <span class="dur">1.4s</span>
+          </summary><pre class="log">✅ Order Created — 0.17 GEL · status PROCESSING · 989497ec-1106-4d38-8c1f-36a0fdae1980
+Payment URL: [link]</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Subscription ორდერის შექმნა — SCHEDULED HOURLY - startDate</span>
+            <span class="dur">1.3s</span>
+          </summary><pre class="log">✅ Order Created — 0.13 GEL · status PROCESSING · b20dbb72-e4ca-42a9-9e5d-4086280eacec
+Payment URL: [link]</pre></details></div><div class="file-group"><div class="file">tests/Smoke/valid-until-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">validUntil — არასწორი CVV → ორდერი ხელახლა იხსნება</span>
+            <span class="dur">27.6s</span>
+          </summary><pre class="log">✅ Order Created (validUntil 2026-11-27 15:23:04) — a8e7f4ab-2c15-4634-9cdf-433076b55927
+Payment URL: [link]
+❌ Payment failed (wrong CVV) — status INITIAL
+✅ Order reopened — card form available (validUntil works)</pre></details></div><div class="file-group"><div class="file">tests/Smoke/withdrawal.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Withdrawal — ბალანსიდან 0.1 ₾ IBAN-ზე</span>
+            <span class="dur">6.6s</span>
+          </summary><pre class="log">✅ Withdrawal 0.1 GEL → GE••••••••0124 · balance 14.99 → 14.89</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub-ის ბალანსიდან მერჩანტის ბალანსზე გადარიცხვა</span>
+            <span class="dur">5.7s</span>
+          </summary><pre class="log">✅ hub client 4c95a967-2e28-43cc-8a81-1614bf738ef4 → მერჩანტი 591••••80 0.1 GEL: Hub 779.23 → 779.13 · მერჩანტი 14.89 → 14.99</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">მერჩანტის ბალანსიდან Hub-ის ბალანსზე გადარიცხვა</span>
+            <span class="dur">4.7s</span>
+          </summary><pre class="log">✅ მერჩანტი 591••••80 → hub client 4c95a967-2e28-43cc-8a81-1614bf738ef4 0.1 GEL: Hub 779.13 → 779.23 · მერჩანტი 14.99 → 14.89</pre></details></div>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.card');
+      const items = document.querySelectorAll('.test-item');
+      const groups = document.querySelectorAll('.file-group, .suite-group');
+      function applyFilter(f) {
+        items.forEach((it) => {
+          it.style.display = (f === 'all' || it.dataset.status === f) ? '' : 'none';
+        });
+        // ცარიელი file-group-ის header დამალვა
+        groups.forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll('.test-item').forEach((it) => {
+            if (it.style.display !== 'none') anyVisible = true;
+          });
+          g.style.display = anyVisible ? '' : 'none';
+        });
+        cards.forEach((c) => c.classList.toggle('active', c.dataset.filter === f));
+      }
+      cards.forEach((c) => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+    })();
+  </script>
+</body>
+</html>

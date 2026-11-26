@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2026-11-26T15-17-29-062Z",
+    "startedAt": "2026-11-26T15:17:29.062Z",
+    "durationMs": 379659,
+    "label": "PROD სმოუკი",
+    "total": 40,
+    "passed": 39,
+    "failed": 1,
+    "skipped": 0,
+    "failedTitles": [
+      "Pre-auth — amount 0.1 - complete 0.1 ₾"
+    ]
+  },
+  {
+    "id": "2026-11-26T15-13-43-081Z",
+    "startedAt": "2026-11-26T15:13:43.081Z",
+    "durationMs": 1445,
+    "label": "tests/Smoke/default-order.spec.ts · grep: GEL",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  }
+]
