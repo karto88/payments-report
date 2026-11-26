@@ -1,5 +1,16 @@
 [
   {
+    "id": "2026-11-26T11-16-10-976Z",
+    "startedAt": "2026-11-26T11:16:10.976Z",
+    "durationMs": 83081,
+    "label": "tests/Positive/refund-integrator.spec.ts · grep: over balance",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "failedTitles": []
+  },
+  {
     "id": "2026-11-26T08-12-50-336Z",
     "startedAt": "2026-11-26T08:12:50.336Z",
     "durationMs": 10085285,
@@ -207,17 +218,6 @@
     "label": "tests/Smoke/saved-card-order.spec.ts",
     "total": 1,
     "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-25T13-41-03-137Z",
-    "startedAt": "2026-11-25T13:41:03.137Z",
-    "durationMs": 203304,
-    "label": "tests/Smoke/circuit-breaker.spec.ts · grep: უსაფრთხოება|ზღვრები",
-    "total": 35,
-    "passed": 35,
     "failed": 0,
     "skipped": 0,
     "failedTitles": []
