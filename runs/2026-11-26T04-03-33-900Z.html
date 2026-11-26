@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report</title>
+  <style>
+    .history { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px; margin-bottom:24px; }
+    .history > summary { cursor:pointer; font-weight:600; font-size:14px; }
+    .hwrap { overflow-x:auto; margin-top:10px; }
+    .history table { border-collapse:collapse; width:100%; font-size:13px; }
+    .history th, .history td { text-align:left; padding:6px 10px; border-top:1px solid #30363d; vertical-align:top; white-space:nowrap; }
+    .history th { color:#7d8590; font-weight:600; border-top:none; }
+    .history td.lbl { white-space:normal; max-width:260px; color:#adbac7; }
+    .history a { color:#58a6ff; text-decoration:none; } .history a:hover { text-decoration:underline; }
+    .history tr.cur td { background:#1c2330; }
+    .history .p { color:#3fb950; } .history .f { color:#f85149; } .history .s { color:#7d8590; }
+    .now { background:#1f6feb; color:#fff; border-radius:10px; padding:1px 7px; font-size:11px; }
+    .barc { min-width:140px; } .bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0d1117; margin-top:5px; }
+    .hf summary { cursor:pointer; color:#f85149; } .hf ul { margin:6px 0 0; padding-left:18px; white-space:normal; color:#ffa198; max-width:520px; }
+    .back { color:#58a6ff; font-size:13px; text-decoration:none; display:inline-block; margin-bottom:12px; }
+    body { font-family: system-ui, sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:32px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .meta { color:#7d8590; font-size:13px; margin-bottom:20px; }
+    .summary { display:flex; gap:12px; margin-bottom:24px; }
+    .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 18px;
+            font-family:inherit; font-size:14px; font-weight:600; color:#e6edf3; cursor:pointer;
+            transition:border-color .15s, box-shadow .15s; }
+    .card:hover { border-color:#484f58; }
+    .card.active { border-color:#58a6ff; box-shadow:0 0 0 1px #58a6ff; }
+    .card.pass { color:#3fb950; } .card.fail { color:#f85149; } .card.skip { color:#7d8590; }
+    .file { color:#7d8590; font-size:13px; margin:18px 0 6px; font-weight:600; }
+    .suite-group.lvl1 { margin:18px 0 10px; }
+    .suite-group.lvl1 > .suite { font-size:16px; color:#e6edf3; padding-bottom:6px; border-bottom:1px solid #30363d; margin-bottom:10px; }
+    .suite-group.lvl2 { margin:8px 0 14px 14px; padding-left:12px; border-left:2px solid #30363d; }
+    .suite-group.lvl2 > .suite { font-size:14px; color:#adbac7; margin:4px 0 8px; }
+    .suite { font-weight:600; }
+    .suite .cnt { color:#3fb950; font-size:12px; font-weight:500; margin-left:8px; }
+    .suite.bad .cnt { color:#f85149; }
+    .test-item { margin-bottom:6px; }
+    .test { display:flex; align-items:center; gap:16px; background:#161b22; border:1px solid #30363d;
+            border-radius:6px; padding:12px 16px; cursor:pointer; list-style:none; user-select:none; }
+    .test::-webkit-details-marker { display:none; }
+    .test:hover { border-color:#484f58; }
+    .chev { color:#7d8590; font-size:11px; width:12px; transition:transform .15s; }
+    details[open] > .test .chev { transform:rotate(90deg); }
+    .st { min-width:110px; font-weight:600; font-size:13px; }
+    .name { flex:1; }
+    .dur { color:#7d8590; font-size:13px; }
+    .err { background:#161b22; border:1px solid #f85149; border-left:3px solid #f85149; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#ffa198; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; }
+    .log { background:#0b0f14; border:1px solid #30363d; border-left:3px solid #3fb950; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#adbac7; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; line-height:1.5; }
+    .log a { color:#58a6ff; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← ისტორია / ბოლო გაშვება</a>
+  <h1>🎭 Playwright Test Report</h1>
+  <div class="meta">11/26/2026, 4:03:33 AM · tests/Positive tests/Negative · 46 წთ</div>
+  <div class="summary">
+    <button type="button" class="card active" data-filter="all">Total: 111</button>
+    <button type="button" class="card pass" data-filter="pass">✅ Passed: 22</button>
+    <button type="button" class="card fail" data-filter="fail">❌ Failed: 89</button>
+    <button type="button" class="card skip" data-filter="skip">⏭️ Skipped: 0</button>
+  </div>
+  <div class="file-group"><div class="file">tests/Negative/add-money-negative.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — ბარათის max ლიმიტზე მეტი თანხა</span>
+            <span class="dur">13.3s</span>
+          </summary><pre class="log">✅ Payment URL: <a href="https://tiny.dev.keepz.me/2w3dky29" target="_blank" rel="noopener">https://tiny.dev.keepz.me/2w3dky29</a>
+✅ Payment page opened
+✅ Clicked: Bank card (standard)
+
+📊 Add money — ბარათის max ლიმიტზე მეტი თანხა · 3001 GEL
+   მოსალოდნელი შედეგი: გამოჩნდეს ერორის მოდალი „Amount should be in range" და გადახდა დაიბლოკოს
+   ერორის მოდალი: „Amount should be in range" ✅
+   გადახდა: დაიბლოკა — ბარათის მონაცემების შესაყვან გვერდზე არ გადავიდა ✅
+✅ Modal closed (OK)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — არასწორი CVV</span>
+            <span class="dur">52.1s</span>
+          </summary><pre class="log">✅ Balance before: 8.82 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/35cd5pay" target="_blank" rel="noopener">https://tiny.dev.keepz.me/35cd5pay</a>
+✅ Payment page opened
+✅ Submitted — wrong CVV (444)
+
+📊 Add money — არასწორი CVV (444) · 0.13 GEL
+   მოსალოდნელი შედეგი: გადახდა ჩავარდეს — ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 8.82 → გახდა 8.82 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ დაირიცხა, ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — acquiring fail - არასაკმარისი ბალანსი</span>
+            <span class="dur">72.8s</span>
+          </summary><pre class="log">✅ Balance before: 8.82 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/55399452" target="_blank" rel="noopener">https://tiny.dev.keepz.me/55399452</a>
+✅ Payment page opened
+✅ OTP: 63586
+
+📊 Add money — BOG ბარათი — არასაკმარისი თანხა · 70 GEL
+   მოსალოდნელი შედეგი: გადახდა ჩავარდეს — ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 8.82 → გახდა 8.82 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ დაირიცხა, ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — payment link-ით გადახდა</span>
+            <span class="dur">66.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 8.82 GEL
+✅ Payment page opened
+✅ OTP: 541058
+
+📊 Add money — payment link-ით გადახდა · 0.1 GEL (STANDARD flow)
+   მოსალოდნელი შედეგი: ჩვეულებრივი გადახდაა და არა add money — ტრანზაქცია TOP_UP არ არის, ბალანსი არ უნდა გაიზარდოს
+   ტრანზაქცია: tx 115511 · operationType=STANDARD · status=SUCCESS ✅
+   ბალანსი: იყო 8.82 → გახდა 8.82 GEL (ცვლილება 0) ✅
+   ✅ ბალანსი არ შეცვლილა, ტრანზაქცია TOP_UP არ არის</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — გადახდის დაინიცირება</span>
+            <span class="dur">41.0s</span>
+          </summary><pre class="log">✅ Balance before: 8.82 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4c6zd4wh" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4c6zd4wh</a>
+✅ Payment page opened — გადახდის გარეშე ვხურავთ
+
+📊 Add money — გადახდის დაინიცირება (ლინკი გაიხსნა, გადახდა არ მომხდარა) · 0.13 GEL
+   მოსალოდნელი შედეგი: ბალანსი არ უნდა გაიზარდოს, ისტორიაში TOP_UP არ უნდა ჩანდეს
+   ბალანსი: იყო 8.82 → გახდა 8.82 GEL (ცვლილება 0) ✅
+   ისტორიაში ახალი TOP_UP: არ ჩანს ✅
+   ✅ ბალანსი არ შეცვლილა, Pending top-up ისტორიაში არ ჩანს</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money endpoint - თანხა დღიურ ლიმიტზე მეტი</span>
+            <span class="dur">1.3s</span>
+          </summary><pre class="log">📊 add-money 5001 GEL — დღიურ ლიმიტზე (5000) მეტი
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   მოსალოდნელი: ერორი, payment link არ უნდა დაბრუნდეს · მოვიდა: HTTP 200, payment link ❌</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount -5</span>
+            <span class="dur">1.4s</span>
+          </summary><pre class="log">📊 add-money -5 GEL — უარყოფითი თანხა
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი შეიცავდეს „must be greater than 0" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2270 · მოვიდა 2270 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount 9999995</span>
+            <span class="dur">990ms</span>
+          </summary><pre class="log">📊 add-money 9999995 GEL — endpoint-ის დიაპაზონზე მეტი
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 409 · მოვიდა 409 ✅
+   message:        მოსალოდნელი შეიცავდეს „Amount should be in range: 0.01-" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2030 · მოვიდა 2030 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - amount 0</span>
+            <span class="dur">926ms</span>
+          </summary><pre class="log">📊 add-money 0 GEL — ნულოვანი თანხა
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი შეიცავდეს „must be greater than 0" · შეიცავს ✅
+   statusCode:     მოსალოდნელი 2270 · მოვიდა 2270 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - currencyCode is empty</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">📊 add-money 0.13 (ცარიელი) — ცარიელი currencyCode
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Invalid request format" · მოვიდა „Invalid request format" ✅
+   statusCode:     მოსალოდნელი 1003 · მოვიდა 1003 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">GEL - add money - currencyCode is lowercase gel</span>
+            <span class="dur">914ms</span>
+          </summary><pre class="log">📊 add-money 0.13 gel — currencyCode პატარა ასოებით (gel)
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Invalid request format" · მოვიდა „Invalid request format" ✅
+   statusCode:     მოსალოდნელი 1003 · მოვიდა 1003 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">add money - ვალუტა რომელიც ჩართული არ არის (RUB)</span>
+            <span class="dur">961ms</span>
+          </summary><pre class="log">📊 add-money 0.13 RUB — ვალუტა ჩართული არ არის (RUB)
+   მოსალოდნელი შედეგი: add-money ერორს აბრუნებს, payment link არ იქმნება
+   HTTP status:    მოსალოდნელი 400 · მოვიდა 400 ✅
+   message:        მოსალოდნელი „Initial currency not allowed!" · მოვიდა „Initial currency not allowed!" ✅
+   statusCode:     მოსალოდნელი 2426 · მოვიდა 2426 ✅
+   exceptionGroup: მოსალოდნელი 1 · მოვიდა 1 ✅
+   ✅ add-money უარყო მოსალოდნელი ერორით</pre></details></div><div class="file-group"><div class="file">tests/Negative/order-creation-negative.spec.ts</div><div class="suite-group lvl1"><div class="suite">ორდერის შექმნა — ნეგატიური ქეისები <span class="cnt">✅ 6/6</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — მინიმუმზე ნაკლები თანხით (0.005) უნდა უარყოს</span>
+            <span class="dur">707ms</span>
+          </summary><pre class="log">❌ Error 6021: Number format is not valid!
+
+✅ ორდერი უარყო: Order failed: Number format is not valid!</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — ნულოვანი თანხით (0) უნდა უარყოს</span>
+            <span class="dur">737ms</span>
+          </summary><pre class="log">❌ Error 6026: amount must be in range: 0.01-12000.0
+
+✅ ორდერი უარყო: Order failed: amount must be in range: 0.01-12000.0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — უარყოფითი თანხით (-1) უნდა უარყოს</span>
+            <span class="dur">686ms</span>
+          </summary><pre class="log">❌ Error 6021: Number format is not valid!
+
+✅ ორდერი უარყო: Order failed: Number format is not valid!</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — მაქსიმუმზე მეტი თანხით (999999) უნდა უარყოს</span>
+            <span class="dur">715ms</span>
+          </summary><pre class="log">❌ Error 6026: amount must be in range: 0.01-12000.0
+
+✅ ორდერი უარყო: Order failed: amount must be in range: 0.01-12000.0</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — არასწორი receiverId-ით უნდა უარყოს</span>
+            <span class="dur">711ms</span>
+          </summary><pre class="log">❌ Error 2158: Branch Account not found for given id.
+
+✅ ორდერი უარყო: Order failed: Branch Account not found for given id.</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — არასწორი integratorId-ით უნდა უარყოს</span>
+            <span class="dur">670ms</span>
+          </summary><pre class="log">❌ Error 6004: Active Integrator not found with given id
+
+✅ ორდერი უარყო: Order failed: Active Integrator not found with given id</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/add-money.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow STANDARD - GEL</span>
+            <span class="dur">45.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 8.82 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/bdjwpzt5" target="_blank" rel="noopener">https://tiny.dev.keepz.me/bdjwpzt5</a>
+✅ Payment page opened
+✅ OTP: 396904
+
+📊 Add money — ბარათი TBC · distributionFlow STANDARD · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 8.82 → გახდა 8.94 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=STANDARD: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 8.82,
+  "balanceAfter": 8.94,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow MANUAL - ვალუტა არის GEL</span>
+            <span class="dur">46.3s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=MANUAL
+✅ Balance before: 8.94 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/222t6duj" target="_blank" rel="noopener">https://tiny.dev.keepz.me/222t6duj</a>
+✅ Payment page opened
+✅ OTP: 324130
+
+📊 Add money — ბარათი TBC · distributionFlow MANUAL · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 8.94 → გახდა 9.06 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=MANUAL: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 8.94,
+  "balanceAfter": 9.06,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow TESTING - GEL</span>
+            <span class="dur">46.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TESTING
+✅ Balance before: 9.06 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3zka2vdc" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3zka2vdc</a>
+✅ Payment page opened
+✅ OTP: 437193
+
+📊 Add money — ბარათი TBC · distributionFlow TESTING · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.06 → გახდა 9.18 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=TESTING: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.06,
+  "balanceAfter": 9.18,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow TREASURY - GEL</span>
+            <span class="dur">46.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TREASURY
+✅ Balance before: 9.18 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/597vdat3" target="_blank" rel="noopener">https://tiny.dev.keepz.me/597vdat3</a>
+✅ Payment page opened
+✅ OTP: 191956
+
+📊 Add money — ბარათი TBC · distributionFlow TREASURY · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.18 → გახდა 9.3 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=TREASURY: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.18,
+  "balanceAfter": 9.3,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow DIRECT - GEL</span>
+            <span class="dur">48.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DIRECT
+✅ Balance before: 9.3 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/59fr38f2" target="_blank" rel="noopener">https://tiny.dev.keepz.me/59fr38f2</a>
+✅ Payment page opened
+✅ OTP: 001913
+
+📊 Add money — ბარათი TBC · distributionFlow DIRECT · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.3 → გახდა 9.42 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=DIRECT: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.3,
+  "balanceAfter": 9.42,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow UCC - GEL</span>
+            <span class="dur">47.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=UCC
+✅ Balance before: 9.42 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/umzkv4s5" target="_blank" rel="noopener">https://tiny.dev.keepz.me/umzkv4s5</a>
+✅ Payment page opened
+✅ OTP: 143399
+
+📊 Add money — ბარათი TBC · distributionFlow UCC · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.42 → გახდა 9.54 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=UCC: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.42,
+  "balanceAfter": 9.54,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow DELAY - GEL</span>
+            <span class="dur">48.1s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DELAY
+✅ Balance before: 9.54 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4y4hdteu" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4y4hdteu</a>
+✅ Payment page opened
+✅ OTP: 855781
+
+📊 Add money — ბარათი TBC · distributionFlow DELAY · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.54 → გახდა 9.66 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=DELAY: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.54,
+  "balanceAfter": 9.66,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow BALANCE - GEL</span>
+            <span class="dur">47.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=BALANCE
+✅ Balance before: 9.66 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/dhkkxcdm" target="_blank" rel="noopener">https://tiny.dev.keepz.me/dhkkxcdm</a>
+✅ Payment page opened
+✅ OTP: 269532
+
+📊 Add money — ბარათი TBC · distributionFlow BALANCE · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.66 → გახდა 9.78 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=BALANCE: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.66,
+  "balanceAfter": 9.78,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა distributionFlow HUB_TOP_UP - GEL</span>
+            <span class="dur">46.6s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=HUB_TOP_UP
+✅ Balance before: 9.78 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/38347kwy" target="_blank" rel="noopener">https://tiny.dev.keepz.me/38347kwy</a>
+✅ Payment page opened
+✅ OTP: 758860
+
+📊 Add money — ბარათი TBC · distributionFlow HUB_TOP_UP · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.78 → გახდა 9.9 GEL (დაემატა 0.12, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Balance Top-up (add money)
+⚠️  პრობლემა:    distributionFlow=HUB_TOP_UP: ბალანსზე არასწორად აისახა — დაემატა 0.12 GEL, უნდა დამატებოდა 0.13 GEL
+📥 მიმდინარე შედეგი:
+{
+  "balanceBefore": 9.78,
+  "balanceAfter": 9.9,
+  "added": 0.12,
+  "expected": 0.13,
+  "senderFee": 0,
+  "receiverFee": 0.01
+}
+✅ მოსალოდნელი შედეგი: SENDER commission → ბალანსზე სრული amount = 0.13 GEL
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow STANDARD - GEL</span>
+            <span class="dur">64.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 9.9 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/5n79jn52" target="_blank" rel="noopener">https://tiny.dev.keepz.me/5n79jn52</a>
+✅ Payment page opened
+✅ OTP: 5582
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow STANDARD · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 9.9 → გახდა 10.03 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115521,
+  "uuid": "d13d39fb-45da-4858-9d48-fb45856e2b91",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:15:53.24978",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow MANUAL - GEL</span>
+            <span class="dur">64.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=MANUAL
+✅ Balance before: 10.03 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/3nap46pb" target="_blank" rel="noopener">https://tiny.dev.keepz.me/3nap46pb</a>
+✅ Payment page opened
+✅ OTP: 3773
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow MANUAL · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.03 → გახდა 10.16 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115522,
+  "uuid": "37f2f9e7-2020-4634-8a85-b063eb2338fd",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:17:03.402213",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow TESTING - GEL</span>
+            <span class="dur">63.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TESTING
+✅ Balance before: 10.16 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4m23kbtr" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4m23kbtr</a>
+✅ Payment page opened
+✅ OTP: 9467
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow TESTING · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.16 → გახდა 10.29 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115523,
+  "uuid": "e626adba-b4ee-43dd-8b6c-b8a37b5aead6",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:18:11.565277",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow TREASURY - GEL</span>
+            <span class="dur">64.7s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=TREASURY
+✅ Balance before: 10.29 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/37zy33fn" target="_blank" rel="noopener">https://tiny.dev.keepz.me/37zy33fn</a>
+✅ Payment page opened
+✅ OTP: 0548
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow TREASURY · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.29 → გახდა 10.42 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115524,
+  "uuid": "328a652e-a8f3-4117-a65f-db8c00938995",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:19:19.415119",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow DIRECT - GEL</span>
+            <span class="dur">32.9s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DIRECT
+✅ Balance before: 10.42 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/z6sjurth" target="_blank" rel="noopener">https://tiny.dev.keepz.me/z6sjurth</a>
+✅ Payment page opened
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">TimeoutError: page.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('bd-text-field#username')[22m
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow UCC - GEL</span>
+            <span class="dur">63.6s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=UCC
+✅ Balance before: 10.42 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/pvsxn6c2" target="_blank" rel="noopener">https://tiny.dev.keepz.me/pvsxn6c2</a>
+✅ Payment page opened
+✅ OTP: 7585
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow UCC · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.42 → გახდა 10.55 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115525,
+  "uuid": "380d3dc6-d13a-4296-b029-d48d017d3437",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:21:05.086741",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow DELAY - GEL</span>
+            <span class="dur">66.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=DELAY
+✅ Balance before: 10.55 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4yyrknfk" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4yyrknfk</a>
+✅ Payment page opened
+✅ OTP: 3215
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow DELAY · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.55 → გახდა 10.68 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115526,
+  "uuid": "4dd53d55-1dd1-4460-bf95-4c500757ade4",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:22:15.175551",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG distributionFlow BALANCE - GEL</span>
+            <span class="dur">65.5s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=BALANCE
+✅ Balance before: 10.68 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/nhm2uhct" target="_blank" rel="noopener">https://tiny.dev.keepz.me/nhm2uhct</a>
+✅ Payment page opened
+✅ OTP: 0330
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow BALANCE · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.68 → გახდა 10.81 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115527,
+  "uuid": "3397dc34-c733-4579-bcbe-dfad6a7802b6",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:23:24.786571",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — Open Banking BOG, distributionFlow HUB_TOP_UP - GEL</span>
+            <span class="dur">68.0s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=HUB_TOP_UP
+✅ Balance before: 10.81 GEL
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/2drt2t76" target="_blank" rel="noopener">https://tiny.dev.keepz.me/2drt2t76</a>
+✅ Payment page opened
+✅ OTP: 1155
+✅ BOG Login completed
+✅ Payment confirmed
+
+📊 Add money — Open Banking BOG · distributionFlow HUB_TOP_UP · SENDER commission · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 10.81 → გახდა 10.94 GEL (დაემატა 0.13, უნდა დამატებოდა 0.13)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    საკომისიო არასწორ მხარესაა — sender 0, receiver 0
+📥 მიმდინარე შედეგი:
+{
+  "id": 115528,
+  "uuid": "e4678cab-97f2-4f47-acaf-65badb21822f",
+  "amount": 0.13,
+  "initialAmount": 0.13,
+  "senderCommissionAmount": 0,
+  "receiverCommissionAmount": 0,
+  "receiverCashBackAmount": 0,
+  "refundedAmount": 0,
+  "currencyCode": "GEL",
+  "recipientInfo": "stromae T",
+  "senderInfo": "Guest",
+  "senderUserId": null,
+  "senderUserType": null,
+  "receiverUserId": "db1bb73d-30cf-4718-ad2b-bc25cd13b09c",
+  "receiverUserType": "BRANCH",
+  "senderImagePath": null,
+  "receiverImagePath": "merchant_images/thumbnail-d3c8a27c-1f0b-43e6-9ca6-0d3046428038.jpg",
+  "status": "COLLECTED",
+  "transactionDate": "2026-11-26T08:24:37.02449",
+  "secondParty": null,
+  "isReceived": true,
+  "isSent": false,
+  "senderBusinessName": null,
+  "recipientBusinessName": null,
+  "senderPersonalNumber": null,
+  "receiverPersonalNumber": "90000000141",
+  "description": null,
+  "acquiringTransactionType": "TOP_UP",
+  "canBeRefunded": false,
+  "softposTransactionId": null,
+  "softposAcquiringAmount": null,
+  "softposCurrency": null,
+  "paymentMethod": "OB",
+  "note": null,
+  "receivedOnIban": "GE29TB7197445064300124",
+  "cardMask": null,
+  "operationType": "TOP_UP",
+  "canBeSent": false
+}
+✅ მოსალოდნელი შედეგი: SENDER commission: senderCommissionAmount &gt; 0 და receiverCommissionAmount = 0
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა - USD</span>
+            <span class="dur">102.6s</span>
+          </summary><pre class="log">✅ Balance before: 0 USD
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/4tdras26" target="_blank" rel="noopener">https://tiny.dev.keepz.me/4tdras26</a>
+✅ Payment page opened
+✅ OTP: 834933
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    ტრანზაქციების სიაში ვერ მოიძებნა 0.07 USD-ის top-up ტრანზაქცია
+📥 მიმდინარე შედეგი:
+{
+  "amount": 0.07,
+  "currencyCode": "USD"
+}
+✅ მოსალოდნელი შედეგი: ტრანზაქცია initialAmount=0.07, currencyCode=USD
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Add money — standard გადახდა - EUR</span>
+            <span class="dur">102.1s</span>
+          </summary><pre class="log">✅ Balance before: 0 EUR
+✅ Payment URL: <a href="https://tiny.dev.keepz.me/36xseey8" target="_blank" rel="noopener">https://tiny.dev.keepz.me/36xseey8</a>
+✅ Payment page opened
+✅ OTP: 718759
+✅ Restored: merchant distributionFlow=STANDARD</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /generic-transaction/filter (Balance Top-up)
+⚠️  პრობლემა:    ტრანზაქციების სიაში ვერ მოიძებნა 0.07 EUR-ის top-up ტრანზაქცია
+📥 მიმდინარე შედეგი:
+{
+  "amount": 0.07,
+  "currencyCode": "EUR"
+}
+✅ მოსალოდნელი შედეგი: ტრანზაქცია initialAmount=0.07, currencyCode=EUR
+───────────────────────────────────────────
+</pre></details></div><div class="file-group"><div class="file">tests/Positive/all-methods.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Card Payment TBC</span>
+            <span class="dur">3.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Card Payment BOG</span>
+            <span class="dur">2.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">TIP Payment</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/auto-refund.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Auto refund — დაქენსელებულ ორდერზე გადახდა - GEL</span>
+            <span class="dur">4.6s</span>
+          </summary><pre class="log">✅ Balance before: 10.61 GEL</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/balance-check-pre-auth.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre-Auth balance — Partial complete</span>
+            <span class="dur">3.5s</span>
+          </summary><pre class="log">✅ Balance before: 10.61 ₾</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre-Auth balance — Full complete</span>
+            <span class="dur">3.5s</span>
+          </summary><pre class="log">✅ Balance before: 10.61 ₾</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/balance-check.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Receiver და საკომისიო PERCENTAGE</span>
+            <span class="dur">8.3s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=PERCENTAGE
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=RECEIVER
+✅ Balance before: 4.67 GEL
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Sender და საკომისიო PERCENTAGE</span>
+            <span class="dur">8.5s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=PERCENTAGE
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=SENDER
+✅ Balance before: 4.67 GEL
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Receiver და საკომისიო FIXED</span>
+            <span class="dur">8.4s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=FIXED
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=RECEIVER
+✅ Balance before: 4.67 GEL
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — მერჩანტის საკომისიო არის Sender და საკომისიო FIXED</span>
+            <span class="dur">8.4s</span>
+          </summary><pre class="log">✅ Group updated: STANDARD GEL rateType=FIXED
+✅ Merchant updated: distributionFlow=BALANCE, commissionType=SENDER
+✅ Balance before: 4.67 GEL
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><div class="suite-group lvl1"><div class="suite bad">Balance check — Multi-currency <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — USD</span>
+            <span class="dur">3.3s</span>
+          </summary><pre class="log">✅ Balance before: 0.25 USD
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბალანსის შევსება — EUR</span>
+            <span class="dur">3.5s</span>
+          </summary><pre class="log">✅ Balance before: 0.3 EUR
+✅ Restored: group rateType=PERCENTAGE, merchant distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/callback-test.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Callback Test <span class="cnt">❌ 0/1</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">should send callback after successful payment</span>
+            <span class="dur">3.2s</span>
+          </summary><pre class="log">🌐 Webhook inbox (ბრაუზერში გახსენი): <a href="https://webhook.site/#!/view/85289780-0cab-4b56-98ca-b2a84f35bad3" target="_blank" rel="noopener">https://webhook.site/#!/view/85289780-0cab-4b56-98ca-b2a84f35bad3</a></pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/Card token-payment.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">დამახსოვრებული ბარათით გადახდა როცა — amount არის 0</span>
+            <span class="dur">3.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">დამახსოვრებული ბარათით გადახდა როცა — amount არის 0.1</span>
+            <span class="dur">2.8s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/create-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Create Order Only</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/directLinkProvider.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">BOG directLinkProvider - Distributor BOG - MCard</span>
+            <span class="dur">1.6s</span>
+          </summary><pre class="log">❌ Permission Error:
+   This integrator does not have permission for directLinkProvider
+   Use basic order (without directLinkProvider) or request permission from Keepz</pre><pre class="err">Error: Permission denied: directLinkProvider not allowed</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">TBC directLinkProvider - Distributor TBC Visa</span>
+            <span class="dur">1.7s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/gepa-order-list.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">GEPA order list</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/gpc.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">GPS Status</span>
+            <span class="dur">2.3s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/invoice.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Invoice Check</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/open-banking.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">BOG Open Banking</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">TBC Open Banking</span>
+            <span class="dur">2.3s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/pre-auth.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre Authorization გადახდა როცა ხდება — Partial complete</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre Authorization გადახდა როცა ხდება — Full complete</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/redirect - Success_Fail.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Success Redirect URL <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ორდერს მიყვება success redirect</span>
+            <span class="dur">2.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ორდერს მიყვება fail redirect URL</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-integrator.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Refund — INTEGRATOR (Sender 591030202) <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ინტეგრატორი Partially Refunded აკეთებს — და Merchant საკომისიო არის Sender</span>
+            <span class="dur">2.8s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ინტეგრატორი Full Refunded აკეთებს —  და Merchant საკომისიო არის Sender</span>
+            <span class="dur">12.2s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — INTEGRATOR (Receiver 591030201) <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ინტეგრატორი Partially Refunded აკეთებს — და Merchant საკომისიო არის Receiver</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ინტეგრატორი Full Refunded აკეთებს — და Merchant საკომისიო არის Receiver</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — INTEGRATOR (Partial → Full — ბალანსი უცვლელი) <span class="cnt">❌ 0/1</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ინტეგრატორი - Partial refund-ის შემდეგ Full refund - ბარათით გადახდა</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — INTEGRATOR (591078180) <span class="cnt">❌ 0/1</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">refund ბალანსზე მეტი თანხით over balance - ბალანსი უცვლელი</span>
+            <span class="dur">6.2s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-order.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Refund — DEVICE <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Partially Refund  - და საკომისიო არის Sender</span>
+            <span class="dur">4.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Full Refund - Sender</span>
+            <span class="dur">2.7s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — DEVICE Receiver 591030201 <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Partially Refund — და საკომისიო არის Receiver</span>
+            <span class="dur">2.7s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა მერჩანტი აკეთებს Full Refund  — და საკომისიო არის Receiver</span>
+            <span class="dur">2.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Refund — ADMIN <span class="cnt">❌ 0/4</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ადმინი აკეთებს Partially Refunded — და საკომისიო არის Sender</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ადმინი აკეთებს Full Refunded — და საკომისიო არის Sender</span>
+            <span class="dur">3.2s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ადმინი აკეთებს Partially Refunded — და საკომისიო არის Receiver</span>
+            <span class="dur">2.8s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">როცა ადმინი აკეთებს Full Refunded — და საკომისიო არის Receiver</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-preauth.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Pre-Auth Refund — SENDER commission <span class="cnt">❌ 0/6</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი INTEGRATOR — საკომისიო SENDER</span>
+            <span class="dur">7.9s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო SENDER</span>
+            <span class="dur">8.8s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი - მერჩანტი — საკომისიო SENDER</span>
+            <span class="dur">7.8s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი მერჩანტი — საკომისიო SENDER</span>
+            <span class="dur">7.5s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე FULL რეფანდი - ADMIN — საკომისიო SENDER</span>
+            <span class="dur">9.3s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი ADMIN — საკომისიო SENDER</span>
+            <span class="dur">7.4s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → SENDER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="suite-group lvl1"><div class="suite bad">Pre-Auth Refund — RECEIVER commission <span class="cnt">❌ 0/6</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე full რეფანდი INTEGRATOR — საკომისიო RECEIVER</span>
+            <span class="dur">7.7s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი INTEGRATOR — საკომისიო RECEIVER</span>
+            <span class="dur">7.8s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Full რეფანდი - მერჩანტი — საკომისიო RECEIVER</span>
+            <span class="dur">8.0s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი - მერჩანტი — საკომისიო RECEIVER</span>
+            <span class="dur">7.8s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Full რეფანდი - ADMIN — საკომისიო RECEIVER</span>
+            <span class="dur">8.7s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">პრე-ავტორიციის ორდერზე Partial რეფანდი - ADMIN — საკომისიო RECEIVER</span>
+            <span class="dur">7.9s</span>
+          </summary><pre class="log">✅ 0. Merchant commissionType → RECEIVER
+✅ Restored: merchant commissionType=SENDER</pre><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/refund-reports.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">Refund Reports Module <span class="cnt">❌ 4/13</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - Over Balance - full და partial</span>
+            <span class="dur">13.7s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ 1/6 · გადახდა + refund · GEL full 0.1 — ჩავარდა
+━━━ ❌ ინტეგრატორი refund - Over Balance - full და partial — ჩავარდა (0.2 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: 1/6 · გადახდა + refund · GEL full 0.1
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">8.2s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ ბალანსის შევსება 1/3 · 0.2 GEL — ჩავარდა
+━━━ ❌ ინტეგრატორი refund - In Balance - partial და full რეფანდი — ჩავარდა (0.1 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: ბალანსის შევსება 1/3 · 0.2 GEL
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - მერჩანტი refund - Over Balance - full და partial</span>
+            <span class="dur">9.0s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მერჩანტი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ 1/6 · გადახდა + refund · GEL full 0.1 — ჩავარდა
+━━━ ❌ მერჩანტი refund - Over Balance - full და partial — ჩავარდა (0.1 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: 1/6 · გადახდა + refund · GEL full 0.1
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - მერჩანტი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">8.7s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მერჩანტი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ ბალანსის შევსება 1/3 · 0.2 GEL — ჩავარდა
+━━━ ❌ მერჩანტი refund - In Balance - partial და full რეფანდი — ჩავარდა (0.1 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: ბალანსის შევსება 1/3 · 0.2 GEL
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ადმინი refund - Over Balance - full და partial</span>
+            <span class="dur">9.2s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ადმინი refund - Over Balance - full და partial
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ 1/6 · გადახდა + refund · GEL full 0.1 — ჩავარდა
+━━━ ❌ ადმინი refund - Over Balance - full და partial — ჩავარდა (0.1 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: 1/6 · გადახდა + refund · GEL full 0.1
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ადმინი refund - In Balance - partial და full რეფანდი</span>
+            <span class="dur">11.1s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ადმინი refund - In Balance - partial და full რეფანდი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ ბალანსის შევსება 1/3 · 0.2 GEL — ჩავარდა
+━━━ ❌ ადმინი refund - In Balance - partial და full რეფანდი — ჩავარდა (0.2 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: ბალანსის შევსება 1/3 · 0.2 GEL
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ერთი თვის ჩანაწერი</span>
+            <span class="dur">9.4s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ერთი თვის ჩანაწერი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ გადახდა + refund · GEL full 0.1 — ჩავარდა
+━━━ ❌ ერთი თვის ჩანაწერი — ჩავარდა (0.1 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: გადახდა + refund · GEL full 0.1
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ერთი დღის ჩანაწერი</span>
+            <span class="dur">7.3s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ერთი დღის ჩანაწერი
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ მომზადება — STANDARD flow · ბალანსი 0 · report-ი ტესტამდე — ჩავარდა
+━━━ ❌ ერთი დღის ჩანაწერი — ჩავარდა (0.1 წთ)</pre><pre class="err">ApiAssertionError: ❌ ჩავარდა: მომზადება — STANDARD flow · ბალანსი 0 · report-ი ტესტამდე
+
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    POST /refund-reports/preview (Excel)
+⚠️  პრობლემა:    HTTP 400
+📥 მიმდინარე შედეგი:
+"{\"message\":\"No eligible refund data found for the given period.\",\"statusCode\":1412,\"exceptionGroup\":2}"
+✅ მოსალოდნელი შედეგი: HTTP 200 + xlsx
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - მეილზე მოსული Excel</span>
+            <span class="dur">11.1s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ მეილზე მოსული Excel
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Report sent (id 39) → keepz07011@mailinator.com,nika@keepz.me,d.kartozia@keepz.me
+✅ Email received: "Refund Report — stromae refund report" from noreply@keepz.me · refund-report_stromae_refund_report_2026-11.xlsx
+
+📊 Send report — 2026-11-01 → 2026-11-26 · მიმდინარე (მეილი) vs მოსალოდნელი (ადმინკა)
+   სტრიქონები: მიმდინარე 17 · მოსალოდნელი 17 ✅
+   ყველა 17 სტრიქონი ველ-ველ ემთხვევა ✅
+   Over Balance refunds count:      მიმდინარე 6 · მოსალოდნელი 6 ✅
+   Over Balance refunds in GEL:     მიმდინარე 1.83 · მოსალოდნელი 1.83 ✅
+   In Balance refunds count:        მიმდინარე 11 · მოსალოდნელი 11 ✅
+   In Balance refunds in GEL:       მიმდინარე 2.11 · მოსალოდნელი 2.11 ✅
+   Total refunds:                   მიმდინარე 17 · მოსალოდნელი 17 ✅
+   Total in GEL:                    მიმდინარე 3.94 · მოსალოდნელი 3.94 ✅
+   Grand total (GEL equivalent):    მიმდინარე 3.94 · მოსალოდნელი 3.94 ✅
+   Refund Count:  მიმდინარე 17 (send response 17) · მოსალოდნელი 17 (summary) ✅
+   Total (GEL):   მიმდინარე 3.94 · მოსალოდნელი 3.94 (summary) ✅
+   ✅ მეილზე მოსული Excel = ადმინკის მონაცემები
+━━━ ✅ მეილზე მოსული Excel — გავიდა (0.2 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - payment link - ადმინი refund - Over Balance (full + partial)</span>
+            <span class="dur">111.6s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ payment link - ადმინი refund - Over Balance (full + partial)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via ADMIN — payment link 0.2 GEL (tx 115536)
+✅ Partial refund via ADMIN — payment link 0.1 GEL (tx 115537)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 0 → გახდა 2 — გაკეთდა 2 refund (უნდა 2) ✅
+   Total Amount (GEL): იყო 0 → გახდა 0.31 — დაემატა 0.31 (უნდა 0.31) ✅
+   Currency Breakdown: GEL იყო 0 → გახდა 0.31 — დაემატა 0.31 (უნდა 0.31) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115536 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   tx 115537 → OVER_BALANCE (უნდა OVER_BALANCE) ✅
+   In Balance  : იყო 0 → გახდა 0 — დაემატა 0 (უნდა 0) ✅
+   Over Balance: იყო 0 → გახდა 2 — დაემატა 2 (უნდა 2) ✅
+━━━ ✅ payment link - ადმინი refund - Over Balance (full + partial) — გავიდა (1.8 წთ)</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Refund Reports Module - ინტეგრატორი refund - TBC Open Banking - Over Balance</span>
+            <span class="dur">11.9s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ ინტეგრატორი refund - TBC Open Banking - Over Balance
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── ❌ გადახდა + refund · GEL full 0.1 · TBC Open Banking — ჩავარდა
+━━━ ❌ ინტეგრატორი refund - TBC Open Banking - Over Balance — ჩავარდა (0.2 წთ)</pre><pre class="err">TypeError: ❌ ჩავარდა: გადახდა + refund · GEL full 0.1 · TBC Open Banking
+RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - add money - მერჩანტი refund - partial და full</span>
+            <span class="dur">292.0s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ add money - მერჩანტი refund - partial და full
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via MERCHANT — add money 0.1 GEL (tx 115539)
+✅ Partial refund via MERCHANT — add money 0.2 GEL (tx 115540)
+✅ Full refund via MERCHANT — add money 0.1 USD (tx 115541)
+✅ Partial refund via MERCHANT — add money 0.2 USD (tx 115542)
+✅ Full refund via MERCHANT — add money 0.1 EUR (tx 115543)
+✅ Partial refund via MERCHANT — add money 0.2 EUR (tx 115544)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 2 → გახდა 8 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 0.31 → გახდა 1.59 — დაემატა 1.28 (უნდა 1.28) ✅
+   Currency Breakdown: GEL იყო 0.31 → გახდა 0.51 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: EUR იყო 0 → გახდა 0.2 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: USD იყო 0 → გახდა 0.2 — დაემატა 0.2 (უნდა 0.2) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115539 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115540 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115541 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115542 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115543 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115544 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 0 → გახდა 6 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 2 → გახდა 2 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ add money - მერჩანტი refund - partial და full — გავიდა (4.7 წთ)</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Refund Reports Module - add money - ადმინი refund - partial და full</span>
+            <span class="dur">299.9s</span>
+          </summary><pre class="log">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ add money - ადმინი refund - partial და full
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Full refund via ADMIN — add money 0.1 GEL (tx 115548)
+✅ Partial refund via ADMIN — add money 0.2 GEL (tx 115549)
+✅ Full refund via ADMIN — add money 0.1 USD (tx 115550)
+✅ Partial refund via ADMIN — add money 0.2 USD (tx 115551)
+✅ Full refund via ADMIN — add money 0.1 EUR (tx 115552)
+✅ Partial refund via ADMIN — add money 0.2 EUR (tx 115553)
+
+📊 Refund Reports — 2026-11-26
+   Refund Count:       იყო 8 → გახდა 14 — გაკეთდა 6 refund (უნდა 6) ✅
+   Total Amount (GEL): იყო 1.59 → გახდა 2.87 — დაემატა 1.28 (უნდა 1.28) ✅
+   Currency Breakdown: GEL იყო 0.51 → გახდა 0.71 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: EUR იყო 0.2 → გახდა 0.4 — დაემატა 0.2 (უნდა 0.2) ✅
+   Currency Breakdown: USD იყო 0.2 → გახდა 0.4 — დაემატა 0.2 (უნდა 0.2) ✅
+
+📊 Refund Report Details — 2026-11-26
+   tx 115548 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115549 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115550 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115551 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115552 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   tx 115553 → IN_BALANCE (უნდა IN_BALANCE) ✅
+   In Balance  : იყო 6 → გახდა 12 — დაემატა 6 (უნდა 6) ✅
+   Over Balance: იყო 2 → გახდა 2 — დაემატა 0 (უნდა 0) ✅
+━━━ ✅ add money - ადმინი refund - partial და full — გავიდა (4.9 წთ)</pre></details></div></div><div class="file-group"><div class="file">tests/Positive/saved-card.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Saved Card - იუზერი როცა ბარათს ამახსოვრებს</span>
+            <span class="dur">3.3s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/split-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Split Order IBAN BRANCH</span>
+            <span class="dur">2.9s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Split Order BRANCH and BRANCH</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Split Order chaild amount 0</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Split Order Main receiver amount 0</span>
+            <span class="dur">4.1s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/treasury-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Treasury Order</span>
+            <span class="dur">2.6s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div><div class="file-group"><div class="file">tests/Positive/validuntil-retry-payment.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">validUntil Order</span>
+            <span class="dur">2.5s</span>
+          </summary><pre class="err">TypeError: RSA_PKCS1_PADDING is no longer supported for private decryption, this can be reverted with --security-revert=CVE-2023-46809</pre></details></div>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.card');
+      const items = document.querySelectorAll('.test-item');
+      const groups = document.querySelectorAll('.file-group, .suite-group');
+      function applyFilter(f) {
+        items.forEach((it) => {
+          it.style.display = (f === 'all' || it.dataset.status === f) ? '' : 'none';
+        });
+        // ცარიელი file-group-ის header დამალვა
+        groups.forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll('.test-item').forEach((it) => {
+            if (it.style.display !== 'none') anyVisible = true;
+          });
+          g.style.display = anyVisible ? '' : 'none';
+        });
+        cards.forEach((c) => c.classList.toggle('active', c.dataset.filter === f));
+      }
+      cards.forEach((c) => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+    })();
+  </script>
+</body>
+</html>
