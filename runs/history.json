@@ -1,5 +1,20 @@
 [
   {
+    "id": "2026-11-26T11-33-52-990Z",
+    "startedAt": "2026-11-26T11:33:52.990Z",
+    "durationMs": 790344,
+    "label": "DEV სმოუკი",
+    "total": 36,
+    "passed": 32,
+    "failed": 3,
+    "skipped": 1,
+    "failedTitles": [
+      "GEPA — order list - branchId",
+      "Pre-auth — გადახდა 0.3 ₾ + complete 0.15 ₾",
+      "ბარათის შენახვა → შენახული ბარათით გადახდა (0.1 ₾)"
+    ]
+  },
+  {
     "id": "2026-11-26T11-16-10-976Z",
     "startedAt": "2026-11-26T11:16:10.976Z",
     "durationMs": 83081,
@@ -204,17 +219,6 @@
     "id": "2026-11-25T16-18-55-508Z",
     "startedAt": "2026-11-25T16:18:55.508Z",
     "durationMs": 52067,
-    "label": "tests/Smoke/saved-card-order.spec.ts",
-    "total": 1,
-    "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
-  },
-  {
-    "id": "2026-11-25T16-14-20-903Z",
-    "startedAt": "2026-11-25T16:14:20.903Z",
-    "durationMs": 52648,
     "label": "tests/Smoke/saved-card-order.spec.ts",
     "total": 1,
     "passed": 1,

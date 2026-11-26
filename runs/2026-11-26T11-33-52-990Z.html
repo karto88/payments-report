@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Report</title>
+  <style>
+    .history { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px; margin-bottom:24px; }
+    .history > summary { cursor:pointer; font-weight:600; font-size:14px; }
+    .hwrap { overflow-x:auto; margin-top:10px; }
+    .history table { border-collapse:collapse; width:100%; font-size:13px; }
+    .history th, .history td { text-align:left; padding:6px 10px; border-top:1px solid #30363d; vertical-align:top; white-space:nowrap; }
+    .history th { color:#7d8590; font-weight:600; border-top:none; }
+    .history td.lbl { white-space:normal; max-width:260px; color:#adbac7; }
+    .history a { color:#58a6ff; text-decoration:none; } .history a:hover { text-decoration:underline; }
+    .history tr.cur td { background:#1c2330; }
+    .history .p { color:#3fb950; } .history .f { color:#f85149; } .history .s { color:#7d8590; }
+    .now { background:#1f6feb; color:#fff; border-radius:10px; padding:1px 7px; font-size:11px; }
+    .barc { min-width:140px; } .bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#0d1117; margin-top:5px; }
+    .hf summary { cursor:pointer; color:#f85149; } .hf ul { margin:6px 0 0; padding-left:18px; white-space:normal; color:#ffa198; max-width:520px; }
+    .back { color:#58a6ff; font-size:13px; text-decoration:none; display:inline-block; margin-bottom:12px; }
+    body { font-family: system-ui, sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:32px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .meta { color:#7d8590; font-size:13px; margin-bottom:20px; }
+    .summary { display:flex; gap:12px; margin-bottom:24px; }
+    .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 18px;
+            font-family:inherit; font-size:14px; font-weight:600; color:#e6edf3; cursor:pointer;
+            transition:border-color .15s, box-shadow .15s; }
+    .card:hover { border-color:#484f58; }
+    .card.active { border-color:#58a6ff; box-shadow:0 0 0 1px #58a6ff; }
+    .card.pass { color:#3fb950; } .card.fail { color:#f85149; } .card.skip { color:#7d8590; }
+    .file { color:#7d8590; font-size:13px; margin:18px 0 6px; font-weight:600; }
+    .suite-group.lvl1 { margin:18px 0 10px; }
+    .suite-group.lvl1 > .suite { font-size:16px; color:#e6edf3; padding-bottom:6px; border-bottom:1px solid #30363d; margin-bottom:10px; }
+    .suite-group.lvl2 { margin:8px 0 14px 14px; padding-left:12px; border-left:2px solid #30363d; }
+    .suite-group.lvl2 > .suite { font-size:14px; color:#adbac7; margin:4px 0 8px; }
+    .suite { font-weight:600; }
+    .suite .cnt { color:#3fb950; font-size:12px; font-weight:500; margin-left:8px; }
+    .suite.bad .cnt { color:#f85149; }
+    .test-item { margin-bottom:6px; }
+    .test { display:flex; align-items:center; gap:16px; background:#161b22; border:1px solid #30363d;
+            border-radius:6px; padding:12px 16px; cursor:pointer; list-style:none; user-select:none; }
+    .test::-webkit-details-marker { display:none; }
+    .test:hover { border-color:#484f58; }
+    .chev { color:#7d8590; font-size:11px; width:12px; transition:transform .15s; }
+    details[open] > .test .chev { transform:rotate(90deg); }
+    .st { min-width:110px; font-weight:600; font-size:13px; }
+    .name { flex:1; }
+    .dur { color:#7d8590; font-size:13px; }
+    .err { background:#161b22; border:1px solid #f85149; border-left:3px solid #f85149; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#ffa198; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; }
+    .log { background:#0b0f14; border:1px solid #30363d; border-left:3px solid #3fb950; border-radius:6px;
+           padding:12px 16px; margin:-2px 0 10px; color:#adbac7; font-size:12px; white-space:pre-wrap;
+           overflow-x:auto; font-family:monospace; line-height:1.5; }
+    .log a { color:#58a6ff; text-decoration:underline; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← ისტორია / ბოლო გაშვება</a>
+  <h1>🎭 Playwright Test Report</h1>
+  <div class="meta">11/26/2026, 3:33:52 PM · DEV სმოუკი · 13 წთ</div>
+  <div class="summary">
+    <button type="button" class="card active" data-filter="all">Total: 36</button>
+    <button type="button" class="card pass" data-filter="pass">✅ Passed: 32</button>
+    <button type="button" class="card fail" data-filter="fail">❌ Failed: 3</button>
+    <button type="button" class="card skip" data-filter="skip">⏭️ Skipped: 1</button>
+  </div>
+  <div class="file-group"><div class="file">tests/Smoke/add-money.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Add money — STANDARD, TBC ბარათით (0.13 ₾)</span>
+            <span class="dur">60.8s</span>
+          </summary><pre class="log">✅ Merchant updated: distributionFlow=STANDARD
+✅ Balance before: 0 GEL
+✅ ჯგუფი: STANDARD GEL receiver 0.03% → მოსალოდნელი საკომისიო 0.01 GEL
+✅ Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=CUSTOM&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;productId=79bd53dc-436d-4f54-8191-84f07cdab9f4" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=CUSTOM&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;productId=79bd53dc-436d-4f54-8191-84f07cdab9f4</a>
+✅ Payment page opened
+✅ OTP: 558714
+
+📊 Add money — ბარათი TBC · distributionFlow STANDARD · საკომისიო receiver-ზე · GEL
+   საწყისი თანხა (initialAmount): 0.13 GEL
+   საკომისიო: sender 0 GEL, receiver 0.01 GEL
+   იუზერმა გადაიხადა: 0.13 + 0 = 0.13 GEL
+   ბალანსი: იყო 0 → გახდა 0.12 GEL (დაემატა 0.12, უნდა დამატებოდა 0.12)
+   ტრანზაქცია: operationType=TOP_UP, status=COLLECTED
+   ✅ ბალანსი აისახა, საკომისიო სწორად მოიწერა</pre></details></div><div class="file-group"><div class="file">tests/Smoke/callback-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Callback — გადახდა → callback მოვიდა (SUCCESS)</span>
+            <span class="dur">49.4s</span>
+          </summary><pre class="log">🌐 Webhook inbox (ბრაუზერში გახსენი): <a href="https://webhook.site/#!/view/99296b59-5110-42ed-82a8-c524b9ee2157" target="_blank" rel="noopener">https://webhook.site/#!/view/99296b59-5110-42ed-82a8-c524b9ee2157</a>
+✅ Order Created
+✅ Payment page opened
+✅ OTP: 555915
+✅ Found 1 callback(s)
+✅ Callback received — 08ef2c40-5094-4188-8c78-45890c36ab95 · status SUCCESS</pre></details></div><div class="file-group"><div class="file">tests/Smoke/check-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">CHECK ორდერის შექმნა</span>
+            <span class="dur">3.5s</span>
+          </summary><pre class="log">✅ Check Order Created — 0.1 GEL · 7f5ff5c3-5c11-4038-ab69-4f61d7b8bfbe
+Payment URL: <a href="https://www.web.appdev.keepz.me/pay?qrType=CHECK&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=3bb67f29-d15f-48bd-948a-bb4484f604de&amp;lng=ka" target="_blank" rel="noopener">https://www.web.appdev.keepz.me/pay?qrType=CHECK&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=3bb67f29-d15f-48bd-948a-bb4484f604de&amp;lng=ka</a>
+✅ CHECK page opened — 0.1 ₾</pre></details></div><div class="file-group"><div class="file">tests/Smoke/crypto-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Crypto ორდერის შექმნა — CITYPAY</span>
+            <span class="dur">1.5s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 3e14d9a3-e2f4-4fdb-b4f0-b3cf2effbf42
+Payment URL: <a href="https://app.citypay.io/en/order/d59395c0-2a90-4208-b0ea-c620f850ba13" target="_blank" rel="noopener">https://app.citypay.io/en/order/d59395c0-2a90-4208-b0ea-c620f850ba13</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/default-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — GEL</span>
+            <span class="dur">685ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status INITIAL · 06965f21-44de-4389-a2cc-da9cded72f92
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=06965f21-44de-4389-a2cc-da9cded72f92&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=06965f21-44de-4389-a2cc-da9cded72f92&amp;amount=0.1&amp;currency=GEL</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — USD</span>
+            <span class="dur">661ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 USD · status INITIAL · 9366964b-61ee-407f-9a75-40722444424e
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=9366964b-61ee-407f-9a75-40722444424e&amp;amount=0.1&amp;currency=USD" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=9366964b-61ee-407f-9a75-40722444424e&amp;amount=0.1&amp;currency=USD</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — EUR</span>
+            <span class="dur">680ms</span>
+          </summary><pre class="log">✅ Order Created — 0.1 EUR · status INITIAL · 0d3ff2ca-9f00-45c6-8609-964c3b0f2cb3
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=0d3ff2ca-9f00-45c6-8609-964c3b0f2cb3&amp;amount=0.1&amp;currency=EUR" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=0d3ff2ca-9f00-45c6-8609-964c3b0f2cb3&amp;amount=0.1&amp;currency=EUR</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/direct-link-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">directLinkProvider ორდერის შექმნა — TBC (Distributor TBC Visa)</span>
+            <span class="dur">1.5s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · a7708713-e53c-4e12-897b-8f293131607a
+Payment URL: <a href="https://ecom.tbcpayments.ge/Pay/choose/fhlWzhYDX8226151151?lang=ka" target="_blank" rel="noopener">https://ecom.tbcpayments.ge/Pay/choose/fhlWzhYDX8226151151?lang=ka</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">directLinkProvider ორდერის შექმნა — CREDO</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · d9d93edb-0c5d-4e31-a917-340811612ed5
+Payment URL: <a href="https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=SphgYOq8SmxOSfnpPI4oYNBh6mc%3D" target="_blank" rel="noopener">https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=SphgYOq8SmxOSfnpPI4oYNBh6mc%3D</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">directLinkProvider ორდერის შექმნა — DEFAULT</span>
+            <span class="dur">1.2s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 595ac738-0454-46fe-afd9-55d18bcb5306
+Payment URL: <a href="https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=YRfSeP0wSZBcDGXnNFlcee42gr4%3D" target="_blank" rel="noopener">https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=YRfSeP0wSZBcDGXnNFlcee42gr4%3D</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/gepa-order-branchId.spec.ts</div><div class="suite-group lvl1"><div class="suite bad">GEPA — გადახდა → Integrator refund <span class="cnt">❌ 0/2</span></div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">GEPA — order list - branchId</span>
+            <span class="dur">81.3s</span>
+          </summary><pre class="log">✅ Order Created — 344b712d-d130-4f1a-a0d8-b8d87afc8e8d · branchId 67700a46-af15-4975-940f-060b1ed5264c
+📋 Order list — 2026-11-26 15:35:56 → 2026-11-26 23:59:59 · branch 67700a46-af15-4975-940f-060b1ed5264c
+   ორდერები: 0 · sumAmount 0 · refundedAmount 0
+   SUCCESS 0 · refunded 0 · partially refunded 0</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    GET /integrator/order/list (branchId)
+⚠️  პრობლემა:    branchId-ით მოვიდა 0 ორდერი (ცარიელი)
+📥 მიმდინარე შედეგი:
+{
+  "sumAmount": "0",
+  "refundedAmount": "0",
+  "transactionQuantity": 0,
+  "refundedTransactionQuantity": 0,
+  "partiallyRefundedTransactionQuantity": 0,
+  "orders": []
+}
+✅ მოსალოდნელი შედეგი: მხოლოდ 1 ორდერი — 344b712d-d130-4f1a-a0d8-b8d87afc8e8d
+───────────────────────────────────────────
+</pre></details><details class="test-item" data-status="skip">
+          <summary class="test">
+            <span class="chev"></span>
+            <span class="st" style="color:#7d8590">⏭️ skipped</span>
+            <span class="name">Integrator refund — FULL (GEPA ორდერი)</span>
+            <span class="dur">0ms</span>
+          </summary></details></div></div><div class="file-group"><div class="file">tests/Smoke/gepa-order-status.spec.ts</div><div class="suite-group lvl1"><div class="suite">gepa — გადახდა → Integrator refund <span class="cnt">✅ 2/2</span></div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">gepa — Mastercard გადახდა and order status</span>
+            <span class="dur">49.7s</span>
+          </summary><pre class="log">✅ Order Created
+✅ Payment page opened
+✅ OTP: 58514
+🔍 Fetching order status...
+
+📋 ===== ORDER STATUS =====
+{
+  "integratorOrderId": "8dcc3662-a4ce-44ce-8220-2c9c9deac815",
+  "status": "SUCCESS",
+  "report": "stromae T \n B - მრენჩი - სტანდარტი - OB - ვაჟა ფშაველას 90 \n QR 21172 \n ორდერის ID: 8dcc3662-a4ce-44ce-8220-2c9c9deac815 \n თანხა: 0.1 GEL \n მეთოდი: Card \n დრო: 26.11.2026 15:37:22 \n სტატუსი: წარმატებული",
+  "initialCurrency": "GEL",
+  "acquiringCurrency": "GEL",
+  "acquiringAmount": 0.11,
+  "transactionId": 115773
+}
+==========================</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Integrator refund — PARTIAL 0.05 gepa ორდერი</span>
+            <span class="dur">714ms</span>
+          </summary><pre class="log">✅ Integrator refund (PARTIAL 0.05) → REFUND_REQUESTED · 8dcc3662-a4ce-44ce-8220-2c9c9deac815</pre></details></div></div><div class="file-group"><div class="file">tests/Smoke/hub-transaction.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — TBC</span>
+            <span class="dur">6.5s</span>
+          </summary><pre class="log">✅ Hub transfer TBC 0.1 GEL → GE95TB7197445064300003 · #21650 SUCCESS (საკომისიო 0.01) · uniqueId b1948ae0-d77a-48ca-a114-fbc1a10b8b7e</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — BOG</span>
+            <span class="dur">78.0s</span>
+          </summary><pre class="log">✅ Hub transfer BOG 0.1 GEL → GE62BG0000000610917722 · #21651 SUCCESS (საკომისიო 0.01) · uniqueId c24d40ac-19a8-4113-84a9-f0d1a0e5c0d6</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub ტრანზაქცია — Liberty</span>
+            <span class="dur">175.5s</span>
+          </summary><pre class="log">✅ Hub transfer Liberty 0.2 GEL → GE80LB0711150283471001 · #21652 SUCCESS (საკომისიო 0.02) · uniqueId 3b85ad6a-fa0c-4d14-a965-5590f4f5f90e</pre></details></div><div class="file-group"><div class="file">tests/Smoke/hub-wallet-transfer.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Hub-ის ბალანსიდან მერჩანტის ბალანსზე გადარიცხვა</span>
+            <span class="dur">2.4s</span>
+          </summary><pre class="log">✅ hub client 0ec0acd5-e9cd-4a02-aadd-8d886dafd93c → მერჩანტი 591078180 0.1 GEL: Hub 89.18 → 89.08 · მერჩანტი 0.07 → 0.17</pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">მერჩანტის ბალანსიდან Hub-ის ბალანსზე გადარიცხვა</span>
+            <span class="dur">4.7s</span>
+          </summary><pre class="log">✅ მერჩანტი 591078180 → hub client 0ec0acd5-e9cd-4a02-aadd-8d886dafd93c 0.1 GEL: Hub 89.08 → 89.18 · მერჩანტი 0.17 → 0.07</pre></details></div><div class="file-group"><div class="file">tests/Smoke/open-banking-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — BOG</span>
+            <span class="dur">2.2s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · fe8aa6f6-5545-4dd6-b2f6-238fb958fab9
+Payment URL: <a href="https://account-ob.bog.ge/auth/realms/bog/protocol/openid-connect/auth?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:t8wCtGWg8i7iarodPbIc_hM24FjFpKwosgUmW3STShlWHhjc_DGu0eayGzRwW0SdDpE0X5EDKeUf6Wsc6wWJlShL0oLDR83ZV8guP9DzVis%3D_%3D_psGLvQpt9Q&amp;state=MDAwMDAwMDAwMDAxODMwNw&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=WEJNvkqxKuAVVFBKkL6cgz7uLHNSwraujXRg5VV9p2s&amp;code_challenge_method=S256" target="_blank" rel="noopener">https://account-ob.bog.ge/auth/realms/bog/protocol/openid-connect/auth?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:t8wCtGWg8i7iarodPbIc_hM24FjFpKwosgUmW3STShlWHhjc_DGu0eayGzRwW0SdDpE0X5EDKeUf6Wsc6wWJlShL0oLDR83ZV8guP9DzVis%3D_%3D_psGLvQpt9Q&amp;state=MDAwMDAwMDAwMDAxODMwNw&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=WEJNvkqxKuAVVFBKkL6cgz7uLHNSwraujXRg5VV9p2s&amp;code_challenge_method=S256</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — TBC</span>
+            <span class="dur">1.7s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · c51edfa4-a432-4811-844d-421363dc93ac
+Payment URL: <a href="https://api.tbcbank.ge/psd2/openbanking/oauth/authorize?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:da0d385d-3fd0-4a15-b760-c29cc562e1cd&amp;state=MDAwMDAwMDAwMDAxODMwOA&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=AUeq1tP43QlGKDUCBcuRMCSTCGc3S_hRLJEUlHLTPSU&amp;code_challenge_method=S256" target="_blank" rel="noopener">https://api.tbcbank.ge/psd2/openbanking/oauth/authorize?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:da0d385d-3fd0-4a15-b760-c29cc562e1cd&amp;state=MDAwMDAwMDAwMDAxODMwOA&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=AUeq1tP43QlGKDUCBcuRMCSTCGc3S_hRLJEUlHLTPSU&amp;code_challenge_method=S256</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — CREDO</span>
+            <span class="dur">1.6s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · a8d74fc5-1f71-4bbd-910b-3f1dd2ad9b7b
+Payment URL: <a href="https://openbanking.credo.ge/ob-oauth2/authorize?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:1fbed84e-c2b7-42c7-b159-210690a755d2&amp;state=MDAwMDAwMDAwMDAxODMwOQ&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=RqEjTdhYY11PYYfTfnvumM3WmFDQiEx_fAF3cEXS330&amp;code_challenge_method=S256" target="_blank" rel="noopener">https://openbanking.credo.ge/ob-oauth2/authorize?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:1fbed84e-c2b7-42c7-b159-210690a755d2&amp;state=MDAwMDAwMDAwMDAxODMwOQ&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=RqEjTdhYY11PYYfTfnvumM3WmFDQiEx_fAF3cEXS330&amp;code_challenge_method=S256</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Open Banking ორდერის შექმნა — LB</span>
+            <span class="dur">2.7s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status PROCESSING · 8e9682f3-fa97-47ff-affa-41c35558c07a
+Payment URL: <a href="https://openbankingauth.lb.ge/authorize/24e8e234-d2de-4491-9141-d6d2b693959b?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:sb62592b-a24a-a2e8-22b4-bf507917ca22&amp;state=MDAwMDAwMDAwMDAxODMxMA&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=cck2ABM1iahlRYNXSZoxxmV3yzOl7R2ilNzsnnvlAxc&amp;code_challenge_method=S256" target="_blank" rel="noopener">https://openbankingauth.lb.ge/authorize/24e8e234-d2de-4491-9141-d6d2b693959b?response_type=code&amp;client_id=PSDGE-NBG-0099-7704&amp;scope=PIS:sb62592b-a24a-a2e8-22b4-bf507917ca22&amp;state=MDAwMDAwMDAwMDAxODMxMA&amp;redirect_uri=https://web.appdev.keepz.me/pending?lng%3Den&amp;code_challenge=cck2ABM1iahlRYNXSZoxxmV3yzOl7R2ilNzsnnvlAxc&amp;code_challenge_method=S256</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/pre-auth-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">Pre-auth — გადახდა 0.3 ₾ + complete 0.15 ₾</span>
+            <span class="dur">118.3s</span>
+          </summary><pre class="log">✅ Order Created (payWithPreAuth)
+✅ Payment page opened
+✅ OTP: 364170</pre><pre class="err">ApiAssertionError: 
+❌ API TEST FAILED
+───────────────────────────────────────────
+🔧 ოპერაცია:    Pre-Authorization transaction status
+⚠️  პრობლემა:    pre-auth-მა ჩვეულებრივ გადახდად გაიარა — status "NOT_FOUND"
+📥 მიმდინარე შედეგი:
+{
+  "status": "NOT_FOUND",
+  "integratorOrderId": "279145cf-ac34-46e7-874a-928016e622d6",
+  "transactionId": 115780
+}
+✅ მოსალოდნელი შედეგი: status === TO_BE_CONFIRMED (თანხა complete-მდე არ ნაწილდება)
+───────────────────────────────────────────
+</pre></details></div><div class="file-group"><div class="file">tests/Smoke/redirect-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">ორდერის შექმნა — successRedirectUri + failRedirectUri</span>
+            <span class="dur">1.0s</span>
+          </summary><pre class="log">✅ Order Created — 0.1 GEL · status INITIAL · 2789732e-d28f-4093-8537-513dc29cecf9
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=2789732e-d28f-4093-8537-513dc29cecf9&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=2789732e-d28f-4093-8537-513dc29cecf9&amp;amount=0.1&amp;currency=GEL</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/saved-card-order.spec.ts</div><details class="test-item" data-status="fail" open>
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#f85149">❌ failed</span>
+            <span class="name">ბარათის შენახვა → შენახული ბარათით გადახდა (0.1 ₾)</span>
+            <span class="dur">53.9s</span>
+          </summary><pre class="log">✅ Order Created (saveCard + CREDO)
+✅ Payment page opened
+✅ OTP: 615173</pre><pre class="err">Error: Get card token failed: 400 - {"message":"Integrator card not found","statusCode":6075,"exceptionGroup":5}</pre></details></div><div class="file-group"><div class="file">tests/Smoke/split-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.1 + IBAN 0.1</span>
+            <span class="dur">1.1s</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 786cdd46-8c84-4f89-8c86-5e5279f8f2ce
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=786cdd46-8c84-4f89-8c86-5e5279f8f2ce&amp;amount=0.2&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=786cdd46-8c84-4f89-8c86-5e5279f8f2ce&amp;amount=0.2&amp;currency=GEL</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.1 + BRANCH 0.1</span>
+            <span class="dur">776ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 8893175f-87fa-4a3d-ad1b-da992762014d
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=8893175f-87fa-4a3d-ad1b-da992762014d&amp;amount=0.2&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=8893175f-87fa-4a3d-ad1b-da992762014d&amp;amount=0.2&amp;currency=GEL</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0.2 + IBAN 0 (შვილის თანხა 0)</span>
+            <span class="dur">717ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 7b6799a0-bea0-44c1-8356-1f831e70acca
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=7b6799a0-bea0-44c1-8356-1f831e70acca&amp;amount=0.2&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=7b6799a0-bea0-44c1-8356-1f831e70acca&amp;amount=0.2&amp;currency=GEL</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Split ორდერის შექმნა — BRANCH 0 + IBAN 0.2 (მთავარი მიმღების თანხა 0)</span>
+            <span class="dur">716ms</span>
+          </summary><pre class="log">✅ Order Created — 0.2 GEL · status INITIAL · 3252caf9-0def-4d6c-ad19-3b60410111a4
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=3252caf9-0def-4d6c-ad19-3b60410111a4&amp;amount=0.2&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=db1bb73d-30cf-4718-ad2b-bc25cd13b09c&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=3252caf9-0def-4d6c-ad19-3b60410111a4&amp;amount=0.2&amp;currency=GEL</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/subscription-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Subscription ორდერის შექმნა — IMMEDIATE HOURLY</span>
+            <span class="dur">1.3s</span>
+          </summary><pre class="log">✅ Order Created — 0.17 GEL · status PROCESSING · c9eb4310-26f3-4bc9-aac4-391afc13c8cf
+Payment URL: <a href="https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=kRzfiOghjdE0XCt5QJFYEiSwbpU%3D" target="_blank" rel="noopener">https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=kRzfiOghjdE0XCt5QJFYEiSwbpU%3D</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Subscription ორდერის შექმნა — SCHEDULED HOURLY - startDate</span>
+            <span class="dur">1.2s</span>
+          </summary><pre class="log">✅ Order Created — 0.13 GEL · status PROCESSING · c15a5b15-cddf-46d6-bc33-f5df94b839e3
+Payment URL: <a href="https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=yZEPWBI7H8LSdsXHAMV7pagAmnE%3D" target="_blank" rel="noopener">https://ecommerce.ufc.ge/ecomm2/ClientHandler?trans_id=yZEPWBI7H8LSdsXHAMV7pagAmnE%3D</a></pre></details></div><div class="file-group"><div class="file">tests/Smoke/treasury-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Treasury ორდერის შექმნა</span>
+            <span class="dur">908ms</span>
+          </summary><pre class="log">✅ Treasury Order Created
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=c6c6413d-cb99-49bc-a85e-267af8f96eb9&amp;integratorId=5c1633f6-fb36-44b0-9560-db6c308dfe01&amp;integratorOrderId=3773799b-6d06-466e-930e-00cfd0730b7f&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=c6c6413d-cb99-49bc-a85e-267af8f96eb9&amp;integratorId=5c1633f6-fb36-44b0-9560-db6c308dfe01&amp;integratorOrderId=3773799b-6d06-466e-930e-00cfd0730b7f&amp;amount=0.1&amp;currency=GEL</a></pre></details><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Treasury — გადახდა TBC ბარათით (0.5 ₾)</span>
+            <span class="dur">49.8s</span>
+          </summary><pre class="log">✅ Treasury Order Created
+✅ Payment page opened
+✅ TBC OTP: 588229
+✅ Treasury paid — 0.5 ₾</pre></details></div><div class="file-group"><div class="file">tests/Smoke/valid-until-order.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">validUntil — არასწორი CVV → ორდერი ხელახლა იხსნება</span>
+            <span class="dur">25.0s</span>
+          </summary><pre class="log">✅ Order Created (validUntil 2026-11-27 11:46:32) — f56146da-152b-45d3-8924-f7d40e140e28
+Payment URL: <a href="https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=f56146da-152b-45d3-8924-f7d40e140e28&amp;amount=0.1&amp;currency=GEL" target="_blank" rel="noopener">https://web.appdev.keepz.me/pay?qrType=REQUEST&amp;receiverType=BRANCH&amp;receiverId=a1b9a5c5-9f01-42ee-a6e3-8853297caf49&amp;integratorId=76880b28-9033-4d48-b21f-37a9a36ec5dd&amp;integratorOrderId=f56146da-152b-45d3-8924-f7d40e140e28&amp;amount=0.1&amp;currency=GEL</a>
+❌ Payment failed (wrong CVV) — status INITIAL
+✅ Order reopened — card form available (validUntil works)</pre></details></div><div class="file-group"><div class="file">tests/Smoke/withdrawal.spec.ts</div><details class="test-item" data-status="pass">
+          <summary class="test">
+            <span class="chev">▶</span>
+            <span class="st" style="color:#3fb950">✅ passed</span>
+            <span class="name">Withdrawal — ბალანსიდან 0.1 ₾ IBAN-ზე</span>
+            <span class="dur">5.5s</span>
+          </summary><pre class="log">✅ Withdrawal 0.1 GEL → GE29TB7197445064300124 · balance 10.86 → 10.76</pre></details></div>
+  <script>
+    (function () {
+      const cards = document.querySelectorAll('.card');
+      const items = document.querySelectorAll('.test-item');
+      const groups = document.querySelectorAll('.file-group, .suite-group');
+      function applyFilter(f) {
+        items.forEach((it) => {
+          it.style.display = (f === 'all' || it.dataset.status === f) ? '' : 'none';
+        });
+        // ცარიელი file-group-ის header დამალვა
+        groups.forEach((g) => {
+          let anyVisible = false;
+          g.querySelectorAll('.test-item').forEach((it) => {
+            if (it.style.display !== 'none') anyVisible = true;
+          });
+          g.style.display = anyVisible ? '' : 'none';
+        });
+        cards.forEach((c) => c.classList.toggle('active', c.dataset.filter === f));
+      }
+      cards.forEach((c) => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+    })();
+  </script>
+</body>
+</html>
