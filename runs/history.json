@@ -1,5 +1,20 @@
 [
   {
+    "id": "2026-11-26T11-50-10-708Z",
+    "startedAt": "2026-11-26T11:50:10.708Z",
+    "durationMs": 253695,
+    "label": "სმოუკი — 3 ჩავარდნილის გადამოწმება",
+    "total": 4,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 1,
+    "failedTitles": [
+      "GEPA — order list - branchId",
+      "Pre-auth — გადახდა 0.3 ₾ + complete 0.15 ₾",
+      "ბარათის შენახვა → შენახული ბარათით გადახდა (0.1 ₾)"
+    ]
+  },
+  {
     "id": "2026-11-26T11-33-52-990Z",
     "startedAt": "2026-11-26T11:33:52.990Z",
     "durationMs": 790344,
@@ -214,16 +229,5 @@
       "Treasury Order",
       "validUntil Order"
     ]
-  },
-  {
-    "id": "2026-11-25T16-18-55-508Z",
-    "startedAt": "2026-11-25T16:18:55.508Z",
-    "durationMs": 52067,
-    "label": "tests/Smoke/saved-card-order.spec.ts",
-    "total": 1,
-    "passed": 1,
-    "failed": 0,
-    "skipped": 0,
-    "failedTitles": []
   }
 ]
